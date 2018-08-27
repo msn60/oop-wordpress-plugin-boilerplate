@@ -73,7 +73,7 @@ class Admin_Hook {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name.'-admin-style', PLUGIN_NAME_ADMIN_CSS. 'plugin-name-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name.'_admin_style', PLUGIN_NAME_ADMIN_CSS. 'plugin-name-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -96,7 +96,7 @@ class Admin_Hook {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name.'-admin-script', PLUGIN_NAME_ADMIN_JS. 'plugin-name-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name.'_admin_script', PLUGIN_NAME_ADMIN_JS. 'plugin-name-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
