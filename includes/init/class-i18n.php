@@ -24,9 +24,8 @@ namespace Plugin_Name_Dir\Includes\Init;
  * @subpackage Plugin_Name/includes
  * @author     Your Name <email@example.com>
  */
-class i18n {
-
-
+class i18n
+{
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -41,7 +40,5 @@ class i18n {
 		);
 
 	}
-
-
 
 }

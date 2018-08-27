@@ -11,7 +11,6 @@ class Activator
         //Create table in plugin activation
 
 
-
     }
 
 

@@ -37,14 +37,10 @@ if (!defined('ABSPATH')) {
  */
 define('PLUGIN_NAME_VERSION', '1.0.1');
 
-
-
 /*Define Autoloader class for plugin*/
 require_once trailingslashit(plugin_dir_path(__FILE__)) . 'includes/class-autoloader.php';
 /*Define required constant for plugin*/
 Includes\Init\Constant::define_constant();
-/*echo MSNSPR_ADMIN_CSS;
-echo MSNSPR_ADMIN_JS;*/
 
 /*Activation and Deactivation hooks*/
 function activate_plugin_name()
