@@ -25,11 +25,11 @@
 /*Define your namespaces here by use keyword*/
 
 /*Define your namespaces here by use keyword*/
-use \Plugin_Name_Dir\Includes\Init\Core;
-use \Plugin_Name_Dir\Includes\Init\Constant;
-use \Plugin_Name_Dir\Includes\Init\Activator;
-use \Plugin_Name_Dir\Includes\Uninstall\Deactivator;
-use \Plugin_Name_Dir\Includes\Uninstall;
+use Plugin_Name_Dir\Includes\Init\Core;
+use Plugin_Name_Dir\Includes\Init\Constant;
+use Plugin_Name_Dir\Includes\Init\Activator;
+use Plugin_Name_Dir\Includes\Uninstall\Deactivator;
+use Plugin_Name_Dir\Includes\Uninstall;
 
 // If this file is called directly, abort.
 if (!defined('ABSPATH')) {
@@ -49,7 +49,7 @@ class Plugin_Name_Plugin
          * Rename this for your plugin and update it as you release new versions.
          */
         define('PLUGIN_NAME_VERSION', '1.0.1');
-        define('MSNSP_DB_VERSION', 1);
+        define('PLUGIN_NAME_DB_VERSION', 1);
 
         /*Define Autoloader class for plugin*/
         require_once trailingslashit(plugin_dir_path(__FILE__)) . 'includes/class-autoloader.php';
