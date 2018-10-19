@@ -25,11 +25,12 @@
 /*Define your namespaces here by use keyword*/
 
 /*Define your namespaces here by use keyword*/
+
 use Plugin_Name_Dir\Includes\Init\Core;
 use Plugin_Name_Dir\Includes\Init\Constant;
 use Plugin_Name_Dir\Includes\Init\Activator;
 use Plugin_Name_Dir\Includes\Uninstall\Deactivator;
-use Plugin_Name_Dir\Includes\Uninstall;
+use Plugin_Name_Dir\Includes\Uninstall\Uninstall;
 
 // If this file is called directly, abort.
 if (!defined('ABSPATH')) {
@@ -37,6 +38,7 @@ if (!defined('ABSPATH')) {
 }
 
 /*Create a class with singletone design*/
+
 class Plugin_Name_Plugin
 {
 
@@ -65,7 +67,16 @@ class Plugin_Name_Plugin
          *
          * @since    1.0.0
          */
+        register_activation_hook(__FILE__, array($this, 'activate_plugin_name'));
+        register_deactivation_hook(__FILE__, array($this, 'deactivate_plugin_name'));
+        register_uninstall_hook(__FILE__, array($this, 'uninstall_plugin_name'));
         self::run_plugin_name_plugin();
+    }
+
+    public static function run_plugin_name_plugin()
+    {
+        $plugin = new Core();
+        $plugin->run();
     }
 
     public static function instance()
@@ -76,36 +87,22 @@ class Plugin_Name_Plugin
         return self::$instance;
     }
 
-    public static function run_plugin_name_plugin()
+    public function activate_plugin_name()
     {
-        $plugin = new Core();
-        $plugin->run();
+        Activator::activate();
+    }
+
+    public function deactivate_plugin_name()
+    {
+        Deactivator::deactivate();
+    }
+
+    public function uninstall_plugin_name() {
+       	Uninstall::uninstall();
     }
 }
 
 Plugin_Name_Plugin::instance();
-
-
-/*Activation and Deactivation hooks*/
-function activate_plugin_name()
-{
-    Activator::activate();
-}
-
-function deactivate_plugin_name()
-{
-    Deactivator::deactivate();
-}
-
-register_activation_hook(__FILE__, 'activate_plugin_name');
-register_deactivation_hook(__FILE__, 'deactivate_plugin_name');
-
-
-/*function uninstall_plugin_name() {
-   	MsnsprUninstall::uninstall();
-}
-register_uninstall_hook(__FILE__, 'uninstall_plugin_name');*/
-
 
 
 
