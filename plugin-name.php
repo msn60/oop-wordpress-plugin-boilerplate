@@ -46,6 +46,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class Plugin_Name_Plugin {
 	/**
+	 * Plugin_Name_Plugin Class.
+	 * This is primary class for your plugin
+	 *
 	 * @access private
 	 * @var    Plugin_Name_Plugin $instance create only one instance from plugin primary class
 	 */
@@ -113,7 +116,7 @@ class Plugin_Name_Plugin {
 		 */
 		register_uninstall_hook(
 			__FILE__,
-			array( $this, 'uninstall_plugin_name' )
+			array( 'Plugin_Name_Plugin', 'uninstall_plugin_name' )
 		);
 		self::run_plugin_name_plugin();
 	}
@@ -138,21 +141,45 @@ class Plugin_Name_Plugin {
 	 */
 	public static function instance() {
 		if ( is_null( ( self::$instance ) ) ) {
-			self::$instance = new self;
+			self::$instance = new self();
 		}
 
 		return self::$instance;
 	}
 
+	/**
+	 * Call activate method.
+	 * This function calls activate method from Activator class.
+	 * You can use from this method to run every thing you need when plugin is activated.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
 	public function activate_plugin_name() {
 		Activator::activate();
 	}
 
+	/**
+	 * Call deactivate method.
+	 * This function calls deactivate method from Dectivator class.
+	 * You can use from this method to run every thing you need when plugin is deactivated.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
 	public function deactivate_plugin_name() {
 		Deactivator::deactivate();
 	}
 
-	public function uninstall_plugin_name() {
+	/**
+	 * Call uninstall method.
+	 * This function calls uninstall method from Uninstall class.
+	 * You can use from this method to run every thing you need when plugin is uninstalled.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
+	public static function uninstall_plugin_name() {
 		Uninstall::uninstall();
 	}
 }
