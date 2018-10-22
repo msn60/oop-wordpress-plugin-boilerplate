@@ -1,28 +1,26 @@
 <?php
 
 namespace Plugin_Name_Dir\Includes\Database;
-class Table
-{
-    public $charset_collate;
-    public $db_Version;
-    public $have_Name_Of_Your_Table;
-    private $wpdb;
+class Table {
+	public $charset_collate;
+	public $db_Version;
+	public $have_Name_Of_Your_Table;
+	private $wpdb;
 
 
-    public function __construct()
-    {
-        global $wpdb;
-        $this->wpdb = $wpdb;
-        $this->charset_collate = $this->wpdb->get_charset_collate();
-        $this->db_Version = PLUGIN_NAME_DB_VERSION;
-        $this->have_Name_Of_Your_Table = get_option('have_name_of_your_table');
-    }
+	public function __construct() {
+		global $wpdb;
+		$this->wpdb                    = $wpdb;
+		$this->charset_collate         = $this->wpdb->get_charset_collate();
+		$this->db_Version              = PLUGIN_NAME_DB_VERSION;
+		$this->have_Name_Of_Your_Table = get_option( 'have_name_of_your_table' );
+	}
 
-    public function create_your_table_name()
-    {
-        $table_name = $this->wpdb->prefix . 'your_table_name_in_mysql';
-        if ($this->wpdb->get_var("show tables like '$table_name'") != $table_name) {
-            $sql = "CREATE TABLE IF NOT EXISTS $table_name (
+	public function create_your_table_name() {
+		$table_name = $this->wpdb->prefix . 'your_table_name_in_mysql';
+		if ( $this->wpdb->get_var( "show tables like '$table_name'" ) != $table_name ) {
+			$sql
+				= "CREATE TABLE IF NOT EXISTS $table_name (
                    		id INT(9) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
                    		sample_col1 INT(9) UNSIGNED NOT NULL,
                    		sample_col2 VARCHAR(20),
@@ -35,15 +33,13 @@ class Table
                    		sample_col9 VARCHAR(30)
                    	) $this->charset_collate;";
 
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-            dbDelta($sql);
-            update_option('have_name_of_your_table',1);
-        }
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+			dbDelta( $sql );
+			update_option( 'have_name_of_your_table', 1 );
+		}
 
 
-    }
-
-
+	}
 
 
 }
