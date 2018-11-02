@@ -45,6 +45,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @package    Plugin_Name_Dir
  * @author     Your_Name <youremail@nomail.com>
+ * @see        Plugin_Name_Dir\Includes\Init\Core Class
+ * @see        Plugin_Name_Dir\Includes\Init\Constant Class
+ * @see        Plugin_Name_Dir\Includes\Init\Activator Class
+ * @see        Plugin_Name_Dir\Includes\Uninstall\Deactivator Class
+ * @see        Plugin_Name_Dir\Includes\Uninstall\Uninstall Class
  */
 class Plugin_Name_Plugin {
 	/**
@@ -55,11 +60,6 @@ class Plugin_Name_Plugin {
 	 * @access private
 	 * @var    Plugin_Name_Plugin $instance create only one instance from plugin primary class
 	 * @static
-	 * @see Plugin_Name_Dir\Includes\Init\Core Class
-	 * @see Plugin_Name_Dir\Includes\Init\Constant Class
-	 * @see Plugin_Name_Dir\Includes\Init\Activator Class
-	 * @see Plugin_Name_Dir\Includes\Uninstall\Deactivator Class
-	 * @see Plugin_Name_Dir\Includes\Uninstall\Uninstall
 	 */
 	private static $instance;
 
@@ -159,6 +159,18 @@ class Plugin_Name_Plugin {
 	}
 
 	/**
+	 * Call uninstall method.
+	 * This function calls uninstall method from Uninstall class.
+	 * You can use from this method to run every thing you need when plugin is uninstalled.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
+	public static function uninstall_plugin_name() {
+		Uninstall::uninstall();
+	}
+
+	/**
 	 * Call activate method.
 	 * This function calls activate method from Activator class.
 	 * You can use from this method to run every thing you need when plugin is activated.
@@ -180,18 +192,6 @@ class Plugin_Name_Plugin {
 	 */
 	public function deactivate_plugin_name() {
 		Deactivator::deactivate();
-	}
-
-	/**
-	 * Call uninstall method.
-	 * This function calls uninstall method from Uninstall class.
-	 * You can use from this method to run every thing you need when plugin is uninstalled.
-	 *
-	 * @access public
-	 * @since  1.0.0
-	 */
-	public static function uninstall_plugin_name() {
-		Uninstall::uninstall();
 	}
 }
 
