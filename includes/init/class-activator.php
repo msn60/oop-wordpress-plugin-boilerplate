@@ -5,6 +5,11 @@ namespace Plugin_Name_Dir\Includes\Init;
 use Plugin_Name_Dir\Includes\Database\Table;
 use Plugin_Name_Dir\Includes\Config\Info;
 
+/**
+ * Class Activator
+ *
+ * @package Plugin_Name_Dir\Includes\Init
+ */
 class Activator {
 
 	//Install Database

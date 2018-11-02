@@ -9,13 +9,13 @@
  *
  * @link              https://github.com/msn60/oop-wordpress-boilerplate
  * @since             1.0.0
- * @package           plugin_name
+ * @package           Plugin_Name_Dir
  *
  * @wordpress-plugin
  * Plugin Name:       OOP WordPress Plugin Boilerplate
  * Plugin URI:        https://github.com/msn60/oop-wordpress-boilerplate
  * Description:       This is a boilerplate for plugin development in WordPress with OOP structure
- * Version:           1.2.1
+ * Version:           1.2.2
  * Author:            Mehdi Soltani
  * Author URI:        https://wpwebmaster.ir
  * License:           GPL-2.0+
@@ -30,7 +30,9 @@ use Plugin_Name_Dir\Includes\Init\Activator;
 use Plugin_Name_Dir\Includes\Uninstall\Deactivator;
 use Plugin_Name_Dir\Includes\Uninstall\Uninstall;
 
-// If this file is called directly, then abort execution.
+/**
+ * If this file is called directly, then abort execution.
+ */
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
@@ -41,16 +43,23 @@ if ( ! defined( 'ABSPATH' ) ) {
  * This class is primary file of plugin which is used from
  * singletone design pattern.
  *
- * @package    plugin_name
+ * @package    Plugin_Name_Dir
  * @author     Your_Name <youremail@nomail.com>
  */
 class Plugin_Name_Plugin {
 	/**
-	 * Plugin_Name_Plugin Class.
-	 * This is primary class for your plugin
+	 * Instance property of Plugin_Name_Plugin Class.
+	 * This is a property in your plugin primary class. You will use to create
+	 * one object from Plugin_Name_Plugin class in whole of program execution.
 	 *
 	 * @access private
 	 * @var    Plugin_Name_Plugin $instance create only one instance from plugin primary class
+	 * @static
+	 * @see Plugin_Name_Dir\Includes\Init\Core Class
+	 * @see Plugin_Name_Dir\Includes\Init\Constant Class
+	 * @see Plugin_Name_Dir\Includes\Init\Activator Class
+	 * @see Plugin_Name_Dir\Includes\Uninstall\Deactivator Class
+	 * @see Plugin_Name_Dir\Includes\Uninstall\Uninstall
 	 */
 	private static $instance;
 
@@ -58,6 +67,8 @@ class Plugin_Name_Plugin {
 	 * Plugin_Name_Plugin constructor.
 	 * It defines related constant, include autoloader class, register activation hook,
 	 * deactivation hook and uninstall hook and call Core class to run dependencies for plugin
+	 *
+	 * @access private
 	 */
 	private function __construct() {
 		/**

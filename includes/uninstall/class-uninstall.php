@@ -5,7 +5,7 @@
  * This class defines tasks that must be run when plugin uninstalling.
  *
  * @category   Uninstall
- * @package    plugin_name
+ * @package    Plugin_Name_Dir\Includes
  * @subpackage Uninstall
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
@@ -15,11 +15,10 @@
 
 namespace Plugin_Name_Dir\Includes\Uninstall;
 
-/***
+/**
  * Class Uninstall
  *
- * @package    plugin_name
- * @subpackage Uninstall
+ * @package Plugin_Name_Dir\Includes\Uninstall
  */
 class Uninstall {
 	/**
