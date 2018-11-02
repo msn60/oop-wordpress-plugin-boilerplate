@@ -177,6 +177,7 @@ class Plugin_Name_Plugin {
 	 *
 	 * @access public
 	 * @since  1.0.0
+	 * @see Plugin_Name_Dir\Includes\Init\Activator Class
 	 */
 	public function activate_plugin_name() {
 		Activator::activate();

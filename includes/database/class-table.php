@@ -3,8 +3,8 @@
 namespace Plugin_Name_Dir\Includes\Database;
 class Table {
 	public $charset_collate;
-	public $db_Version;
-	public $have_Name_Of_Your_Table;
+	public $db_version;
+	public $have_name_of_your_table;
 	private $wpdb;
 
 
@@ -12,8 +12,8 @@ class Table {
 		global $wpdb;
 		$this->wpdb                    = $wpdb;
 		$this->charset_collate         = $this->wpdb->get_charset_collate();
-		$this->db_Version              = PLUGIN_NAME_DB_VERSION;
-		$this->have_Name_Of_Your_Table = get_option( 'have_name_of_your_table' );
+		$this->db_version              = PLUGIN_NAME_DB_VERSION;
+		$this->have_name_of_your_table = get_option( 'have_name_of_your_table' );
 	}
 
 	public function create_your_table_name() {
