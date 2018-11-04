@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin_Name_Dir\Includes\Functions;
+namespace Plugin_Name_Dir\Includes\Config;
 class Initial_Value {
 
 	public static function sample_menu_page() {

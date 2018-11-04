@@ -32,10 +32,9 @@ namespace Plugin_Name_Dir\Includes\Init;
 
 use Plugin_Name_Dir\Includes\Admin\Admin_Menu;
 use Plugin_Name_Dir\Includes\Admin\Admin_Sub_Menu;
-use Plugin_Name_Dir\Includes\Admin\Sample_Sub_Menu;
 use Plugin_Name_Dir\Includes\Functions\Utility;
 use Plugin_Name_Dir\Includes\Functions\Init_Functions;
-use Plugin_Name_Dir\Includes\Functions\Initial_Value;
+use Plugin_Name_Dir\Includes\Config\Initial_Value;
 
 
 class Core {
