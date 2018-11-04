@@ -58,10 +58,10 @@ class Activator {
 				'last_your_plugin_name_dbs_version',
 				$new_modified_tables->db_version
 			);
+			// Initialize plugin settings and info in option table.
+			Info::add_info_in_plugin_activation();
 		}
 
-		// Initialize plugin settings and info in option table.
-		Info::add_info_in_plugin_activation();
 	}
 }
 

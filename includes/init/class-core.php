@@ -12,7 +12,9 @@
  * @package    Plugin_Name
  * @subpackage Plugin_Name/includes
  */
+
 namespace Plugin_Name_Dir\Includes\Init;
+
 /**
  * The core plugin class.
  *
@@ -27,6 +29,15 @@ namespace Plugin_Name_Dir\Includes\Init;
  * @subpackage Plugin_Name/includes
  * @author     Your Name <email@example.com>
  */
+
+use Plugin_Name_Dir\Includes\Admin\Admin_Menu;
+use Plugin_Name_Dir\Includes\Admin\Admin_Sub_Menu;
+use Plugin_Name_Dir\Includes\Admin\Sample_Sub_Menu;
+use Plugin_Name_Dir\Includes\Functions\Utility;
+use Plugin_Name_Dir\Includes\Functions\Init_Functions;
+use Plugin_Name_Dir\Includes\Functions\Initial_Value;
+
+
 class Core {
 
 	/**
@@ -35,7 +46,7 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      Plugin_Name_Loader    $loader    Maintains and registers all hooks for the plugin.
+	 * @var      Plugin_Name_Loader $loader Maintains and registers all hooks for the plugin.
 	 */
 	protected $loader;
 
@@ -44,7 +55,7 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $plugin_name    The string used to uniquely identify this plugin.
+	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
 	protected $plugin_name;
 
@@ -53,7 +64,7 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   protected
-	 * @var      string    $version    The current version of the plugin.
+	 * @var      string $version The current version of the plugin.
 	 */
 	protected $version;
 
@@ -76,8 +87,15 @@ class Core {
 
 		$this->load_dependencies();
 		$this->set_locale();
-		$this->define_admin_hooks();
-		$this->define_public_hooks();
+		if ( is_admin() ) {
+			$this->set_admin_menu();
+			$this->define_admin_hooks();
+		}
+
+		if ( ! is_admin() ) {
+			$this->define_public_hooks();
+			$this->check_url();
+		}
 
 	}
 
@@ -120,6 +138,18 @@ class Core {
 
 	}
 
+	private function set_admin_menu() {
+		$plugin_name_sample_admin_menu = new Admin_Menu( Initial_Value::sample_menu_page() );
+		$this->loader->add_action( 'admin_menu', $plugin_name_sample_admin_menu, 'add_admin_menu_page' );
+
+		$plugin_name_sample_admin_sub_menu1 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page1() );
+		$this->loader->add_action( 'admin_menu', $plugin_name_sample_admin_sub_menu1, 'add_admin_sub_menu_page' );
+
+		$plugin_name_sample_admin_sub_menu2 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page2() );
+		$this->loader->add_action( 'admin_menu', $plugin_name_sample_admin_sub_menu2, 'add_admin_sub_menu_page' );
+
+	}
+
 	/**
 	 * Register all of the hooks related to the admin area functionality
 	 * of the plugin.
@@ -134,6 +164,27 @@ class Core {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 
+	}
+
+	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The name of the plugin.
+	 */
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->version;
 	}
 
 	/**
@@ -152,6 +203,12 @@ class Core {
 
 	}
 
+	private function check_url() {
+		$check_url_object = new Router();
+		$this->loader->add_action( 'init', $check_url_object, 'boot' );
+
+	}
+
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
@@ -162,17 +219,6 @@ class Core {
 	}
 
 	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The name of the plugin.
-	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
-	}
-
-	/**
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
@@ -180,16 +226,6 @@ class Core {
 	 */
 	public function get_loader() {
 		return $this->loader;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->version;
 	}
 
 }
