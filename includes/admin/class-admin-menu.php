@@ -21,6 +21,7 @@ namespace Plugin_Name_Dir\Includes\Admin;
  *
  * @package    Plugin_Name_Dir\Includes\Admin
  * @author     Your_Name <youremail@nomail.com>
+ * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
  */
 class Admin_Menu {
