@@ -203,8 +203,8 @@ class Core {
 	}
 
 	private function check_url() {
-		$check_url_object = new Router();
-		$this->loader->add_action( 'init', $check_url_object, 'boot' );
+		/*$check_url_object = new Router();
+		$this->loader->add_action( 'init', $check_url_object, 'boot' );*/
 
 	}
 
