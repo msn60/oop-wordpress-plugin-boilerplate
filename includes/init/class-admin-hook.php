@@ -47,6 +47,7 @@ class Admin_Hook {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 *
 	 * @param      string $plugin_name The name of this plugin.
 	 * @param      string $version     The version of this plugin.
@@ -62,6 +63,7 @@ class Admin_Hook {
 	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 */
 	public function enqueue_styles() {
 
@@ -91,6 +93,7 @@ class Admin_Hook {
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 */
 	public function enqueue_scripts() {
 

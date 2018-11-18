@@ -20,9 +20,8 @@ namespace Plugin_Name_Dir\Includes\Init;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/public
- * @author     Your Name <email@example.com>
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
  */
 class Public_Hook {
 
@@ -48,6 +47,7 @@ class Public_Hook {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 *
 	 * @param      string $plugin_name The name of the plugin.
 	 * @param      string $version     The version of this plugin.
@@ -63,6 +63,7 @@ class Public_Hook {
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 */
 	public function enqueue_styles() {
 
@@ -92,6 +93,7 @@ class Public_Hook {
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
 	 * @since    1.0.0
+	 * @access   public
 	 */
 	public function enqueue_scripts() {
 
