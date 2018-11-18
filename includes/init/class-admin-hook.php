@@ -1,24 +1,27 @@
 <?php
-
 /**
- * The admin-specific functionality of the plugin.
+ * Admin_Hook Class File
  *
- * @link       http://example.com
+ * This file contains hooks that you need in admin panel of WordPress
+ * (like enqueue styles or scripts in admin panel)
+ *
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link       https://yoursite.com
  * @since      1.0.0
- *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
  */
+
 namespace Plugin_Name_Dir\Includes\Init;
+
 /**
  * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/admin
- * @author     Your Name <email@example.com>
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
  */
 class Admin_Hook {
 
@@ -27,7 +30,7 @@ class Admin_Hook {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -36,7 +39,7 @@ class Admin_Hook {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -44,13 +47,14 @@ class Admin_Hook {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
+	 *
+	 * @param      string $plugin_name The name of this plugin.
+	 * @param      string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -73,7 +77,13 @@ class Admin_Hook {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name.'_admin_style', PLUGIN_NAME_ADMIN_CSS. 'plugin-name-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style(
+			$this->plugin_name . '_admin_style',
+			PLUGIN_NAME_ADMIN_CSS . 'plugin-name-admin.css',
+			array(),
+			$this->version,
+			'all'
+		);
 
 	}
 
@@ -95,9 +105,13 @@ class Admin_Hook {
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
-
-		wp_enqueue_script( $this->plugin_name.'_admin_script', PLUGIN_NAME_ADMIN_JS. 'plugin-name-admin.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script(
+			$this->plugin_name . '_admin_script',
+			PLUGIN_NAME_ADMIN_JS . 'plugin-name-admin.js',
+			array( 'jquery' ),
+			$this->version,
+			false
+		);
 	}
-
 }
+
