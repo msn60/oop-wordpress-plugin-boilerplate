@@ -1,15 +1,19 @@
 <?php
-
 /**
- * The public-facing functionality of the plugin.
+ * Public_Hook Class File
  *
- * @link       http://example.com
+ * This file contains hooks that you need in public
+ * (like enqueue styles or scripts in front end)
+ *
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link       https://yoursite.com
  * @since      1.0.0
- *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/public
  */
+
 namespace Plugin_Name_Dir\Includes\Init;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -27,7 +31,7 @@ class Public_Hook {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
+	 * @var      string $plugin_name The ID of this plugin.
 	 */
 	private $plugin_name;
 
@@ -36,7 +40,7 @@ class Public_Hook {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
+	 * @var      string $version The current version of this plugin.
 	 */
 	private $version;
 
@@ -44,13 +48,14 @@ class Public_Hook {
 	 * Initialize the class and set its properties.
 	 *
 	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of the plugin.
-	 * @param      string    $version    The version of this plugin.
+	 *
+	 * @param      string $plugin_name The name of the plugin.
+	 * @param      string $version     The version of this plugin.
 	 */
 	public function __construct( $plugin_name, $version ) {
 
 		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+		$this->version     = $version;
 
 	}
 
@@ -73,7 +78,13 @@ class Public_Hook {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name.'_public_style', PLUGIN_NAME_CSS. 'plugin-name-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style(
+			$this->plugin_name . '_public_style',
+			PLUGIN_NAME_CSS . 'plugin-name-public.css',
+			array(),
+			$this->version,
+			'all'
+		);
 
 	}
 
@@ -96,8 +107,13 @@ class Public_Hook {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name.'_public_script', PLUGIN_NAME_JS. 'plugin-name-public.js', array( 'jquery' ), $this->version, false );
-
+		wp_enqueue_script(
+			$this->plugin_name . '_public_script',
+			PLUGIN_NAME_JS . 'plugin-name-public.js',
+			array( 'jquery' ),
+			$this->version,
+			false
+		);
 	}
-
 }
+
