@@ -233,10 +233,9 @@ class Core {
 	 * @see      \Plugin_Name_Dir\Includes\Init\Router
 	 */
 	private function check_url() {
-		/**
-		 * $check_url_object = new Router();
+		$check_url_object = new Router();
 		$this->loader->add_action( 'init', $check_url_object, 'boot' );
-		*/
+
 	}
 
 	/**
