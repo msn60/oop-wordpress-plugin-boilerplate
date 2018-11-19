@@ -116,7 +116,10 @@ class Core {
 	 */
 	private function load_dependencies() {
 
-		$this->loader = new Loader();
+		$this->loader             = new Loader();
+		$plugin_name_hooks_loader = new Init_Functions();
+		$this->loader->add_action( 'init', $plugin_name_hooks_loader, 'app_output_buffer' );
+		//$this->loader->add_action( 'init', $plugin_name_hooks_loader, 'remove_admin_bar' );
 
 	}
 

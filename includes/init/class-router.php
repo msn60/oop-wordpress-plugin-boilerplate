@@ -78,16 +78,5 @@ class Router {
 
 	}
 
-	/*    public function check_url_manager()
-		{
-			if (strpos($this->currentUrl, '/supporter/hemayatha') !== false) {
-				if (is_user_logged_in()) {
-					Utility::load_template('hemayatha', array(), 'front');
-					exit;
-				}
-			}
-
-		}*/
-
 
 }
