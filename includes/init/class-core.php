@@ -1,19 +1,23 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://example.com
- * @since      1.0.1
- *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link       https://yoursite.com
+ * @since      1.0.0
  */
 
 namespace Plugin_Name_Dir\Includes\Init;
+
+use Plugin_Name_Dir\Includes\Admin\Admin_Menu;
+use Plugin_Name_Dir\Includes\Admin\Admin_Sub_Menu;
+use Plugin_Name_Dir\Includes\Functions\Init_Functions;
+use Plugin_Name_Dir\Includes\Config\Initial_Value;
 
 /**
  * The core plugin class.
@@ -25,18 +29,9 @@ namespace Plugin_Name_Dir\Includes\Init;
  * version of the plugin.
  *
  * @since      1.0.1
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    Plugin_Name_Dir\Includes\Init
+ * @author     Your_Name <youremail@nomail.com>
  */
-
-use Plugin_Name_Dir\Includes\Admin\Admin_Menu;
-use Plugin_Name_Dir\Includes\Admin\Admin_Sub_Menu;
-use Plugin_Name_Dir\Includes\Functions\Utility;
-use Plugin_Name_Dir\Includes\Functions\Init_Functions;
-use Plugin_Name_Dir\Includes\Config\Initial_Value;
-
-
 class Core {
 
 	/**
@@ -101,26 +96,29 @@ class Core {
 	/**
 	 * Load the required dependencies for this plugin.
 	 *
-	 * Include the following files that make up the plugin:
-	 *
-	 * - Plugin_Name_Loader. Orchestrates the hooks of the plugin.
-	 * - Plugin_Name_I18n. Defines internationalization functionality.
-	 * - Plugin_Name_Admin. Defines all hooks for the admin area.
-	 * - Plugin_Name_Public. Defines all hooks for the public side of the site.
-	 *
-	 * Create an instance of the loader which will be used to register the hooks
+	 * You can Include related files or init functions that you need when
+	 * your plugin is executed. The first thing is creating an object from
+	 * Loader class that can run all of actions and filters in your plugin
+	 * in an organized way.
+	 * Then e.g. you can load init functions that you need in starting of your
+	 * plugin (in this sample, we use from Init_Function class and related static
+	 * methods)
+	 * Notice that create an instance of the loader which will be used to register the hooks
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\Loader
+	 * @see      \Plugin_Name_Dir\Includes\Functions\Init_Functions
 	 */
 	private function load_dependencies() {
 
 		$this->loader             = new Loader();
 		$plugin_name_hooks_loader = new Init_Functions();
 		$this->loader->add_action( 'init', $plugin_name_hooks_loader, 'app_output_buffer' );
-		//$this->loader->add_action( 'init', $plugin_name_hooks_loader, 'remove_admin_bar' );
-
+		/**
+		$this->loader->add_action( 'init', $plugin_name_hooks_loader, 'remove_admin_bar' );
+		 */
 	}
 
 	/**
@@ -131,6 +129,7 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\I18n
 	 */
 	private function set_locale() {
 
@@ -140,6 +139,17 @@ class Core {
 
 	}
 
+	/**
+	 * Define admin menu for your plugin
+	 *
+	 * If you need some admin menus in WordPress admin panel, you can use
+	 * from this method.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Admin\Admin_Menu
+	 * @see      \Plugin_Name_Dir\Includes\Config\Initial_Value
+	 */
 	private function set_admin_menu() {
 		$plugin_name_sample_admin_menu = new Admin_Menu( Initial_Value::sample_menu_page() );
 		$this->loader->add_action( 'admin_menu', $plugin_name_sample_admin_menu, 'add_admin_menu_page' );
@@ -153,11 +163,15 @@ class Core {
 	}
 
 	/**
-	 * Register all of the hooks related to the admin area functionality
-	 * of the plugin.
+	 * Define hooks these are needed in admin panel of WordPress
+	 *
+	 * If you need to some hooks these are needed in WordPress admin panel
+	 * you can use from this method. In this boilerplate, I only use it to
+	 * register and enqueueing styles and scripts in admin panel
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\Admin_Hook
 	 */
 	private function define_admin_hooks() {
 
@@ -195,6 +209,7 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\Public_Hook
 	 */
 	private function define_public_hooks() {
 
@@ -205,16 +220,31 @@ class Core {
 
 	}
 
+	/**
+	 * Define router to handle url request
+	 *
+	 * If you need to check url and redirect user to other page except admin
+	 * panel of WordPress (or you need to have specific panel for your WordPress
+	 * site), you need to handle request by routers. To do that, you can use from
+	 * Router class to manage your routes inside of your plugin.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\Router
+	 */
 	private function check_url() {
-		/*$check_url_object = new Router();
-		$this->loader->add_action( 'init', $check_url_object, 'boot' );*/
-
+		/**
+		 * $check_url_object = new Router();
+		$this->loader->add_action( 'init', $check_url_object, 'boot' );
+		*/
 	}
 
 	/**
 	 * Run the loader to execute all of the hooks with WordPress.
 	 *
 	 * @since    1.0.0
+	 * @access   private
+	 * @see      \Plugin_Name_Dir\Includes\Init\Loader
 	 */
 	public function run() {
 		$this->loader->run();
@@ -224,10 +254,11 @@ class Core {
 	 * The reference to the class that orchestrates the hooks with the plugin.
 	 *
 	 * @since     1.0.0
-	 * @return    Plugin_Name_Loader    Orchestrates the hooks of the plugin.
+	 * @access    public
+	 * @return    Loader    Orchestrates the hooks of the plugin.
 	 */
 	public function get_loader() {
 		return $this->loader;
 	}
-
 }
+
