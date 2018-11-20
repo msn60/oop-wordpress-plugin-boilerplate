@@ -21,16 +21,16 @@ $current_user = wp_get_current_user();
 ?>
 
 
-    <!--Primary  Section-->
-    <main>
-        <div class="container">
-            <h1 class="pluginprefix-red pluginprefix-text-center">This is sample for first page</h1>
-            <div class="pluginprefix-vardump-style">
-                <h2>Now we want to get current user information in the following:</h2>
-                <?php var_dump( $current_user ); ?>
-            </div>
+<!--Primary  Section-->
+<main>
+    <div class="container">
+        <h1 class="pluginprefix-red pluginprefix-text-center">This is sample for first page</h1>
+        <div class="pluginprefix-vardump-style">
+            <h2>Now we want to get current user information in the following:</h2>
+			<?php var_dump( $current_user ); ?>
         </div>
-    </main>
+    </div>
+</main>
 
 <?php
 

@@ -40,6 +40,5 @@ class Second_Page_Handler implements Page_Handler {
 		$sample_variable = 'Mehdi Soltani';
 		Utility::load_template( 'second-page-sample', compact( 'sample_variable' ), 'front' );
 		exit;
-
 	}
 }
