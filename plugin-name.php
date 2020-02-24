@@ -1,6 +1,6 @@
 <?php
 /**
- * OOP Plugin Boilerplate - Light Version
+ * OOP WordPress Plugin Boilerplate
  *
  * Description for OOP Plugin
  *
@@ -9,7 +9,7 @@
  * @package           Plugin_Name_Name_Space
  *
  * @wordpress-plugin
- * Plugin Name:       OOP Plugin Boilerplate - Light Version
+ * Plugin Name:       OOP WordPress Plugin Boilerplate
  * Plugin URI:        https://github.com/msn60/oop-wordpress-pluging-boilerplate-light-version
  * Description:       Description for OOP Plugin
  * Version:           1.0.1
