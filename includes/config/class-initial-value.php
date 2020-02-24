@@ -41,7 +41,7 @@ class Initial_Value {
 			'menu_slug'         => 'plugin-prefix-sample-url',
 			'callable_function' => 'management_panel_handler',
 			'icon_url'          => 'dashicons-welcome-widgets-menus',
-			'position'          => 2,
+			'position'          => 7,
 		];
 
 		return $initial_value;
