@@ -1,6 +1,6 @@
 <?php
 
-use Plugin_Name_Dir\Includes\Functions\Utility;
+use Plugin_Name_Name_Space\Includes\Functions\Utility;
 
 /*get header*/
 Utility::load_template( 'header.head', array(), 'front' );

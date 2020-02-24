@@ -8,21 +8,25 @@
  * If you want to use some written functions which are used many times in your codes,
  * you can put it in this file (or files something like that)
  *
- * @package    Plugin_Name_Dir\Includes\Functions
+ * @package    Plugin_Name_Name_Space\Includes\Functions
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Functions;
+namespace Plugin_Name_Name_Space\Includes\Functions;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Utility.
  * This class contains functions that help you in general tasks like rendering
  * template, convert to numbers and words and so on.
  *
- * @package    Plugin_Name_Dir\Includes\Functions
+ * @package    Plugin_Name_Name_Space\Includes\Functions
  * @author     Your_Name <youremail@nomail.com>
  */
 class Utility {

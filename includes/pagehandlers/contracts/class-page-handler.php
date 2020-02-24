@@ -5,19 +5,23 @@
  * This file contains interface which you must implement whenever you want
  * to load a page.
  *
- * @package    Plugin_Name_Dir\Includes\PageHandlers\Contracts
+ * @package    Plugin_Name_Name_Space\Includes\PageHandlers\Contracts
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\PageHandlers\Contracts;
+namespace Plugin_Name_Name_Space\Includes\PageHandlers\Contracts;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Interface Page_Handler
  *
- * @package Plugin_Name_Dir\Includes\PageHandlers\Contracts
+ * @package Plugin_Name_Name_Space\Includes\PageHandlers\Contracts
  */
 interface Page_Handler {
 

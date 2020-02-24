@@ -5,21 +5,25 @@
  * This file contains a class that handle all of initial functions or methods
  * that you need alongside of your plugin.
  *
- * @package    Plugin_Name_Dir\Includes\Functions
+ * @package    Plugin_Name_Name_Space\Includes\Functions
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Functions;
+namespace Plugin_Name_Name_Space\Includes\Functions;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Init_Functions.
  * This class handle all of initial functions or methods
  * that you need alongside of your plugin.
  *
- * @package    Plugin_Name_Dir\Includes\Functions
+ * @package    Plugin_Name_Name_Space\Includes\Functions
  * @author     Your_Name <youremail@nomail.com>
  */
 class Init_Functions {

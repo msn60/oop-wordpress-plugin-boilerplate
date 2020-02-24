@@ -5,14 +5,18 @@
  * This file contains Table class. If you want to add new tables to your project
  * (except of WordPress table), you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Database
+ * @package    Plugin_Name_Name_Space\Includes\Database
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Database;
+namespace Plugin_Name_Name_Space\Includes\Database;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Table to add new tables to your project
@@ -20,7 +24,7 @@ namespace Plugin_Name_Dir\Includes\Database;
  * If you want to add new tables to your project
  * (except of WordPress table), you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Database
+ * @package    Plugin_Name_Name_Space\Includes\Database
  * @author     Your_Name <youremail@nomail.com>
  */
 class Table {
@@ -41,13 +45,13 @@ class Table {
 	 */
 	public $db_version;
 	/**
-	 * Define have_name_of_your_table property in Table class
+	 * Define have_your_table_name property in Table class
 	 *
 	 * @access     public
-	 * @var int $have_name_of_your_table To check that "Is a table exist with this name or not?".
+	 * @var int $have_your_table_name To check that "Is a table exist with this name or not?".
 	 * @since      1.0.0
 	 */
-	public $have_name_of_your_table;
+	public $have_your_table_name;
 	/**
 	 * Define wpdb property in Table class
 	 *
@@ -73,10 +77,10 @@ class Table {
 		 * @see /wp-includes/wp-db.php
 		 */
 		global $wpdb;
-		$this->wpdb                    = $wpdb;
-		$this->charset_collate         = $this->wpdb->get_charset_collate();
-		$this->db_version              = PLUGIN_NAME_DB_VERSION;
-		$this->have_name_of_your_table = get_option( 'have_name_of_your_table' );
+		$this->wpdb                 = $wpdb;
+		$this->charset_collate      = $this->wpdb->get_charset_collate();
+		$this->db_version           = PLUGIN_NAME_DB_VERSION;
+		$this->have_your_table_name = get_option( 'have_your_table_name' );
 	}
 
 	/**
@@ -108,7 +112,7 @@ class Table {
 
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			dbDelta( $sql );
-			update_option( 'have_name_of_your_table', 1 );
+			update_option( 'have_your_table_name', 1 );
 		}
 	}
 }

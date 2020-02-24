@@ -5,26 +5,30 @@
  * This file contains Router class which can handle desire routes in your WordPress site.
  * It's applicable when you want to render some pages without using WordPress posts or pages.
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Init;
+namespace Plugin_Name_Name_Space\Includes\Init;
 
-use Plugin_Name_Dir\Includes\PageHandlers\Second_Page_Handler;
-use Plugin_Name_Dir\Includes\PageHandlers\First_Page_Handler;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use Plugin_Name_Name_Space\Includes\PageHandlers\Second_Page_Handler;
+use Plugin_Name_Name_Space\Includes\PageHandlers\First_Page_Handler;
 
 /**
  * Class Router.
  * This class use to handle different routes in your project
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
- * @see        \Plugin_Name_Dir\Includes\PageHandlers\First_Page_Handler
- * @see        \Plugin_Name_Dir\Includes\PageHandlers\Second_Page_Handler
+ * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\First_Page_Handler
+ * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\Second_Page_Handler
  */
 class Router {
 
@@ -56,8 +60,8 @@ class Router {
 	 */
 	private function set_default_routes() {
 		$this->routes = [
-			'/url1/url2'        => Second_Page_Handler::class,
-			'/first-sample-url' => First_Page_Handler::class,
+			'/url1/url2/'        => Second_Page_Handler::class,
+			'/first-sample-url/' => First_Page_Handler::class,
 		];
 
 	}

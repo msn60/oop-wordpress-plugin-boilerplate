@@ -5,21 +5,25 @@
  * This file contains Info class. If you want to add default settings or meta
  * for your plugin (when it's activated) you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Config
+ * @package    Plugin_Name_Name_Space\Includes\Config
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Config;
+namespace Plugin_Name_Name_Space\Includes\Config;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Info
  * If you want to add default settings or some value for options
  * for your plugin (when it's activated) you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Config
+ * @package    Plugin_Name_Name_Space\Includes\Config
  * @author     Your_Name <youremail@nomail.com>
  */
 class Info {

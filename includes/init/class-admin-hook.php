@@ -5,14 +5,18 @@
  * This file contains hooks that you need in admin panel of WordPress
  * (like enqueue styles or scripts in admin panel)
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Init;
+namespace Plugin_Name_Name_Space\Includes\Init;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * The admin-specific functionality of the plugin.
@@ -20,7 +24,7 @@ namespace Plugin_Name_Dir\Includes\Init;
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  */
 class Admin_Hook {
@@ -80,10 +84,10 @@ class Admin_Hook {
 		 */
 
 		wp_enqueue_style(
-			$this->plugin_name . '_admin_style',
-			PLUGIN_NAME_ADMIN_CSS . 'plugin-name-admin.css',
+			$this->plugin_name . '-admin-style',
+			PLUGIN_NAME_ADMIN_CSS . 'plugin-name-admin-ver-' . PLUGIN_NAME_ADMIN_CSS_VERSION . '.css',
 			array(),
-			$this->version,
+			null,
 			'all'
 		);
 
@@ -109,11 +113,11 @@ class Admin_Hook {
 		 * class.
 		 */
 		wp_enqueue_script(
-			$this->plugin_name . '_admin_script',
-			PLUGIN_NAME_ADMIN_JS . 'plugin-name-admin.js',
+			$this->plugin_name . '-admin-script',
+			PLUGIN_NAME_ADMIN_JS . 'plugin-name-admin-ver-' . PLUGIN_NAME_ADMIN_JS_VERSION . '.js',
 			array( 'jquery' ),
-			$this->version,
-			false
+			null,
+			true
 		);
 	}
 }

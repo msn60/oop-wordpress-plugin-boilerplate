@@ -5,14 +5,18 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Init;
+namespace Plugin_Name_Name_Space\Includes\Init;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Define the internationalization functionality.
@@ -21,7 +25,7 @@ namespace Plugin_Name_Dir\Includes\Init;
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  */
 class I18n {
@@ -34,11 +38,10 @@ class I18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'plugin_name',
+			'plugin-name-textdomain',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
 
 }

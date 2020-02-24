@@ -7,17 +7,21 @@
  * Actions likes installing separated tables (except WordPress tables),
  * initializing configs for plugin and using update_option, can do with this class.
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Init;
+namespace Plugin_Name_Name_Space\Includes\Init;
 
-use Plugin_Name_Dir\Includes\Database\Table;
-use Plugin_Name_Dir\Includes\Config\Info;
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+use Plugin_Name_Name_Space\Includes\Database\Table;
+use Plugin_Name_Name_Space\Includes\Config\Info;
 
 /**
  * Class Activator.
@@ -25,10 +29,10 @@ use Plugin_Name_Dir\Includes\Config\Info;
  * Actions likes installing separated tables (except WordPress tables),
  * initializing configs for plugin and using update_option, can do with this class.
  *
- * @package    Plugin_Name_Dir\Includes\Init
+ * @package    Plugin_Name_Name_Space\Includes\Init
  * @author     Your_Name <youremail@nomail.com>
- * @see        \Plugin_Name_Dir\Includes\Config\Info
- * @see        \Plugin_Name_Dir\Includes\Database\Table
+ * @see        \Plugin_Name_Name_Space\Includes\Config\Info
+ * @see        \Plugin_Name_Name_Space\Includes\Database\Table
  */
 class Activator {
 
@@ -50,7 +54,7 @@ class Activator {
 			 * Check is your table exist in database or not you can use from it
 			 * for all of your table in first time that your plugin is created.
 			*/
-			if ( 1 !== $new_modified_tables->have_name_of_your_table ) {
+			if ( 1 !== $new_modified_tables->have_your_table_name ) {
 				$new_modified_tables->create_your_table_name();
 			}
 

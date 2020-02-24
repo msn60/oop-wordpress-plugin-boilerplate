@@ -5,21 +5,25 @@
  * This file contains Admin_Menu class. If you want create an admin page
  * inside admin panel of WordPress, you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Admin
+ * @package    Plugin_Name_Name_Space\Includes\Admin
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
  */
 
-namespace Plugin_Name_Dir\Includes\Admin;
+namespace Plugin_Name_Name_Space\Includes\Admin;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 /**
  * Class Admin_Menu.
  * If you want create an admin page inside admin panel of WordPress,
  * you can use from this class.
  *
- * @package    Plugin_Name_Dir\Includes\Admin
+ * @package    Plugin_Name_Name_Space\Includes\Admin
  * @author     Your_Name <youremail@nomail.com>
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
