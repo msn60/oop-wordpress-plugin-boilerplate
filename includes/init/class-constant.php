@@ -179,6 +179,33 @@ class Constant {
 		if ( ! defined( 'PLUGIN_NAME_ADMIN_JS_VERSION' ) ) {
 			define( 'PLUGIN_NAME_ADMIN_JS_VERSION', 1 );
 		}
+
+		/**
+		 * PLUGIN_NAME_VERSION constant.
+		 * It defines version of plugin for management tasks in your plugin
+		 */
+		if ( ! defined( 'PLUGIN_NAME_VERSION') ) {
+			define( 'PLUGIN_NAME_VERSION', '1.0.2' );
+		}
+
+		/**
+		 * PLUGIN_NAME_MAIN_NAME constant.
+		 * It defines name of plugin for management tasks in your plugin
+		 */
+		if ( ! defined( 'PLUGIN_NAME_MAIN_NAME') ) {
+			define( 'PLUGIN_NAME_MAIN_NAME', 'plugin-name' );
+		}
+
+		/**
+		 * PLUGIN_NAME_DB_VERSION constant
+		 *
+		 * It defines database version
+		 * You can use from this constant to apply your changes in updates or
+		 * activate plugin again
+		 */
+		if ( ! defined( 'PLUGIN_NAME_DB_VERSION') ) {
+			define( 'PLUGIN_NAME_DB_VERSION', 1 );
+		}
 		/*In future maybe I want to add constants for separated upload directory inside plugin directory*/
 	}
 }

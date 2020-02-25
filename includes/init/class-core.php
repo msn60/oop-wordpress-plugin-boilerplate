@@ -70,6 +70,36 @@ class Core {
 	protected $version;
 
 	/**
+	 * @var Public_Hook $hook_object Object  to keep all of hooks in your theme
+	 */
+	protected $hooks;
+
+	/**
+	 * @var Admin_Menu[] $admin_menus
+	 */
+	protected $admin_menus;
+
+	/**
+	 * @var Admin_Sub_Menu[] $admin_sub_menus
+	 */
+	protected $admin_sub_menus;
+
+	/**
+	 * @var Ajax[] $ajax_calls
+	 */
+	protected $ajax_calls;
+
+	/**
+	 * @var Initial_Value $initial_values An object  to keep all of initial values for theme
+	 */
+	protected $initial_values;
+
+	/**
+	 * @var Meta_box[] $meta_boxes
+	 */
+	protected $meta_boxes;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -84,7 +114,12 @@ class Core {
 		} else {
 			$this->version = '1.0.0';
 		}
-		$this->plugin_name = 'plugin-name';
+		if ( defined( 'PLUGIN_NAME_MAIN_NAME' ) ) {
+			$this->plugin_name = PLUGIN_NAME_MAIN_NAME;
+		} else {
+			$this->plugin_name = 'plugin-name';
+		}
+
 	}
 
 	/**

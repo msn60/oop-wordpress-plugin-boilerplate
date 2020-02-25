@@ -80,18 +80,6 @@ final class Plugin_Name_Plugin {
 	 * @access private
 	 */
 	public function __construct() {
-		/**
-		 * Currently plugin and database version.
-		 * Rename this for your plugin and update it as you release new versions.
-		 */
-		define( 'PLUGIN_NAME_VERSION', '1.0.2' );
-		/**
-		 * Define database version
-		 *
-		 * You can use from this constant to apply your changes in updates or
-		 * activate plugin again
-		 */
-		define( 'PLUGIN_NAME_DB_VERSION', 1 );
 		/*Define Autoloader class for plugin*/
 		$autoloader_path = 'includes/class-autoloader.php';
 		/**
