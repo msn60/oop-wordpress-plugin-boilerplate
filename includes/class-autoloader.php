@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Autoloader class can manage and handle using classes and files in whole of
  * your plugin by including them when they are needed.
  *
- * @package    Plugin_Name_Name_Space\Includes
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gamil.com>
  */
 class Autoloader {
 
@@ -64,13 +64,13 @@ class Autoloader {
 
 			// If we're at the first entry, then we're at the filename.
 			if ( count( $file_parts ) - 1 === $i ) {
-
+				$file_name = "class-$current.php";
 				/** If 'interface' is contained in the parts of the file name, then
 				 * define the $file_name differently so that it's properly loaded
 				 * Otherwise, just set the $file_name equal to that of the class
 				 * filename structure.
 				 */
-				if ( strpos( strtolower( $file_parts[ count( $file_parts ) - 1 ] ), 'interface' ) ) {
+				/*if ( strpos( strtolower( $file_parts[ count( $file_parts ) - 1 ] ), 'interface' ) ) {
 
 					// Grab the name of the interface from its qualified name.
 					$interface_name = explode( '_', $file_parts[ count( $file_parts ) - 1 ] );
@@ -80,7 +80,7 @@ class Autoloader {
 
 				} else {
 					$file_name = "class-$current.php";
-				}
+				}*/
 			} else {
 				$namespace = '/' . $current . $namespace;
 			}

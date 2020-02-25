@@ -6,7 +6,7 @@
  * to initial value to start your plugin or need them for each time that WordPress
  * run your plugin, you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
+ * @package    Plugin_Name_Name_Space
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com

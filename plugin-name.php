@@ -12,18 +12,21 @@
  * Plugin Name:       OOP WordPress Plugin Boilerplate
  * Plugin URI:        https://github.com/msn60/oop-wordpress-pluging-boilerplate-light-version
  * Description:       Description for OOP Plugin
- * Version:           1.0.1
- * Author:            Put your name here
- * Author URI:        https://example.com
+ * Version:           1.0.2
+ * Author:            Mehdi Soltani
+ * Author URI:        https://wpwebmaster.ir
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-/*Define your namespaces here by use keyword*/
+/*
+ * Define your namespaces here by use keyword
+ * */
 
 use Plugin_Name_Name_Space\Includes\Init\Core;
 use Plugin_Name_Name_Space\Includes\Init\Constant;
 use Plugin_Name_Name_Space\Includes\Init\Activator;
+use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Uninstall\Deactivator;
 use Plugin_Name_Name_Space\Includes\Uninstall\Uninstall;
 
@@ -60,6 +63,14 @@ final class Plugin_Name_Plugin {
 	 * @static
 	 */
 	private static $instance;
+	/**
+	 * @var Initial_Value $initial_values An object  to keep all of initial values for theme
+	 */
+	protected $initial_values;
+	/**
+	 * @var Core $core_object An object to keep core class for plugin.
+	 */
+	private $core_object;
 
 	/**
 	 * Plugin_Name_Plugin constructor.
@@ -68,12 +79,12 @@ final class Plugin_Name_Plugin {
 	 *
 	 * @access private
 	 */
-	private function __construct() {
+	public function __construct() {
 		/**
 		 * Currently plugin and database version.
 		 * Rename this for your plugin and update it as you release new versions.
 		 */
-		define( 'PLUGIN_NAME_VERSION', '1.0.1' );
+		define( 'PLUGIN_NAME_VERSION', '1.0.2' );
 		/**
 		 * Define database version
 		 *
@@ -126,7 +137,6 @@ final class Plugin_Name_Plugin {
 			__FILE__,
 			array( 'Plugin_Name_Plugin', 'uninstall' )
 		);
-		self::run_plugin_name_plugin();
 	}
 
 	/**
@@ -135,7 +145,7 @@ final class Plugin_Name_Plugin {
 	 * @access public
 	 * @since  1.0.0
 	 */
-	public static function run_plugin_name_plugin() {
+	public function run_plugin_name_plugin() {
 		$plugin = new Core();
 		$plugin->run();
 	}
@@ -193,8 +203,8 @@ final class Plugin_Name_Plugin {
 	}
 }
 
-Plugin_Name_Plugin::instance();
 
-
+$plugin_name_plugin_object = Plugin_Name_Plugin::instance();
+$plugin_name_plugin_object->run_plugin_name_plugin();
 
 
