@@ -5,8 +5,8 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
  * @since      1.0.0
@@ -18,12 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Plugin_Name_Name_Space\Includes\Admin\Admin_Menu;
-use Plugin_Name_Name_Space\Includes\Admin\Admin_Sub_Menu;
-use Plugin_Name_Name_Space\Includes\Config\Register_Post_Type;
-use Plugin_Name_Name_Space\Includes\Config\Sample_Post_Type;
-use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
-use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
+use Plugin_Name_Name_Space\Includes\Abstracts\{
+	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box
+};
+
+use Plugin_Name_Name_Space\Includes\Interfaces\{
+	Action_Hook_Interface, Filter_Hook_Interface
+};
+use Plugin_Name_Name_Space\Includes\Admin\{
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2
+};
+use Plugin_Name_Name_Space\Includes\Config\{
+	Register_Post_Type, Sample_Post_Type, Initial_Value
+};
+use Plugin_Name_Name_Space\Includes\Functions\{
+	Init_Functions, Utility, Check_Type
+};
 
 /**
  * The core plugin class.
@@ -35,11 +45,12 @@ use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
  * version of the plugin.
  *
  * @since      1.0.1
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Core {
-
+	use Utility;
+	use Check_Type;
 	/**
 	 * The unique identifier of this plugin.
 	 *
@@ -151,14 +162,14 @@ class Core {
 	 * @see      \Plugin_Name_Name_Space\Includes\Config\Initial_Value
 	 */
 	private function set_admin_menu() {
-		$plugin_name_sample_admin_menu = new Admin_Menu( Initial_Value::sample_menu_page() );
+		/*$plugin_name_sample_admin_menu = new Admin_Menu( Initial_Value::sample_menu_page() );
 		add_action( 'admin_menu', array( $plugin_name_sample_admin_menu, 'add_admin_menu_page' ) );
 
 		$plugin_name_sample_admin_sub_menu1 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page1() );
 		add_action( 'admin_menu', array( $plugin_name_sample_admin_sub_menu1, 'add_admin_sub_menu_page' ) );
 
 		$plugin_name_sample_admin_sub_menu2 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page2() );
-		add_action( 'admin_menu', array( $plugin_name_sample_admin_sub_menu2, 'add_admin_sub_menu_page' ) );
+		add_action( 'admin_menu', array( $plugin_name_sample_admin_sub_menu2, 'add_admin_sub_menu_page' ) );*/
 	}
 
 	/**

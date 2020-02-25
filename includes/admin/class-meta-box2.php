@@ -4,16 +4,16 @@
  *
  * Methods and settings which will need for meta box1
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
  * @since      1.0.1
  */
 
-namespace Theme_Name_Name_Space\Inc\Admin;
+namespace Plugin_Name_Name_Space\Includes\Admin;
 
-use Theme_Name_Name_Space\Inc\Abstracts\Meta_box;
+use Plugin_Name_Name_Space\Includes\Abstracts\Meta_box;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Meta_Box2.
  * Methods and settings which will need for meta box1
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Meta_Box2 extends Meta_box {

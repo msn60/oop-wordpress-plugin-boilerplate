@@ -5,17 +5,16 @@
  * This file contains Admin_Sub_Menu class. If you want create an sub menu page
  * under an admin page (inside Admin panel of WordPress), you can use from this class.
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
  * @since      1.0.1
  */
 
-namespace Theme_Name_Name_Space\Inc\Admin;
+namespace Plugin_Name_Name_Space\Includes\Admin;
 
-use Theme_Name_Name_Space\Inc\Config\Initial_Value;
-use Theme_Name_Name_Space\Inc\Abstracts\Admin_Sub_Menu;
+use Plugin_Name_Name_Space\Includes\Abstracts\Admin_Sub_Menu;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -27,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * (inside Admin panel of WordPress), you can use from this class.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_submenu_page/
  */

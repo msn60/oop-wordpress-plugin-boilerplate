@@ -13,7 +13,7 @@
  * Plugin URI:        https://github.com/msn60/oop-wordpress-pluging-boilerplate-light-version
  * Description:       Description for OOP Plugin
  * Version:           1.0.2
- * Author:            Mehdi Soltani
+ * Author:            Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * Author URI:        https://wpwebmaster.ir
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt

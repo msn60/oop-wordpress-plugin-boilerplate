@@ -5,16 +5,16 @@
  * This file contains contract for Admin_Menu class. If you want create an admin page
  * inside admin panel of WordPress, you must to use this contract.
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
- * @since      1.0.1
+ * @since      1.0.2
  */
 
-namespace Theme_Name_Name_Space\Inc\Abstracts;
+namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
-use Theme_Name_Name_Space\Inc\Interfaces\Action_Hook_Interface;
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * you can use from this class.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  *
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
@@ -115,7 +115,7 @@ abstract class Admin_Menu implements Action_Hook_Interface{
 	 *
 	 * @param array $initial_value Initial value to pass to add_menu_page function.
 	 */
-	public function __construct( $initial_values ) {
+	public function __construct( array $initial_values ) {
 		$this->page_title        = $initial_values['page_title'];
 		$this->menu_title        = $initial_values['menu_title'];
 		$this->capability        = $initial_values['capability'];

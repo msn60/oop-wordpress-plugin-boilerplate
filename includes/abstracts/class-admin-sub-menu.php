@@ -5,17 +5,16 @@
  * This file contains Admin_Sub_Menu class. If you want create an sub menu page
  * under an admin page (inside Admin panel of WordPress), you must use from this contract.
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
- * @since      1.0.1
+ * @since      1.0.2
  */
 
-namespace Theme_Name_Name_Space\Inc\Abstracts;
+namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
-use Theme_Name_Name_Space\Inc\Config\Initial_Value;
-use Theme_Name_Name_Space\Inc\Interfaces\Action_Hook_Interface;
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -97,7 +96,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @param array $initial_value Initial value to pass to add_submenu_page function.
 	 */
-	public function __construct( $initial_value ) {
+	public function __construct( array $initial_value ) {
 
 		$this->parent_slug       = $initial_value['parent-slug'];
 		$this->page_title        = $initial_value['page_title'];

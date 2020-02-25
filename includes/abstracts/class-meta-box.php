@@ -5,16 +5,16 @@
  * This file contains Meta_box  class. If you want create a meta box
  * inside admin panel of WordPress, you can use from this class.
  *
- * @package    Theme_Name_Name_Space
+ * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
  * @since      1.0.1
  */
 
-namespace Theme_Name_Name_Space\Inc\Abstracts;
+namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
-use Theme_Name_Name_Space\Inc\Interfaces\Action_Hook_Interface;
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
 
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -27,7 +27,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * inside admin panel of WordPress, you can use from this class.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        https://developer.wordpress.org/reference/functions/add_meta_box/
  * @see        https://developer.wordpress.org/reference/functions/get_post_meta/
  * @see        https://developer.wordpress.org/reference/functions/wp_nonce_field/
@@ -147,7 +147,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @param array $initial_value Initial value to pass to add_meta_box  get_post_meta & update_post_meta function.
 	 */
-	public function __construct( $initial_values ) {
+	public function __construct( array $initial_values ) {
 		$this->id            = $initial_values['id'];
 		$this->title         = $initial_values['title'];
 		$this->callback      = $initial_values['callback'];
