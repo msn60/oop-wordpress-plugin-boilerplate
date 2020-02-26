@@ -43,7 +43,7 @@ class Admin_Menu1 extends Admin_Menu{
 	 *
 	 * @param array $initial_value Initial value to pass to add_menu_page function.
 	 */
-	public function __construct( $initial_values ) {
+	public function __construct( array $initial_values ) {
 		parent::__construct($initial_values);
 	}
 

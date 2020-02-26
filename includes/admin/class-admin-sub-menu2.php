@@ -41,7 +41,7 @@ class Admin_Sub_Menu2 extends Admin_Sub_Menu{
 	 *
 	 * @param array $initial_value Initial value to pass to add_submenu_page function.
 	 */
-	public function __construct( $initial_value ) {
+	public function __construct( array $initial_value ) {
 		parent::__construct($initial_value);
 	}
 
@@ -54,7 +54,7 @@ class Admin_Sub_Menu2 extends Admin_Sub_Menu{
 	 * @access  public
 	 */
 	public function sub_menu_panel_handler() {
-		echo 'this  is test for admin Sub menu 2 for theme';
+		echo 'This  is  for admin Sub menu 2 for plugin';
 	}
 
 }

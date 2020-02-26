@@ -31,7 +31,7 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 	Deactivator, Uninstall
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
-	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box1, Meta_Box2
 };
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
@@ -175,6 +175,14 @@ final class Plugin_Name_Plugin {
 			new Public_Hook( PLUGIN_NAME_MAIN_NAME, PLUGIN_NAME_VERSION ),
 			[
 				new Admin_Menu1( $this->initial_values->sample_menu_page() )
+			],
+			[
+				new Admin_Sub_Menu1( $this->initial_values->sample_sub_menu_page1() ),
+				new Admin_Sub_Menu2( $this->initial_values->sample_sub_menu_page2() ),
+			],
+			[
+				new Meta_Box1( $this->initial_values->sample_meta_box3() ),
+				new Meta_Box2( $this->initial_values->sample_meta_box4() ),
 			]
 		);
 		$plugin->init_core();
