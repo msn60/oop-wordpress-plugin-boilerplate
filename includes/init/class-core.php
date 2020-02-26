@@ -194,7 +194,7 @@ class Core implements Action_Hook_Interface {
 	 */
 	public function register_add_action() {
 		$this->register_init_functions();
-		$this->set_locale();
+		$this->plugin_i18n->register_add_action();
 		if ( is_admin() ) {
 			$this->set_admin_menus();
 			$this->define_admin_hooks();
@@ -207,19 +207,6 @@ class Core implements Action_Hook_Interface {
 		}
 	}
 
-	/**
-	 * Define the locale for this plugin for internationalization.
-	 *
-	 * Uses the Plugin_Name_I18n class in order to set the domain and to register the hook
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\I18n
-	 */
-	private function set_locale() {
-		add_action( 'plugins_loaded', array( $this->plugin_i18n, 'load_plugin_textdomain' ) );
-	}
 
 	/**
 	 * Define hooks these are needed in admin panel of WordPress

@@ -14,6 +14,8 @@
 
 namespace Plugin_Name_Name_Space\Includes\Init;
 
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -28,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class I18n {
+class I18n implements Action_Hook_Interface {
 	/**
 	 * Load the plugin text domain for translation.
 	 *
@@ -44,4 +46,11 @@ class I18n {
 		);
 	}
 
+	/**
+	 * Register actions that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_action() {
+		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
+	}
 }
