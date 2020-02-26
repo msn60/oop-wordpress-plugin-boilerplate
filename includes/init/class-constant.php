@@ -205,6 +205,15 @@ class Constant {
 		if ( ! defined( 'PLUGIN_NAME_DB_VERSION') ) {
 			define( 'PLUGIN_NAME_DB_VERSION', 1 );
 		}
+
+		/**
+		 * PLUGIN_NAME_TEXTDOMAIN constant
+		 *
+		 * It defines text domain name for plugin
+		 */
+		if ( ! defined( 'PLUGIN_NAME_TEXTDOMAIN') ) {
+			define( 'PLUGIN_NAME_TEXTDOMAIN', 'plugin-name-textdomain' );
+		}
 		/*In future maybe I want to add constants for separated upload directory inside plugin directory*/
 	}
 }

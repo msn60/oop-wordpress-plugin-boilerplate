@@ -38,25 +38,25 @@ class Initial_Value {
 	 */
 	public static function args_for_sample_post_type() {
 		$labels = [
-			'name'               => _x( 'Name', 'post type general name', 'plugin-name-textdomain' ),
-			'singular_name'      => _x( 'Name', 'post type singular name', 'plugin-name-textdomain' ),
-			'menu_name'          => _x( 'Names', 'admin menu', 'plugin-name-textdomain' ),
-			'name_admin_bar'     => _x( 'Name', 'add new on admin bar', 'plugin-name-textdomain' ),
-			'add_new'            => _x( 'Add New', 'name', 'plugin-name-textdomain' ),
-			'add_new_item'       => __( 'Add New Name', 'plugin-name-textdomain' ),
-			'new_item'           => __( 'New Name', 'plugin-name-textdomain' ),
-			'edit_item'          => __( 'Edit Name', 'plugin-name-textdomain' ),
-			'view_item'          => __( 'View Name', 'plugin-name-textdomain' ),
-			'all_items'          => __( 'All Names', 'plugin-name-textdomain' ),
-			'search_items'       => __( 'Search Names', 'plugin-name-textdomain' ),
-			'parent_item_colon'  => __( 'Parent Names:', 'plugin-name-textdomain' ),
-			'not_found'          => __( 'No names found.', 'plugin-name-textdomain' ),
-			'not_found_in_trash' => __( 'No names found in Trash', 'plugin-name-textdomain' ),
+			'name'               => _x( 'Name', 'post type general name', PLUGIN_NAME_TEXTDOMAIN ),
+			'singular_name'      => _x( 'Name', 'post type singular name', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_name'          => _x( 'Names', 'admin menu', PLUGIN_NAME_TEXTDOMAIN ),
+			'name_admin_bar'     => _x( 'Name', 'add new on admin bar', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_new'            => _x( 'Add New', 'name', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_new_item'       => __( 'Add New Name', PLUGIN_NAME_TEXTDOMAIN ),
+			'new_item'           => __( 'New Name', PLUGIN_NAME_TEXTDOMAIN ),
+			'edit_item'          => __( 'Edit Name', PLUGIN_NAME_TEXTDOMAIN ),
+			'view_item'          => __( 'View Name', PLUGIN_NAME_TEXTDOMAIN ),
+			'all_items'          => __( 'All Names', PLUGIN_NAME_TEXTDOMAIN ),
+			'search_items'       => __( 'Search Names', PLUGIN_NAME_TEXTDOMAIN ),
+			'parent_item_colon'  => __( 'Parent Names:', PLUGIN_NAME_TEXTDOMAIN ),
+			'not_found'          => __( 'No names found.', PLUGIN_NAME_TEXTDOMAIN ),
+			'not_found_in_trash' => __( 'No names found in Trash', PLUGIN_NAME_TEXTDOMAIN ),
 		];
 
 		$args = [
 			'labels'             => $labels,
-			'description'        => __( 'Description.', 'plugin-name-textdomain' ),
+			'description'        => __( 'Description.', PLUGIN_NAME_TEXTDOMAIN ),
 			'public'             => true,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
@@ -87,8 +87,8 @@ class Initial_Value {
 	 */
 	public function sample_menu_page() {
 		$initial_value = [
-			'page_title'        => esc_html__( 'Msn Plugin', 'plugin-name-textdomain' ),
-			'menu_title'        => esc_html__( 'Msn Plugin', 'plugin-name-textdomain' ),
+			'page_title'        => esc_html__( 'Msn Plugin', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_title'        => esc_html__( 'Msn Plugin', PLUGIN_NAME_TEXTDOMAIN ),
 			'capability'        => 'manage_options',
 			'menu_slug'         => 'plugin-name-option-page-url',
 			'callable_function' => 'management_panel_handler',//it can be null
@@ -110,8 +110,8 @@ class Initial_Value {
 	public function sample_sub_menu_page1() {
 		$initial_value = [
 			'parent-slug'       => 'plugin-name-option-page-url',
-			'page_title'        => esc_html__( 'Plugin Submenu 1', 'plugin-name-textdomain' ),
-			'menu_title'        => esc_html__( 'Plugin Submenu 1', 'plugin-name-textdomain' ),
+			'page_title'        => esc_html__( 'Plugin Submenu 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_title'        => esc_html__( 'Plugin Submenu 1', PLUGIN_NAME_TEXTDOMAIN ),
 			'capability'        => 'manage_options',
 			'menu_slug'         => 'plugin-name-option-page-url',
 			'callable_function' => 'sub_menu1_panel_handler',
@@ -130,8 +130,8 @@ class Initial_Value {
 	public function sample_sub_menu_page2() {
 		$initial_value = [
 			'parent-slug'       => 'plugin-name-option-page-url',
-			'page_title'        => esc_html__( 'Plugin Submenu 2', 'plugin-name-textdomain' ),
-			'menu_title'        => esc_html__( 'Plugin Submenu 2', 'plugin-name-textdomain' ),
+			'page_title'        => esc_html__( 'Plugin Submenu 2', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_title'        => esc_html__( 'Plugin Submenu 2', PLUGIN_NAME_TEXTDOMAIN ),
 			'capability'        => 'manage_options',
 			'menu_slug'         => 'plugin-name-option-page-url-2',
 			'callable_function' => 'sub_menu2_panel_handler',
@@ -152,7 +152,7 @@ class Initial_Value {
 		$initial_value = [
 
 			'id'            => 'meta_box_3_id',
-			'title'         => esc_html__( 'Meta box3 Headline', 'plugin-name-textdomain' ),
+			'title'         => esc_html__( 'Meta box3 Headline', PLUGIN_NAME_TEXTDOMAIN ),
 			'callback'      => 'render_content',
 			'screens'       => array( 'post', 'page' ),//null - optional
 			'context'       => 'advanced', //optional
@@ -180,7 +180,7 @@ class Initial_Value {
 		$initial_value = [
 
 			'id'            => 'meta_box_4_id',
-			'title'         => esc_html__( 'Meta box4 Headline', 'plugin-name-textdomain' ),
+			'title'         => esc_html__( 'Meta box4 Headline', PLUGIN_NAME_TEXTDOMAIN ),
 			'callback'      => 'render_content',
 			'screens'       => array( 'post', 'page' ),//null - optional
 			'context'       => 'advanced', //optional
