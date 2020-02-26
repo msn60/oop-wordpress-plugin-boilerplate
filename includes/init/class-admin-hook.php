@@ -14,6 +14,8 @@
 
 namespace Plugin_Name_Name_Space\Includes\Init;
 
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Admin_Hook {
+class Admin_Hook implements Action_Hook_Interface {
 
 	/**
 	 * The ID of this plugin.
@@ -119,6 +121,15 @@ class Admin_Hook {
 			null,
 			true
 		);
+	}
+
+	/**
+	 * Register actions that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_action() {
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 }
 

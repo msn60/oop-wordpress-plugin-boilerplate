@@ -75,6 +75,11 @@ class Core implements Action_Hook_Interface {
 	protected $public_hooks;
 
 	/**
+	 * @var Admin_Hook $admin_hooks Object  to keep all of hooks in your plugin
+	 */
+	protected $admin_hooks;
+
+	/**
 	 * @var Admin_Menu[] $admin_menus
 	 */
 	protected $admin_menus;
@@ -121,6 +126,7 @@ class Core implements Action_Hook_Interface {
 		Initial_Value $initial_values,
 		Init_Functions $init_functions = null,
 		I18n $plugin_i18n = null,
+		Admin_Hook $admin_hooks = null,
 		Public_Hook $public_hooks = null,
 		array $admin_menus = null,
 		array $admin_sub_menus = null,
@@ -146,6 +152,10 @@ class Core implements Action_Hook_Interface {
 
 		if ( ! is_null( $plugin_i18n) ) {
 			$this->plugin_i18n = $plugin_i18n;
+		}
+
+		if ( ! is_null( $admin_hooks ) ) {
+			$this->admin_hooks = $admin_hooks;
 		}
 
 		if ( ! is_null( $public_hooks ) ) {
@@ -193,39 +203,33 @@ class Core implements Action_Hook_Interface {
 	 *
 	 */
 	public function register_add_action() {
-		$this->init_functions->register_add_action();
-		$this->plugin_i18n->register_add_action();
+		if (! is_null($this->init_functions)) {
+			$this->init_functions->register_add_action();
+		}
+		if (! is_null($this->plugin_i18n)) {
+			$this->plugin_i18n->register_add_action();
+		}
+
 		if ( is_admin() ) {
 			$this->set_admin_menus();
-			$this->define_admin_hooks();
+			if (! is_null($this->admin_hooks)) {
+				$this->admin_hooks->register_add_action();
+			}
+
 			//$this->set_meta_boxes();
 			/*add_action( 'load-post.php', array( $this, 'set_meta_boxes' ) );
 			add_action( 'load-post-new.php', array( $this, 'set_meta_boxes' ) );*/
 		} else {
-			$this->public_hooks->register_add_action();
+			if (! is_null($this->public_hooks)) {
+				$this->public_hooks->register_add_action();
+			}
+/*			if (! is_null()) {
+
+			}*/
 			$this->check_url();
 		}
 	}
 
-
-	/**
-	 * Define hooks these are needed in admin panel of WordPress
-	 *
-	 * If you need to some hooks these are needed in WordPress admin panel
-	 * you can use from this method. In this boilerplate, I only use it to
-	 * register and enqueueing styles and scripts in admin panel
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\Admin_Hook
-	 */
-	private function define_admin_hooks() {
-
-		$plugin_admin = new Admin_Hook( $this->get_plugin_name(), $this->get_version() );
-		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
-		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
-
-	}
 
 	/**
 	 * The name of the plugin used to uniquely identify it within the context of
@@ -265,7 +269,7 @@ class Core implements Action_Hook_Interface {
 		$check_url_object = new Router();
 		add_action( 'init', array( $check_url_object, 'boot' ) );
 	}
-	
+
 
 	/**
 	 * Method to set all of needed admin menus and sub menus
