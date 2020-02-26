@@ -14,6 +14,8 @@
 
 namespace Plugin_Name_Name_Space\Includes\Functions;
 
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -26,7 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Init_Functions {
+class Init_Functions implements Action_Hook_Interface {
 
 	/**
 	 * Method app_output_buffer in Init_Functions Class
@@ -96,5 +98,13 @@ class Init_Functions {
 		if ( current_user_can( 'your_custom_cap' ) ) {
 			show_admin_bar( false );
 		}
+	}
+
+	/**
+	 * Register actions that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_action() {
+		add_action( 'init', array( $this, 'app_output_buffer' ) );
 	}
 }

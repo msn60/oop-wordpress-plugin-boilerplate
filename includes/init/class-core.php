@@ -193,7 +193,7 @@ class Core implements Action_Hook_Interface {
 	 *
 	 */
 	public function register_add_action() {
-		$this->register_init_functions();
+		$this->init_functions->register_add_action();
 		$this->plugin_i18n->register_add_action();
 		if ( is_admin() ) {
 			$this->set_admin_menus();
@@ -265,29 +265,7 @@ class Core implements Action_Hook_Interface {
 		$check_url_object = new Router();
 		add_action( 'init', array( $check_url_object, 'boot' ) );
 	}
-
-
-
-	/**
-	 * Load the required dependencies for this plugin.
-	 *
-	 * You can Include related files or init functions that you need when
-	 * your plugin is executed. The first thing is creating an object from
-	 * Loader class that can run all of actions and filters in your plugin
-	 * in an organized way.
-	 * Then e.g. you can load init functions that you need in starting of your
-	 * plugin (in this sample, we use from Init_Function class and related static
-	 * methods)
-	 * Notice that create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 */
-	private function register_init_functions() {
-		add_action( 'init', array( $this->init_functions, 'app_output_buffer' ) );
-		/*To add your custom post type*/
-		Sample_Post_Type::instance();
-	}
+	
 
 	/**
 	 * Method to set all of needed admin menus and sub menus
