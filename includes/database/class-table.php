@@ -5,10 +5,10 @@
  * This file contains Table class. If you want to add new tables to your project
  * (except of WordPress table), you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Database
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * If you want to add new tables to your project
  * (except of WordPress table), you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Database
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Table {
 	/**

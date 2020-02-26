@@ -4,10 +4,10 @@
  *
  * This class defines tasks that must be run when plugin uninstalling.
  *
- * @package    Plugin_Name_Name_Space\Includes\Uninstall
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -20,8 +20,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Class Uninstall
  *
- * @package    Plugin_Name_Name_Space\Includes\Uninstall
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Uninstall {
 	/**

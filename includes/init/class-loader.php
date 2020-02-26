@@ -4,10 +4,10 @@
  *
  * This file contains a class which registers all actions and filters for the plugin
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Loader {
 

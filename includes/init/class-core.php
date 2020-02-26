@@ -8,7 +8,7 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -48,7 +48,7 @@ use Plugin_Name_Name_Space\Includes\Functions\{
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Core {
+class Core implements Action_Hook_Interface {
 	use Utility;
 	use Check_Type;
 	/**
@@ -67,10 +67,10 @@ class Core {
 	 * @access   protected
 	 * @var      string $version The current version of the plugin.
 	 */
-	protected $version;
+	protected $plugin_version;
 
 	/**
-	 * @var Public_Hook $hook_object Object  to keep all of hooks in your theme
+	 * @var Public_Hook $hook_object Object  to keep all of hooks in your plugin
 	 */
 	protected $hooks;
 
@@ -90,7 +90,7 @@ class Core {
 	protected $ajax_calls;
 
 	/**
-	 * @var Initial_Value $initial_values An object  to keep all of initial values for theme
+	 * @var Initial_Value $initial_values An object  to keep all of initial values for plugin
 	 */
 	protected $initial_values;
 
@@ -98,6 +98,15 @@ class Core {
 	 * @var Meta_box[] $meta_boxes
 	 */
 	protected $meta_boxes;
+
+	/**
+	 * @var Init_Functions $init_functions Object  to keep all initial function in plugin
+	 */
+	protected $init_functions;
+	/**
+	 * @var I18n $plugin_i18n Object  to add text domain for plugin
+	 */
+	protected $plugin_i18n;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -108,11 +117,20 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 */
-	public function __construct() {
+	public function __construct(
+		Initial_Value $initial_values,
+		Init_Functions $init_functions = null,
+		I18n $plugin_i18n = null,
+		Public_Hook $hooks = null,
+		array $admin_menus = null,
+		array $admin_sub_menus = null,
+		array $meta_boxes = null,
+		array $ajax_calls = null
+	) {
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
-			$this->version = PLUGIN_NAME_VERSION;
+			$this->plugin_version = PLUGIN_NAME_VERSION;
 		} else {
-			$this->version = '1.0.0';
+			$this->plugin_version = '1.0.0';
 		}
 		if ( defined( 'PLUGIN_NAME_MAIN_NAME' ) ) {
 			$this->plugin_name = PLUGIN_NAME_MAIN_NAME;
@@ -120,7 +138,40 @@ class Core {
 			$this->plugin_name = 'plugin-name';
 		}
 
+		$this->initial_values = $initial_values;
+
+		if ( ! is_null( $init_functions ) ) {
+			$this->init_functions = $init_functions;
+		}
+
+		if ( ! is_null( $plugin_i18n) ) {
+			$this->plugin_i18n = $plugin_i18n;
+		}
+
+		if ( ! is_null( $hooks ) ) {
+			$this->hooks = $hooks;
+		}
+		/*
+		 * Checking for valid types
+		 * */
+		if ( ! is_null( $admin_menus ) ) {
+			$this->admin_menus = $this->check_array_by_parent_type( $admin_menus, Admin_Menu::class )['valid'];
+		}
+
+		if ( ! is_null( $admin_sub_menus ) ) {
+			$this->admin_sub_menus = $this->check_array_by_parent_type( $admin_sub_menus, Admin_Sub_Menu::class )['valid'];
+		}
+
+		if ( ! is_null( $meta_boxes ) ) {
+			$this->meta_boxes = $this->check_array_by_parent_type( $meta_boxes, Meta_box::class )['valid'];;
+		}
+
+		if ( ! is_null( $ajax_calls ) ) {
+			$this->ajax_calls = $this->check_array_by_parent_type( $ajax_calls, Ajax::class )['valid'];;
+		}
+
 	}
+
 
 	/**
 	 * Run the Needed methods for plugin
@@ -129,44 +180,31 @@ class Core {
 	 *
 	 * @since    1.0.0
 	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\Loader
 	 */
-	public function run() {
-		$this->load_dependencies();
+	public function init_core() {
+		$this->register_add_action();
+	}
+
+	/**
+	 * Register all needed add_actions for this plugin
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 *
+	 */
+	public function register_add_action() {
+		$this->register_init_functions();
 		$this->set_locale();
 		if ( is_admin() ) {
-			$this->set_admin_menu();
+			$this->set_admin_menus();
 			$this->define_admin_hooks();
+			//$this->set_meta_boxes();
+			/*add_action( 'load-post.php', array( $this, 'set_meta_boxes' ) );
+			add_action( 'load-post-new.php', array( $this, 'set_meta_boxes' ) );*/
 		} else {
 			$this->define_public_hooks();
 			$this->check_url();
 		}
-	}
-
-	/**
-	 * Load the required dependencies for this plugin.
-	 *
-	 * You can Include related files or init functions that you need when
-	 * your plugin is executed. The first thing is creating an object from
-	 * Loader class that can run all of actions and filters in your plugin
-	 * in an organized way.
-	 * Then e.g. you can load init functions that you need in starting of your
-	 * plugin (in this sample, we use from Init_Function class and related static
-	 * methods)
-	 * Notice that create an instance of the loader which will be used to register the hooks
-	 * with WordPress.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\Loader
-	 * @see      \Plugin_Name_Name_Space\Includes\Functions\Init_Functions
-	 */
-	private function load_dependencies() {
-
-		$plugin_name_hooks_loader = new Init_Functions();
-		add_action( 'init', array( $plugin_name_hooks_loader, 'app_output_buffer' ) );
-		/*To add your custom post type*/
-		Sample_Post_Type::instance();
 	}
 
 	/**
@@ -180,31 +218,7 @@ class Core {
 	 * @see      \Plugin_Name_Name_Space\Includes\Init\I18n
 	 */
 	private function set_locale() {
-
-		$plugin_i18n = new I18n();
-		add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
-	}
-
-	/**
-	 * Define admin menu for your plugin
-	 *
-	 * If you need some admin menus in WordPress admin panel, you can use
-	 * from this method.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Admin\Admin_Menu
-	 * @see      \Plugin_Name_Name_Space\Includes\Config\Initial_Value
-	 */
-	private function set_admin_menu() {
-		/*$plugin_name_sample_admin_menu = new Admin_Menu( Initial_Value::sample_menu_page() );
-		add_action( 'admin_menu', array( $plugin_name_sample_admin_menu, 'add_admin_menu_page' ) );
-
-		$plugin_name_sample_admin_sub_menu1 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page1() );
-		add_action( 'admin_menu', array( $plugin_name_sample_admin_sub_menu1, 'add_admin_sub_menu_page' ) );
-
-		$plugin_name_sample_admin_sub_menu2 = new Admin_Sub_Menu( Initial_Value::sample_sub_menu_page2() );
-		add_action( 'admin_menu', array( $plugin_name_sample_admin_sub_menu2, 'add_admin_sub_menu_page' ) );*/
+		add_action( 'plugins_loaded', array( $this->plugin_i18n, 'load_plugin_textdomain' ) );
 	}
 
 	/**
@@ -244,7 +258,7 @@ class Core {
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {
-		return $this->version;
+		return $this->plugin_version;
 	}
 
 	/**
@@ -278,6 +292,50 @@ class Core {
 	private function check_url() {
 		$check_url_object = new Router();
 		add_action( 'init', array( $check_url_object, 'boot' ) );
+	}
+
+
+
+	/**
+	 * Load the required dependencies for this plugin.
+	 *
+	 * You can Include related files or init functions that you need when
+	 * your plugin is executed. The first thing is creating an object from
+	 * Loader class that can run all of actions and filters in your plugin
+	 * in an organized way.
+	 * Then e.g. you can load init functions that you need in starting of your
+	 * plugin (in this sample, we use from Init_Function class and related static
+	 * methods)
+	 * Notice that create an instance of the loader which will be used to register the hooks
+	 * with WordPress.
+	 *
+	 * @since    1.0.0
+	 */
+	private function register_init_functions() {
+		add_action( 'init', array( $this->init_functions, 'app_output_buffer' ) );
+		/*To add your custom post type*/
+		Sample_Post_Type::instance();
+	}
+
+	/**
+	 * Method to set all of needed admin menus and sub menus
+	 *
+	 * @access private
+	 * @since  1.0.1
+	 */
+	private function set_admin_menus() {
+		if ( ! is_null( $this->admin_menus ) ) {
+			foreach ( $this->admin_menus as $admin_menu ) {
+				$admin_menu->register_add_action();
+			}
+		}
+
+		if ( ! is_null( $this->admin_sub_menus ) ) {
+			foreach ( $this->admin_sub_menus as $admin_sub_menu ) {
+				$admin_sub_menu->register_add_action();
+			}
+		}
+
 	}
 
 }

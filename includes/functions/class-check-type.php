@@ -7,8 +7,8 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://wpwebmaster.ir
- * @since      1.0.0
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Functions;
@@ -24,7 +24,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
- * @since      1.0.0
+ * @since      1.0.2
  */
 trait Check_Type {
 

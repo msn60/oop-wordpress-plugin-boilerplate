@@ -5,10 +5,10 @@
  * This file contains Second_Page_Handler class which is used to render a page in your project
  * with a specific route or url.
  *
- * @package    Plugin_Name_Name_Space\Includes\PageHandlers
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -25,8 +25,8 @@ use Plugin_Name_Name_Space\Includes\Functions\Utility;
  * Class Second_Page_Handler.
  * This class  is used to render a page in your project with a specific route or url.
  *
- * @package    \Plugin_Name_Name_Space\Includes\PageHandlers
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        \Plugin_Name_Name_Space\Includes\Functions\Utility
  * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\Contracts\Page_Handler
  */

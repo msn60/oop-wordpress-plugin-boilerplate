@@ -4,11 +4,10 @@
  *
  * This class defines tasks that must be run when plugin is deactivated.
  *
- * @category   Uninstall
- * @package    Plugin_Name_Name_Space\Includes\Uninstall
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -22,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Class Deactivator.
  * You can run desire tasks with this class when your plugin is de-activated.
  *
- * @package    Plugin_Name_Name_Space\Includes\Uninstall
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Deactivator {
 

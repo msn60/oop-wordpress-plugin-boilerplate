@@ -5,10 +5,10 @@
  * This file contains Autoloader class which can manage and handle using classes and
  * files by including them when they are needed.
  *
- * @package    Plugin_Name_Name_Space\Includes
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 

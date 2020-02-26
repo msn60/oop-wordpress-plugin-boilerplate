@@ -7,9 +7,9 @@
  * run your plugin, you can use from this class.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * If you need to initial value to start your plugin or need them for
  * each time that WordPress run your plugin, you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Initial_Value {
 
@@ -33,19 +33,19 @@ class Initial_Value {
 	 * Initial values to create admin menu page.
 	 *
 	 * @access public
-	 * @static
-	 * @see    Includes/Admin/Admin_Menu
 	 * @return array It returns all of arguments that add_menu_page function needs.
+	 * @see    Inc/Admin/Admin_Menu
 	 */
-	public static function sample_menu_page() {
+	public function sample_menu_page() {
 		$initial_value = [
-			'page_title'        => 'Sample Title',
-			'menu_title'        => 'Sample menu',
+			'page_title'        => esc_html__( 'Msn Plugin', 'plugin-name-textdomain' ),
+			'menu_title'        => esc_html__( 'Msn Plugin', 'plugin-name-textdomain' ),
 			'capability'        => 'manage_options',
-			'menu_slug'         => 'plugin-prefix-sample-url',
-			'callable_function' => 'management_panel_handler',
+			'menu_slug'         => 'plugin-name-option-page-url',
+			'callable_function' => 'management_panel_handler',//it can be null
 			'icon_url'          => 'dashicons-welcome-widgets-menus',
 			'position'          => 2,
+			'identifier'        => 'plugin_menu_page1'
 		];
 
 		return $initial_value;

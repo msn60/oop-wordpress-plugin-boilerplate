@@ -7,10 +7,10 @@
  * Actions likes installing separated tables (except WordPress tables),
  * initializing configs for plugin and using update_option, can do with this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -29,8 +29,8 @@ use Plugin_Name_Name_Space\Includes\Config\Info;
  * Actions likes installing separated tables (except WordPress tables),
  * initializing configs for plugin and using update_option, can do with this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        \Plugin_Name_Name_Space\Includes\Config\Info
  * @see        \Plugin_Name_Name_Space\Includes\Database\Table
  */

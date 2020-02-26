@@ -8,7 +8,7 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://wpwebmaster.ir
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.2
  */
 
@@ -27,11 +27,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  *
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
  */
-abstract class Admin_Menu implements Action_Hook_Interface{
+abstract class Admin_Menu implements Action_Hook_Interface {
 
 	/**
 	 * Define page_title property in Admin_Menu class.
@@ -147,10 +148,10 @@ abstract class Admin_Menu implements Action_Hook_Interface{
 	}
 
 	/**
-		 * call 'admin_menu' add_action to create Admin menu page
-		 *
-		 * @access public
-		 */
+	 * call 'admin_menu' add_action to create Admin menu page
+	 *
+	 * @access public
+	 */
 	public function register_add_action() {
 		add_action( 'admin_menu', array( $this, 'add_admin_menu_page' ) );
 	}

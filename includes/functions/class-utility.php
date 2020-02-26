@@ -11,7 +11,7 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -85,7 +85,7 @@ trait Utility {
 	 * @static
 	 *
 	 * @param string $menu_current_url Current menu URL.
-	 * @param string $page            Page URL that client is inside it at the moment.
+	 * @param string $page             Page URL that client is inside it at the moment.
 	 *
 	 * @return string
 	 */
@@ -124,7 +124,7 @@ trait Utility {
 	 * @static
 	 *
 	 * @param string $menu_current_url Current menu URL.
-	 * @param string $page            Page URL that client is inside it at the moment.
+	 * @param string $page             Page URL that client is inside it at the moment.
 	 *
 	 * @return string
 	 */
@@ -146,7 +146,7 @@ trait Utility {
 	 * @static
 	 *
 	 * @param string $menu_current_url Current menu URL.
-	 * @param string $page            Page URL that client is inside it at the moment.
+	 * @param string $page             Page URL that client is inside it at the moment.
 	 *
 	 * @return string
 	 */
@@ -252,4 +252,5 @@ trait Utility {
 
 		return $remote_address;
 	}
+
 }

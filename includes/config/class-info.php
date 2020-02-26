@@ -5,10 +5,10 @@
  * This file contains Info class. If you want to add default settings or meta
  * for your plugin (when it's activated) you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * If you want to add default settings or some value for options
  * for your plugin (when it's activated) you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Info {
 

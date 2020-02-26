@@ -1,6 +1,31 @@
 <?php
+/**
+ * Jalali Date File
+ *
+ * This class contains methods that can convert Jalali date & time to gregorian and vice versa.
+ *
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
+ * @since      1.0.2
+ */
 
 namespace Plugin_Name_Name_Space\Includes\Functions;
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+/**
+ * Date Class for Jalali time
+ *
+ * This class contains methods that can convert Jalali date & time to gregorian and vice versa.
+ *
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
+ * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU
+ * @since      1.0.0
+ */
 class Date {
 
 	/**
@@ -12,7 +37,8 @@ class Date {
 	 * @Version: 2.70 =>[ 1395/11/22 = 1438/05/12 = 2017/02/10 ]
 	 */
 
-	/*	F	*/	public static function jstrftime( $format, $timestamp = '', $none = '', $time_zone = 'Asia/Tehran', $tr_num = 'fa' ) {
+	/*	F	*/
+	public static function jstrftime( $format, $timestamp = '', $none = '', $time_zone = 'Asia/Tehran', $tr_num = 'fa' ) {
 
 		$T_sec = 0;/* <= رفع خطاي زمان سرور ، با اعداد '+' و '-' بر حسب ثانيه */
 

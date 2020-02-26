@@ -5,10 +5,10 @@
  * This file contains hooks that you need in public
  * (like enqueue styles or scripts in front end)
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -24,8 +24,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Plugin_Name_Name_Space\Includes\Init
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Public_Hook {
 
@@ -45,7 +45,7 @@ class Public_Hook {
 	 * @access   private
 	 * @var      string $version The current version of this plugin.
 	 */
-	private $version;
+	private $plugin_version;
 
 	/**
 	 * Initialize the class and set its properties.
@@ -53,13 +53,13 @@ class Public_Hook {
 	 * @since    1.0.0
 	 * @access   public
 	 *
-	 * @param      string $plugin_name The name of the plugin.
-	 * @param      string $version     The version of this plugin.
+	 * @param      string $plugin_name    The name of the plugin.
+	 * @param      string $plugin_version The version of this plugin.
 	 */
-	public function __construct( $plugin_name, $version ) {
+	public function __construct( $plugin_name, $plugin_version ) {
 
-		$this->plugin_name = $plugin_name;
-		$this->version     = $version;
+		$this->plugin_name    = $plugin_name;
+		$this->plugin_version = $plugin_version;
 
 	}
 

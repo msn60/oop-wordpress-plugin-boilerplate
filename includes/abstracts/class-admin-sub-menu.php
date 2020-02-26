@@ -8,7 +8,7 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://wpwebmaster.ir
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.2
  */
 
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * (inside Admin panel of WordPress), you must use this contract.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_submenu_page/
  */

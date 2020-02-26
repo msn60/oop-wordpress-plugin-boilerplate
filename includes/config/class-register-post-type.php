@@ -5,10 +5,10 @@
  * This file contains Register_Post_Type  class. If you want to register new post type
  * you can use from this class.
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://yoursite.com
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since      1.0.0
  */
 
@@ -23,8 +23,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * If you want to add new custom post type for your theme or plugin
  * you can inherit from this class
  *
- * @package    Plugin_Name_Name_Space\Includes\Config
- * @author     Your_Name <youremail@nomail.com>
+ * @package    Plugin_Name_Name_Space
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Register_Post_Type {
 

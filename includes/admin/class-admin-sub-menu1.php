@@ -8,8 +8,8 @@
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
- * @link       https://wpwebmaster.ir
- * @since      1.0.1
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Admin;
@@ -30,7 +30,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_submenu_page/
  */
-class Admin_Sub_Menu1 extends Admin_Sub_Menu{
+class Admin_Sub_Menu1 extends Admin_Sub_Menu {
 
 	/**
 	 * Admin_Sub_Menu constructor.
@@ -42,7 +42,7 @@ class Admin_Sub_Menu1 extends Admin_Sub_Menu{
 	 * @param array $initial_value Initial value to pass to add_submenu_page function.
 	 */
 	public function __construct( $initial_value ) {
-		parent::__construct($initial_value);
+		parent::__construct( $initial_value );
 	}
 
 	/**

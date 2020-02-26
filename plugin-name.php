@@ -4,7 +4,7 @@
  *
  * Description for OOP Plugin
  *
- * @link              https://github.com/msn60/oop-wordpress-pluging-boilerplate-light-version
+ * @link              https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * @since             1.0.0
  * @package           Plugin_Name_Name_Space
  *
@@ -23,12 +23,18 @@
  * Define your namespaces here by use keyword
  * */
 
-use Plugin_Name_Name_Space\Includes\Init\Core;
-use Plugin_Name_Name_Space\Includes\Init\Constant;
-use Plugin_Name_Name_Space\Includes\Init\Activator;
+use Plugin_Name_Name_Space\Includes\Init\{
+	Core, Constant, Activator, I18n, Public_Hook
+};
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
-use Plugin_Name_Name_Space\Includes\Uninstall\Deactivator;
-use Plugin_Name_Name_Space\Includes\Uninstall\Uninstall;
+use Plugin_Name_Name_Space\Includes\Uninstall\{
+	Deactivator, Uninstall
+};
+use Plugin_Name_Name_Space\Includes\Admin\{
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2
+};
+
+use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
 
 /**
  * If this file is called directly, then abort execution.
@@ -128,17 +134,6 @@ final class Plugin_Name_Plugin {
 	}
 
 	/**
-	 * Load Core plugin class.
-	 *
-	 * @access public
-	 * @since  1.0.0
-	 */
-	public function run_plugin_name_plugin() {
-		$plugin = new Core();
-		$plugin->run();
-	}
-
-	/**
 	 * Create an instance from Plugin_Name_Plugin class.
 	 *
 	 * @access public
@@ -163,6 +158,26 @@ final class Plugin_Name_Plugin {
 	 */
 	public static function uninstall() {
 		Uninstall::uninstall();
+	}
+
+	/**
+	 * Load Core plugin class.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
+	public function run_plugin_name_plugin() {
+		$this->initial_values = new Initial_Value();
+		$plugin               = new Core(
+			$this->initial_values,
+			new Init_Functions(),
+			new I18n(),
+			new Public_Hook( PLUGIN_NAME_MAIN_NAME, PLUGIN_NAME_VERSION ),
+			[
+				new Admin_Menu1( $this->initial_values->sample_menu_page() )
+			]
+		);
+		$plugin->init_core();
 	}
 
 	/**
