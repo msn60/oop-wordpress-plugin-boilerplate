@@ -14,6 +14,8 @@
 
 namespace Plugin_Name_Name_Space\Includes\Init;
 
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -27,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Public_Hook {
+class Public_Hook implements Action_Hook_Interface {
 
 	/**
 	 * The ID of this plugin.
@@ -119,6 +121,22 @@ class Public_Hook {
 			null,
 			true
 		);
+	}
+
+	/**
+	 * Register actions that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_action() {
+		$this->set_enqueue_scripts_action();
+	}
+
+	/**
+	 * Register enqueue scripts action
+	 */
+	public function set_enqueue_scripts_action() {
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 	}
 }
 

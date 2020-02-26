@@ -70,9 +70,9 @@ class Core implements Action_Hook_Interface {
 	protected $plugin_version;
 
 	/**
-	 * @var Public_Hook $hook_object Object  to keep all of hooks in your plugin
+	 * @var Public_Hook $public_hooks Object  to keep all of hooks in your plugin
 	 */
-	protected $hooks;
+	protected $public_hooks;
 
 	/**
 	 * @var Admin_Menu[] $admin_menus
@@ -121,7 +121,7 @@ class Core implements Action_Hook_Interface {
 		Initial_Value $initial_values,
 		Init_Functions $init_functions = null,
 		I18n $plugin_i18n = null,
-		Public_Hook $hooks = null,
+		Public_Hook $public_hooks = null,
 		array $admin_menus = null,
 		array $admin_sub_menus = null,
 		array $meta_boxes = null,
@@ -148,8 +148,8 @@ class Core implements Action_Hook_Interface {
 			$this->plugin_i18n = $plugin_i18n;
 		}
 
-		if ( ! is_null( $hooks ) ) {
-			$this->hooks = $hooks;
+		if ( ! is_null( $public_hooks ) ) {
+			$this->public_hooks = $public_hooks;
 		}
 		/*
 		 * Checking for valid types
@@ -202,7 +202,7 @@ class Core implements Action_Hook_Interface {
 			/*add_action( 'load-post.php', array( $this, 'set_meta_boxes' ) );
 			add_action( 'load-post-new.php', array( $this, 'set_meta_boxes' ) );*/
 		} else {
-			$this->define_public_hooks();
+			$this->public_hooks->register_add_action();
 			$this->check_url();
 		}
 	}
@@ -261,21 +261,6 @@ class Core implements Action_Hook_Interface {
 		return $this->plugin_version;
 	}
 
-	/**
-	 * Register all of the hooks related to the public-facing functionality
-	 * of the plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\Public_Hook
-	 */
-	private function define_public_hooks() {
-
-		$plugin_public = new Public_Hook( $this->get_plugin_name(), $this->get_version() );
-		add_action( 'wp_enqueue_scripts', array( $plugin_public, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $plugin_public, 'enqueue_scripts' ) );
-
-	}
 
 	/**
 	 * Define router to handle url request
