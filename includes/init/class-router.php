@@ -18,8 +18,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Plugin_Name_Name_Space\Includes\PageHandlers\Second_Page_Handler;
-use Plugin_Name_Name_Space\Includes\PageHandlers\First_Page_Handler;
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+use Plugin_Name_Name_Space\Includes\PageHandlers\{
+	Contracts\Page_Handler, Second_Page_Handler, First_Page_Handler
+};
 
 /**
  * Class Router.
@@ -30,7 +32,7 @@ use Plugin_Name_Name_Space\Includes\PageHandlers\First_Page_Handler;
  * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\First_Page_Handler
  * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\Second_Page_Handler
  */
-class Router {
+class Router implements Action_Hook_Interface {
 
 	/**
 	 * To keep routes for your plugin
@@ -67,7 +69,7 @@ class Router {
 	}
 
 	/**
-	 * Method boot in Router Class
+	 * Method check_routes in Router Class
 	 *
 	 * This is primary method in Router class that is called by Core class. First, this method get actual
 	 * url that client requests for it. Second, check that is in routes array or not. Third, if it's in
@@ -80,12 +82,15 @@ class Router {
 	 * @global object $wpdb     It contains a set of functions used to interact with a database.
 	 * @global object $wp_roles An object of WP_Roles class that is used to implement a user roles API.
 	 */
-	public function boot() {
+	public function check_routes() {
 		$current_route = $this->get_current_route();
 		if ( in_array( $current_route, $this->get_routes_keys(), true ) ) {
 			$handler = $this->get_route_handler( $current_route );
 			global $wpdb, $wp_roles;
 			$send_error_message = array();
+			/**
+			 * @var Page_Handler $handler_instance
+			 */
 			$handler_instance   = new $handler();
 			$handler_instance->render();
 		}
@@ -137,5 +142,13 @@ class Router {
 	 */
 	private function get_route_handler( $route ) {
 		return $this->routes[ $route ];
+	}
+
+	/**
+	 * Register actions that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_action() {
+		add_action( 'init', array( $this, 'check_routes' ) );
 	}
 }

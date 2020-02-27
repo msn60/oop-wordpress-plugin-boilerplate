@@ -24,7 +24,7 @@
  * */
 
 use Plugin_Name_Name_Space\Includes\Init\{
-	Admin_Hook, Core, Constant, Activator, I18n, Public_Hook
+	Admin_Hook, Core, Constant, Activator, I18n, Public_Hook, Router
 };
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Uninstall\{
@@ -174,6 +174,7 @@ final class Plugin_Name_Plugin {
 			new I18n(),
 			new Admin_Hook( PLUGIN_NAME_MAIN_NAME, PLUGIN_NAME_VERSION ),
 			new Public_Hook( PLUGIN_NAME_MAIN_NAME, PLUGIN_NAME_VERSION ),
+			new Router(),
 			[
 				new Admin_Menu1( $this->initial_values->sample_menu_page() )
 			],

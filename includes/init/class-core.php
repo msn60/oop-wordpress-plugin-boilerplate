@@ -114,6 +114,11 @@ class Core implements Action_Hook_Interface {
 	protected $plugin_i18n;
 
 	/**
+	 * @var Router $router Object  to check url and related routes
+	 */
+	protected $router;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -128,6 +133,7 @@ class Core implements Action_Hook_Interface {
 		I18n $plugin_i18n = null,
 		Admin_Hook $admin_hooks = null,
 		Public_Hook $public_hooks = null,
+		Router $router = null,
 		array $admin_menus = null,
 		array $admin_sub_menus = null,
 		array $meta_boxes = null,
@@ -160,6 +166,10 @@ class Core implements Action_Hook_Interface {
 
 		if ( ! is_null( $public_hooks ) ) {
 			$this->public_hooks = $public_hooks;
+		}
+
+		if ( ! is_null( $router ) ) {
+			$this->router = $router;
 		}
 		/*
 		 * Checking for valid types
@@ -226,7 +236,7 @@ class Core implements Action_Hook_Interface {
 /*			if (! is_null()) {
 
 			}*/
-			$this->check_url();
+			$this->router->register_add_action();
 		}
 	}
 
@@ -251,25 +261,6 @@ class Core implements Action_Hook_Interface {
 	public function get_version() {
 		return $this->plugin_version;
 	}
-
-
-	/**
-	 * Define router to handle url request
-	 *
-	 * If you need to check url and redirect user to other page except admin
-	 * panel of WordPress (or you need to have specific panel for your WordPress
-	 * site), you need to handle request by routers. To do that, you can use from
-	 * Router class to manage your routes inside of your plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @see      \Plugin_Name_Name_Space\Includes\Init\Router
-	 */
-	private function check_url() {
-		$check_url_object = new Router();
-		add_action( 'init', array( $check_url_object, 'boot' ) );
-	}
-
 
 	/**
 	 * Method to set all of needed admin menus and sub menus
