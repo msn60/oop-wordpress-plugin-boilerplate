@@ -1,6 +1,6 @@
 <?php
 /**
- * Meta_Box2 Class File
+ * Meta_Box4 Class File
  *
  * Methods and settings which will need for meta box1
  *
@@ -20,13 +20,13 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class Meta_Box2.
+ * Class Meta_Box4.
  * Methods and settings which will need for meta box1
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Meta_Box2 extends Meta_box {
+class Meta_Box4 extends Meta_box {
 
 	/**
 	 * Meta_box constructor.
@@ -65,18 +65,20 @@ class Meta_Box2 extends Meta_box {
 		// Display the form, using the current value.
 		?>
         <div>
-            <label for="meta_box2_first_input">
+            <label for="meta_box4_first_input">
 				<?php _e( 'first input', MSN_TEXT_DOMAIN_NAME ); ?>
             </label>
-            <input type="text" id="meta_box2_first_input" name="meta_box2_first_input" value="<?php echo esc_attr( @$values['first_input'] ); ?>"
+            <input type="text" id="meta_box4_first_input" name="meta_box4_first_input"
+                   value="<?php echo esc_attr( isset($values['first_input']) && ! empty($values['first_input']) ? $values['first_input'] : '' ); ?>"
                    size="30"/>
         </div>
         <br>
         <div>
-            <label for="meta_box2_second_input">
+            <label for="meta_box4_second_input">
 				<?php _e( 'second input', MSN_TEXT_DOMAIN_NAME ); ?>
             </label>
-            <input type="text" id="meta_box2_second_input" name="meta_box2_second_input" value="<?php echo esc_attr( @$values['second_input'] ); ?>"
+            <input type="text" id="meta_box4_second_input" name="meta_box4_second_input"
+                   value="<?php echo esc_attr( isset($values['second_input']) && ! empty($values['second_input']) ? $values['second_input'] : '' ); ?>"
                    size="30"/>
         </div>
 
@@ -85,8 +87,8 @@ class Meta_Box2 extends Meta_box {
 
 	public function save_meta_box( $post_id ) {
 		// Sanitize the user input.
-		$meta_value['first_input']  = sanitize_text_field( $_POST['meta_box2_first_input'] );
-		$meta_value['second_input'] = sanitize_text_field( $_POST['meta_box2_second_input'] );
+		$meta_value['first_input']  = sanitize_text_field( $_POST['meta_box4_first_input'] );
+		$meta_value['second_input'] = sanitize_text_field( $_POST['meta_box4_second_input'] );
 
 		// Update the meta field.
 		update_post_meta( $post_id, $this->meta_key, $meta_value );

@@ -226,7 +226,7 @@ class Core implements Action_Hook_Interface {
 				$this->admin_hooks->register_add_action();
 			}
 
-			//$this->set_meta_boxes();
+			$this->set_meta_boxes();
 			/*add_action( 'load-post.php', array( $this, 'set_meta_boxes' ) );
 			add_action( 'load-post-new.php', array( $this, 'set_meta_boxes' ) );*/
 		} else {
@@ -281,6 +281,15 @@ class Core implements Action_Hook_Interface {
 			}
 		}
 
+	}
+
+	/*
+	 * Method to set actions for meta boxes in theme
+	 * */
+	public function set_meta_boxes() {
+		foreach ( $this->meta_boxes as $meta_box ) {
+			$meta_box->register_add_action();
+		}
 	}
 
 }

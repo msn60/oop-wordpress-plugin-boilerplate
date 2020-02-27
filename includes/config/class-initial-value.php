@@ -183,13 +183,13 @@ class Initial_Value {
 			'title'         => esc_html__( 'Meta box4 Headline', PLUGIN_NAME_TEXTDOMAIN ),
 			'callback'      => 'render_content',
 			'screens'       => array( 'post', 'page' ),//null - optional
-			'context'       => 'advanced', //optional
+			'context'       => 'side', //optional
 			'priority'      => 'high', //optional
 			'callback_args' => null, //optional
 			'meta_key'      => '_msn_plugin_boilerplate_meta_box_key_4',
-			'single'        => true, //the result of get_post_meta Will be an array if $single is false
-			'action'        => 'msn_oop_boilerplate_meta_box1',
-			'nonce_name'    => 'msn_oop_boilerplate_meta_box1_nonce'
+			'single'        => false, //the result of get_post_meta Will be an array if $single is false
+			'action'        => 'msn_oop_boilerplate_meta_box4',
+			'nonce_name'    => 'msn_oop_boilerplate_meta_box4_nonce'
 
 		];
 
