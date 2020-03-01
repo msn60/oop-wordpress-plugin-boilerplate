@@ -22,6 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 use Plugin_Name_Name_Space\Includes\Database\Table;
 use Plugin_Name_Name_Space\Includes\Config\Info;
+use Plugin_Name_Name_Space\Includes\Functions\Logger;
 
 /**
  * Class Activator.
@@ -35,6 +36,23 @@ use Plugin_Name_Name_Space\Includes\Config\Info;
  * @see        \Plugin_Name_Name_Space\Includes\Database\Table
  */
 class Activator {
+	use Logger;
+	/**
+	 * @var int $last_db_version The last version of your plugin database
+	 */
+	private $last_db_version;
+
+	/**
+	 * @var Table $table_object Table object to create or modify tables
+	 */
+	private $table_object;
+
+	/**
+	 * Activator constructor.
+	 */
+	public function __construct( $last_db_version = null ) {
+		$this->last_db_version = $last_db_version;
+	}
 
 	/**
 	 * Method activate in Activator Class
@@ -44,28 +62,42 @@ class Activator {
 	 * @access  public
 	 * @static
 	 */
-	public static function activate() {
+	public function activate(
+		$is_need_table_modification = false,
+		Table $table_object = null
+	) {
 
 		// Create needed tables in plugin activation.
-		$new_modified_tables = new Table();
-		if ( intval( $new_modified_tables->db_version ) > intval( get_option( 'last_your_plugin_name_dbs_version' ) )
-		) {
-			/*
-			 * Check is your table exist in database or not you can use from it
-			 * for all of your table in first time that your plugin is created.
-			*/
-			if ( 1 !== $new_modified_tables->have_your_table_name ) {
-				$new_modified_tables->create_your_table_name();
+		$this->table_object = $table_object;
+		if ( true === $is_need_table_modification ) {
+			if ( intval( $this->table_object->db_version ) > $this->last_db_version
+			) {
+				$this->create_needed_tables();
 			}
+		}
+		// Initialize plugin settings and info in option table.
+		Info::add_info_in_plugin_activation();
+		$this->append_log_in_text_file( 'Sample to test logger class when plugin is activated', PLUGIN_NAME_LOGS . 'activator-logs.txt',
+			'Activator Last Log' );
 
-			update_option(
-				'last_your_plugin_name_dbs_version',
-				$new_modified_tables->db_version
-			);
-			// Initialize plugin settings and info in option table.
-			Info::add_info_in_plugin_activation();
+
+	}
+
+	/**
+	 * Create needed tables when plugin is activated
+	 *
+	 * Check is your table exist in database or not you can use from it
+	 * for all of your table in first time that your plugin is created.
+	 */
+	private function create_needed_tables() {
+		if ( true !== $this->table_object->has_table_name ) {
+			$this->table_object->create_your_table_name();
 		}
 
+		update_option(
+			'last_your_plugin_name_dbs_version',
+			$this->table_object->db_version
+		);
 	}
 }
 

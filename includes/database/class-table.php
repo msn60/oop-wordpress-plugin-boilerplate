@@ -45,13 +45,13 @@ class Table {
 	 */
 	public $db_version;
 	/**
-	 * Define have_your_table_name property in Table class
+	 * Define has_table_name property in Table class
 	 *
 	 * @access     public
-	 * @var int $have_your_table_name To check that "Is a table exist with this name or not?".
+	 * @var int $has_table_name To check that "Is a table exist with this name or not?".
 	 * @since      1.0.0
 	 */
-	public $have_your_table_name;
+	public $has_table_name;
 	/**
 	 * Define wpdb property in Table class
 	 *
@@ -69,18 +69,19 @@ class Table {
 	 *
 	 * @access public
 	 */
-	public function __construct() {
+	public function __construct(
+		$wpdb_object, $db_version, $has_table_name
+	) {
 		/**
 		 * Use from global $wpdb object.
 		 *
 		 * @global object $wpdb This is an instantiation of the wpdb class.
 		 * @see /wp-includes/wp-db.php
 		 */
-		global $wpdb;
-		$this->wpdb                 = $wpdb;
+		$this->wpdb                 = $wpdb_object;
 		$this->charset_collate      = $this->wpdb->get_charset_collate();
-		$this->db_version           = PLUGIN_NAME_DB_VERSION;
-		$this->have_your_table_name = get_option( 'have_your_table_name' );
+		$this->db_version           = $db_version;
+		$this->has_table_name = $has_table_name;
 	}
 
 	/**
@@ -112,7 +113,7 @@ class Table {
 
 			require_once ABSPATH . 'wp-admin/includes/upgrade.php';
 			dbDelta( $sql );
-			update_option( 'have_your_table_name', 1 );
+			update_option( 'has_table_name', true );
 		}
 	}
 }

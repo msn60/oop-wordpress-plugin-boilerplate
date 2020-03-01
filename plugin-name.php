@@ -35,6 +35,7 @@ use Plugin_Name_Name_Space\Includes\Admin\{
 };
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
+use Plugin_Name_Name_Space\Includes\Database\Table;
 
 /**
  * If this file is called directly, then abort execution.
@@ -105,7 +106,11 @@ final class Plugin_Name_Plugin {
 		 */
 		register_activation_hook(
 			__FILE__,
-			array( $this, 'activate' )
+			function () {
+				$this->activate(
+					new Activator( intval( get_option( 'last_your_plugin_name_dbs_version' ) ) )
+				);
+			}
 		);
 		/**
 		 * Register deactivation hook.
@@ -130,6 +135,23 @@ final class Plugin_Name_Plugin {
 		register_uninstall_hook(
 			__FILE__,
 			array( 'Plugin_Name_Plugin', 'uninstall' )
+		);
+	}
+
+	/**
+	 * Call activate method.
+	 * This function calls activate method from Activator class.
+	 * You can use from this method to run every thing you need when plugin is activated.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 * @see    Plugin_Name_Name_Space\Includes\Init\Activator Class
+	 */
+	public function activate( Activator $activator_object ) {
+		global $wpdb;
+		$activator_object->activate(
+			true,
+			new Table( $wpdb, PLUGIN_NAME_DB_VERSION, get_option( 'has_table_name' ) )
 		);
 	}
 
@@ -188,19 +210,6 @@ final class Plugin_Name_Plugin {
 			]
 		);
 		$plugin->init_core();
-	}
-
-	/**
-	 * Call activate method.
-	 * This function calls activate method from Activator class.
-	 * You can use from this method to run every thing you need when plugin is activated.
-	 *
-	 * @access public
-	 * @since  1.0.0
-	 * @see    Plugin_Name_Name_Space\Includes\Init\Activator Class
-	 */
-	public function activate() {
-		Activator::activate();
 	}
 
 	/**

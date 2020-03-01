@@ -150,6 +150,14 @@ class Constant {
 		}
 
 		/**
+		 * PLUGIN_NAME_TPL constant.
+		 * It is used to specify template urls inside templates directory.
+		 */
+		if ( ! defined( 'PLUGIN_NAME_LOGS' ) ) {
+			define( 'PLUGIN_NAME_LOGS', trailingslashit( PLUGIN_NAME_PATH . 'logs' ) );
+		}
+
+		/**
 		 * PLUGIN_NAME_CSS_VERSION constant.
 		 * You can use from this constant to apply on main CSS file when you have changed it.
 		 */
