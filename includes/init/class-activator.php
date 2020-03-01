@@ -76,9 +76,12 @@ class Activator {
 			}
 		}
 		// Initialize plugin settings and info in option table.
+		// TODO: separate this part to another method and then call it
 		Info::add_info_in_plugin_activation();
 		$this->append_log_in_text_file( 'Sample to test logger class when plugin is activated', PLUGIN_NAME_LOGS . 'activator-logs.txt',
 			'Activator Last Log' );
+
+		//TODO: Show customized messages when plugin is activated
 
 
 	}

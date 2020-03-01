@@ -28,6 +28,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
 class Table {
+	// TODO: This class needs to refactor based on SOLID principles
 	/**
 	 * Define charset_collate property in Table class
 	 *
