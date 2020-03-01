@@ -52,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * singletone design pattern.
  *
  * @package    Plugin_Name_Name_Space
- * @author     Your_Name <youremail@nomail.com>
+ * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        Plugin_Name_Name_Space\Includes\Init\Core Class
  * @see        Plugin_Name_Name_Space\Includes\Init\Constant Class
  * @see        Plugin_Name_Name_Space\Includes\Init\Activator Class
@@ -125,12 +125,12 @@ final class Plugin_Name_Plugin {
 			array( $this, 'deactivate' )
 		);
 		/**
-		 * Register deactivation hook.
-		 * Register deactivation hook for this plugin by invoking deactivate
+		 * Register uninstall hook.
+		 * Register uninstall hook for this plugin by invoking uninstall
 		 * in Plugin_Name_Plugin class.
 		 *
 		 * @param string   $file     path to the plugin file.
-		 * @param callback $function The function to be run when the plugin is deactivated.
+		 * @param callback $function The function to be run when the plugin is uninstalled.
 		 */
 		register_uninstall_hook(
 			__FILE__,
