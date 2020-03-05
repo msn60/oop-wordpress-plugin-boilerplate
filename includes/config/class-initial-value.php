@@ -212,4 +212,19 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	/**
+	 * Initial values to sample shortcode  1
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that shortcode class needs.
+	 */
+	public function sample_content_for_login_user_shortcode() {
+		$initial_value = [
+			'tag'          => 'msn_content_for_login_user',
+			'default_atts' => [],
+		];
+
+		return $initial_value;
+	}
 }

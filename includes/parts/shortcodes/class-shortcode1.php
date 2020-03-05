@@ -10,7 +10,7 @@
  * @since      1.0.2
  */
 
-namespace Plugin_Name_Name_Space\Includes\Parts;
+namespace Plugin_Name_Name_Space\Includes\Parts\Shortcodes;
 
 use Plugin_Name_Name_Space\Includes\Abstracts\Shortcode;
 
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Shortcode1 Class File
  *
- * Simple none closing tag shortcode
+ * Simple self-closing tag shortcode sample class
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
@@ -43,7 +43,7 @@ class Shortcode1 extends Shortcode {
 	 *
 	 * @return string
 	 */
-	public function define_shortcode( $atts = [], $content = null, $tag = '' ) {
+	public function define_shortcode_handler( $atts = [], $content = null, $tag = '' ) {
 
 		$args = shortcode_atts( [
 				"name" => $this->default_atts['name'],
@@ -53,7 +53,5 @@ class Shortcode1 extends Shortcode {
 		return '<div>Hi ' . $args["name"] . '</div>';
 	}
 
-	// [msnshortcode1]
-	// [msnshortcode1 name="Mehdi"]
 
 }
