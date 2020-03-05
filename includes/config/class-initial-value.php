@@ -197,7 +197,7 @@ class Initial_Value {
 	}
 
 	/**
-	 * Initial values to sample shortcode  1
+	 * Initial values for sample shortcode  1
 	 *
 	 * @access public
 	 * @return array It returns all of arguments that shortcode class needs.
@@ -214,7 +214,7 @@ class Initial_Value {
 	}
 
 	/**
-	 * Initial values to sample shortcode  1
+	 * Initial values for show content only for login user shortcode
 	 *
 	 * @access public
 	 * @return array It returns all of arguments that shortcode class needs.
@@ -223,6 +223,24 @@ class Initial_Value {
 		$initial_value = [
 			'tag'          => 'msn_content_for_login_user',
 			'default_atts' => [],
+		];
+
+		return $initial_value;
+	}
+
+	/**
+	 * Initial values for complete shortcode class
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that shortcode class needs.
+	 */
+	public function sample_complete_shortcode() {
+		$initial_value = [
+			'tag'          => 'msn_complete_shortcode',
+			'default_atts' => [
+				'link' => 'https://wpwebmaster.ir',
+				'name' => 'Webmaster WordPress'
+			],
 		];
 
 		return $initial_value;
