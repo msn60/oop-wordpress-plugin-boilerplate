@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Plugin_Name_Name_Space\Includes\Abstracts\{
-	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box
+	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box, Shortcode
 };
 
 use Plugin_Name_Name_Space\Includes\Interfaces\{
@@ -95,6 +95,11 @@ class Core implements Action_Hook_Interface {
 	protected $ajax_calls;
 
 	/**
+	 * @var Shortcode[] $shortcodes
+	 */
+	protected $shortcodes;
+
+	/**
 	 * @var Initial_Value $initial_values An object  to keep all of initial values for plugin
 	 */
 	protected $initial_values;
@@ -137,7 +142,9 @@ class Core implements Action_Hook_Interface {
 		array $admin_menus = null,
 		array $admin_sub_menus = null,
 		array $meta_boxes = null,
+		array $shortcodes = null,
 		array $ajax_calls = null
+
 	) {
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
 			$this->plugin_version = PLUGIN_NAME_VERSION;
@@ -156,7 +163,7 @@ class Core implements Action_Hook_Interface {
 			$this->init_functions = $init_functions;
 		}
 
-		if ( ! is_null( $plugin_i18n) ) {
+		if ( ! is_null( $plugin_i18n ) ) {
 			$this->plugin_i18n = $plugin_i18n;
 		}
 
@@ -189,6 +196,9 @@ class Core implements Action_Hook_Interface {
 		if ( ! is_null( $ajax_calls ) ) {
 			$this->ajax_calls = $this->check_array_by_parent_type( $ajax_calls, Ajax::class )['valid'];;
 		}
+		if ( ! is_null( $shortcodes ) ) {
+			$this->shortcodes = $this->check_array_by_parent_type( $shortcodes, Shortcode::class )['valid'];;
+		}
 
 	}
 
@@ -203,6 +213,7 @@ class Core implements Action_Hook_Interface {
 	 */
 	public function init_core() {
 		$this->register_add_action();
+		$this->set_shortcodes();
 	}
 
 	/**
@@ -213,16 +224,16 @@ class Core implements Action_Hook_Interface {
 	 *
 	 */
 	public function register_add_action() {
-		if (! is_null($this->init_functions)) {
+		if ( ! is_null( $this->init_functions ) ) {
 			$this->init_functions->register_add_action();
 		}
-		if (! is_null($this->plugin_i18n)) {
+		if ( ! is_null( $this->plugin_i18n ) ) {
 			$this->plugin_i18n->register_add_action();
 		}
 
 		if ( is_admin() ) {
 			$this->set_admin_menus();
-			if (! is_null($this->admin_hooks)) {
+			if ( ! is_null( $this->admin_hooks ) ) {
 				$this->admin_hooks->register_add_action();
 			}
 
@@ -230,36 +241,14 @@ class Core implements Action_Hook_Interface {
 			/*add_action( 'load-post.php', array( $this, 'set_meta_boxes' ) );
 			add_action( 'load-post-new.php', array( $this, 'set_meta_boxes' ) );*/
 		} else {
-			if (! is_null($this->public_hooks)) {
+			if ( ! is_null( $this->public_hooks ) ) {
 				$this->public_hooks->register_add_action();
 			}
-/*			if (! is_null()) {
+			/*			if (! is_null()) {
 
-			}*/
+						}*/
 			$this->router->register_add_action();
 		}
-	}
-
-
-	/**
-	 * The name of the plugin used to uniquely identify it within the context of
-	 * WordPress and to define internationalization functionality.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The name of the plugin.
-	 */
-	public function get_plugin_name() {
-		return $this->plugin_name;
-	}
-
-	/**
-	 * Retrieve the version number of the plugin.
-	 *
-	 * @since     1.0.0
-	 * @return    string    The version number of the plugin.
-	 */
-	public function get_version() {
-		return $this->plugin_version;
 	}
 
 	/**
@@ -283,13 +272,55 @@ class Core implements Action_Hook_Interface {
 
 	}
 
-	/*
-	 * Method to set actions for meta boxes in theme
-	 * */
+	/**
+	 * Method to set all of needed shortcodes for your plugin
+	 *
+	 * @access private
+	 * @since  1.0.22
+	 */
+	private function set_shortcodes() {
+		if ( ! is_null( $this->shortcodes) ) {
+			foreach ( $this->shortcodes as $shortcode ) {
+				$shortcode->register_add_action();
+			}
+		}
+	}
+
+	/**
+	 * Method to set all of needed meta_boxex
+	 *
+	 * @access public
+	 * @since  1.0.2
+	 */
 	public function set_meta_boxes() {
 		foreach ( $this->meta_boxes as $meta_box ) {
 			$meta_box->register_add_action();
 		}
+	}
+
+	/**
+	 * The name of the plugin used to uniquely identify it within the context of
+	 * WordPress and to define internationalization functionality.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The name of the plugin.
+	 */
+	public function get_plugin_name() {
+		return $this->plugin_name;
+	}
+
+	/*
+	 * Method to set actions for meta boxes in theme
+	 * */
+
+	/**
+	 * Retrieve the version number of the plugin.
+	 *
+	 * @since     1.0.0
+	 * @return    string    The version number of the plugin.
+	 */
+	public function get_version() {
+		return $this->plugin_version;
 	}
 
 }

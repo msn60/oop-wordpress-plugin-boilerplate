@@ -38,74 +38,74 @@ abstract class Admin_Menu implements Action_Hook_Interface {
 	 * Define page_title property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $page_title The text to be displayed in the title tags of the page when the menu is selected.
 	 * @since      1.0.0
 	 */
-	private $page_title;
+	protected $page_title;
 	/**
 	 * Define menu_title property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $menu_title The text to be used for the menu.
 	 * @since      1.0.0
 	 */
-	private $menu_title;
+	protected $menu_title;
 	/**
 	 * Define capability property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $capability The capability required for this menu to be displayed to the user.
 	 * @since      1.0.0
 	 */
-	private $capability;
+	protected $capability;
 	/**
 	 * Define menu_slug property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $menu_slug The slug name to refer to this menu by.
 	 * @since      1.0.0
 	 */
-	private $menu_slug;
+	protected $menu_slug;
 	/**
 	 * Define callable_function property in Admin_Menu class.
 	 * This property use to define callable function name in add_menu_page.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var callable $callable_function The function to be called to output the content for this page.
 	 * @since      1.0.0
 	 */
-	private $callable_function;
+	protected $callable_function;
 	/**
 	 * Define icon_url property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $icon_url The URL to the icon to be used for this menu.
 	 * @since      1.0.0
 	 */
-	private $icon_url;
+	protected $icon_url;
 	/**
 	 * Define position property in Admin_Menu class.
 	 * This property use to pass to add_menu_page as an argument.
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var int $position The position in the menu order this one should appear
 	 * @since      1.0.0
 	 */
-	private $position;
+	protected $position;
 	/**
 	 * Define unique name for admin menu.
 	 * I will use it for logging in future implementation
 	 *
-	 * @access     private
+	 * @access     protected
 	 * @var string $identifier Define a unique name for admin menu
 	 * @since      1.0.0
 	 */
-	private $identifier;
+	protected $identifier;
 
 	/**
 	 * Admin_Menu constructor.

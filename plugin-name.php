@@ -36,6 +36,7 @@ use Plugin_Name_Name_Space\Includes\Admin\{
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
 use Plugin_Name_Name_Space\Includes\Database\Table;
+use Plugin_Name_Name_Space\Includes\Parts\Shortcode1;
 
 /**
  * If this file is called directly, then abort execution.
@@ -207,6 +208,9 @@ final class Plugin_Name_Plugin {
 			[
 				new Meta_Box3( $this->initial_values->sample_meta_box3() ),
 				new Meta_Box4( $this->initial_values->sample_meta_box4() ),
+			],
+			[
+				new Shortcode1($this->initial_values->sample_shortcode1())
 			]
 		);
 		$plugin->init_core();

@@ -2,3 +2,15 @@
 Log message of : Activator Last Log [on 2020-03-01  12:09:58]
 Sample to test logger class when plugin is activated
 
+Log message of : Activator Last Log [on 2020-03-01  16:04:22]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-01  16:05:28]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-01  16:10:35]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-01  16:15:59]
+Sample to test logger class when plugin is activated
+
