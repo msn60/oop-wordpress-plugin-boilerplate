@@ -255,35 +255,35 @@ class Initial_Value {
 	public function sample_custom_post1() {
 
 		$labels = array(
-			'name'               => _x( 'رویداد', 'post type general name', 'msn-uv-theme' ),
-			'singular_name'      => _x( 'رویداد', 'post type singular name', 'msn-uv-theme' ),
-			'menu_name'          => _x( 'رویداد ها', 'admin menu', 'msn-uv-theme' ),
-			'name_admin_bar'     => _x( 'رویداد', 'add new on admin bar', 'msn-uv-theme' ),
-			'add_new'            => _x( 'اضافه کردن رویداد جدید', 'رویداد', 'msn-uv-theme' ),
-			'add_new_item'       => __( 'اضافه کردن رویداد جدید', 'msn-uv-theme' ),
-			'new_item'           => __( 'رویداد جدید', 'msn-uv-theme' ),
-			'edit_item'          => __( 'ویرایش رویداد', 'msn-uv-theme' ),
-			'view_item'          => __( 'نمایش رویداد', 'msn-uv-theme' ),
-			'all_items'          => __( 'همه رویداد ها', 'msn-uv-theme' ),
-			'search_items'       => __( 'جستجو رویداد ها', 'msn-uv-theme' ),
-			'parent_item_colon'  => __( 'والد رویداد ها:', 'msn-uv-theme' ),
-			'not_found'          => __( 'هیچ رویدادی یافت نشد.', 'msn-uv-theme' ),
-			'not_found_in_trash' => __( 'هیچ رویدادی در زباله دان یافت نشد.', 'msn-uv-theme' )
+			'name'               => _x( 'General Name 1', 'post type general name', PLUGIN_NAME_TEXTDOMAIN ),
+			'singular_name'      => _x( 'Name 1', 'post type singular name', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_name'          => _x( 'Names 1', 'admin menu', PLUGIN_NAME_TEXTDOMAIN ),
+			'name_admin_bar'     => _x( 'Name !', 'add new on admin bar', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_new'            => _x( 'Add New ', 'Name 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_new_item'       => __( 'Add New Name 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'new_item'           => __( 'New Name 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'edit_item'          => __( 'Edit Name 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'view_item'          => __( 'View Name 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'all_items'          => __( 'All Names 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'search_items'       => __( 'Search Names 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'parent_item_colon'  => __( 'Parent Names 1:', PLUGIN_NAME_TEXTDOMAIN ),
+			'not_found'          => __( 'No names 1 found', PLUGIN_NAME_TEXTDOMAIN ),
+			'not_found_in_trash' => __( 'No names 1 found in Trash', PLUGIN_NAME_TEXTDOMAIN )
 		);
 
 		$args          = array(
 			'labels'             => $labels,
-			'description'        => __( 'در این صفحه لیست همه رویدادهای پیش رو را خواهید دید', 'msn-uv-theme' ),
+			'description'        => __( 'Description 1', PLUGIN_NAME_TEXTDOMAIN ),
 			'public'             => true,
 			'publicly_queryable' => true,
 			'show_ui'            => true,
 			'show_in_menu'       => true,
 			'query_var'          => true,
-			'rewrite'            => array( 'slug' => 'events' ),
+			'rewrite'            => array( 'slug' => 'name1' ),
 			'capability_type'    => 'post',
 			'has_archive'        => true,
 			'hierarchical'       => false,
-			'menu_position'      => 6,
+			'menu_position'      => 8,
 			'menu_icon'          => 'dashicons-calendar-alt',
 			'show_in_rest'       => true,
 			/*'rest_base'             => 'events',
@@ -291,7 +291,7 @@ class Initial_Value {
 			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
 		);
 		$initial_value = [
-			'post_type' => 'msn-events',
+			'post_type' => 'msn-name1',
 			'args'      => $args,
 		];
 
