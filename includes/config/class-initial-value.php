@@ -245,4 +245,56 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	/**
+	 * Initial values for Custom_Post1 class
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that Custom_Post1 class needs.
+	 */
+	public function sample_custom_post1() {
+
+		$labels = array(
+			'name'               => _x( 'رویداد', 'post type general name', 'msn-uv-theme' ),
+			'singular_name'      => _x( 'رویداد', 'post type singular name', 'msn-uv-theme' ),
+			'menu_name'          => _x( 'رویداد ها', 'admin menu', 'msn-uv-theme' ),
+			'name_admin_bar'     => _x( 'رویداد', 'add new on admin bar', 'msn-uv-theme' ),
+			'add_new'            => _x( 'اضافه کردن رویداد جدید', 'رویداد', 'msn-uv-theme' ),
+			'add_new_item'       => __( 'اضافه کردن رویداد جدید', 'msn-uv-theme' ),
+			'new_item'           => __( 'رویداد جدید', 'msn-uv-theme' ),
+			'edit_item'          => __( 'ویرایش رویداد', 'msn-uv-theme' ),
+			'view_item'          => __( 'نمایش رویداد', 'msn-uv-theme' ),
+			'all_items'          => __( 'همه رویداد ها', 'msn-uv-theme' ),
+			'search_items'       => __( 'جستجو رویداد ها', 'msn-uv-theme' ),
+			'parent_item_colon'  => __( 'والد رویداد ها:', 'msn-uv-theme' ),
+			'not_found'          => __( 'هیچ رویدادی یافت نشد.', 'msn-uv-theme' ),
+			'not_found_in_trash' => __( 'هیچ رویدادی در زباله دان یافت نشد.', 'msn-uv-theme' )
+		);
+
+		$args          = array(
+			'labels'             => $labels,
+			'description'        => __( 'در این صفحه لیست همه رویدادهای پیش رو را خواهید دید', 'msn-uv-theme' ),
+			'public'             => true,
+			'publicly_queryable' => true,
+			'show_ui'            => true,
+			'show_in_menu'       => true,
+			'query_var'          => true,
+			'rewrite'            => array( 'slug' => 'events' ),
+			'capability_type'    => 'post',
+			'has_archive'        => true,
+			'hierarchical'       => false,
+			'menu_position'      => 6,
+			'menu_icon'          => 'dashicons-calendar-alt',
+			'show_in_rest'       => true,
+			/*'rest_base'             => 'events',
+			'rest_controller_class' => 'WP_REST_Posts_Controller',*/
+			'supports'           => array( 'title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments' )
+		);
+		$initial_value = [
+			'post_type' => 'msn-events',
+			'args'      => $args,
+		];
+
+		return $initial_value;
+	}
 }

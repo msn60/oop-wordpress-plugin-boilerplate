@@ -39,6 +39,7 @@ use Plugin_Name_Name_Space\Includes\Database\Table;
 use Plugin_Name_Name_Space\Includes\Parts\Shortcodes\{
 	Shortcode1, Content_For_Login_User_Shortcode, Complete_Shortcode
 };
+use Plugin_Name_Name_Space\Includes\Parts\Custom_Posts\Custom_Post1;
 
 /**
  * If this file is called directly, then abort execution.
@@ -154,6 +155,9 @@ final class Plugin_Name_Plugin {
 		global $wpdb;
 		$activator_object->activate(
 			true,
+			[
+				new Custom_Post1( $this->initial_values->sample_custom_post1() )
+			],
 			new Table( $wpdb, PLUGIN_NAME_DB_VERSION, get_option( 'has_table_name' ) )
 		);
 	}
@@ -215,6 +219,9 @@ final class Plugin_Name_Plugin {
 				new Shortcode1( $this->initial_values->sample_shortcode1() ),
 				new Complete_Shortcode( $this->initial_values->sample_complete_shortcode() ),
 				new Content_For_Login_User_Shortcode( $this->initial_values->sample_content_for_login_user_shortcode() ),
+			],
+			[
+				new Custom_Post1( $this->initial_values->sample_custom_post1() )
 			]
 		);
 		$plugin->init_core();

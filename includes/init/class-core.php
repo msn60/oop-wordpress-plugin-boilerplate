@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Plugin_Name_Name_Space\Includes\Abstracts\{
-	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box, Shortcode
+	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box, Shortcode, Custom_Post_Type
 };
 
 use Plugin_Name_Name_Space\Includes\Interfaces\{
@@ -110,6 +110,11 @@ class Core implements Action_Hook_Interface {
 	protected $meta_boxes;
 
 	/**
+	 * @var Custom_Post_Type[] $custom_posts
+	 */
+	protected $custom_posts;
+
+	/**
 	 * @var Init_Functions $init_functions Object  to keep all initial function in plugin
 	 */
 	protected $init_functions;
@@ -143,6 +148,7 @@ class Core implements Action_Hook_Interface {
 		array $admin_sub_menus = null,
 		array $meta_boxes = null,
 		array $shortcodes = null,
+		array $custom_posts = null,
 		array $ajax_calls = null
 
 	) {
@@ -199,6 +205,9 @@ class Core implements Action_Hook_Interface {
 		if ( ! is_null( $shortcodes ) ) {
 			$this->shortcodes = $this->check_array_by_parent_type( $shortcodes, Shortcode::class )['valid'];;
 		}
+		if ( ! is_null( $custom_posts ) ) {
+			$this->custom_posts = $this->check_array_by_parent_type( $custom_posts, Custom_Post_Type::class )['valid'];;
+		}
 
 	}
 
@@ -214,6 +223,7 @@ class Core implements Action_Hook_Interface {
 	public function init_core() {
 		$this->register_add_action();
 		$this->set_shortcodes();
+		$this->set_custom_posts();
 	}
 
 	/**
@@ -273,20 +283,6 @@ class Core implements Action_Hook_Interface {
 	}
 
 	/**
-	 * Method to set all of needed shortcodes for your plugin
-	 *
-	 * @access private
-	 * @since  1.0.22
-	 */
-	private function set_shortcodes() {
-		if ( ! is_null( $this->shortcodes) ) {
-			foreach ( $this->shortcodes as $shortcode ) {
-				$shortcode->register_add_action();
-			}
-		}
-	}
-
-	/**
 	 * Method to set all of needed meta_boxex
 	 *
 	 * @access public
@@ -295,6 +291,34 @@ class Core implements Action_Hook_Interface {
 	public function set_meta_boxes() {
 		foreach ( $this->meta_boxes as $meta_box ) {
 			$meta_box->register_add_action();
+		}
+	}
+
+	/**
+	 * Method to set all of needed shortcodes for your plugin
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function set_shortcodes() {
+		if ( ! is_null( $this->shortcodes ) ) {
+			foreach ( $this->shortcodes as $shortcode ) {
+				$shortcode->register_add_action();
+			}
+		}
+	}
+
+	/**
+	 * Method to set all of needed custom post type for your plugin
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function set_custom_posts() {
+		if ( ! is_null( $this->custom_posts ) ) {
+			foreach ( $this->custom_posts as $custom_post) {
+				$custom_post->register_add_action();
+			}
 		}
 	}
 

@@ -20,9 +20,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use Plugin_Name_Name_Space\Includes\Abstracts\Custom_Post_Type;
 use Plugin_Name_Name_Space\Includes\Database\Table;
 use Plugin_Name_Name_Space\Includes\Config\Info;
-use Plugin_Name_Name_Space\Includes\Functions\Logger;
+use Plugin_Name_Name_Space\Includes\Functions\{
+	Check_Type, Logger
+};
 
 /**
  * Class Activator.
@@ -37,10 +40,16 @@ use Plugin_Name_Name_Space\Includes\Functions\Logger;
  */
 class Activator {
 	use Logger;
+	use Check_Type;
 	/**
 	 * @var int $last_db_version The last version of your plugin database
 	 */
 	private $last_db_version;
+
+	/**
+	 * @var Custom_Post_Type[] $custom_post_types
+	 */
+	private $custom_post_types;
 
 	/**
 	 * @var Table $table_object Table object to create or modify tables
@@ -64,8 +73,14 @@ class Activator {
 	 */
 	public function activate(
 		$is_need_table_modification = false,
+		array $custom_post_types = null,
 		Table $table_object = null
 	) {
+
+		if ( ! is_null( $custom_post_types ) ) {
+			$this->custom_post_types = $this->check_array_by_parent_type( $custom_post_types, Custom_Post_Type::class )['valid'];
+			$this->register_plugin_custom_post_type();
+		}
 
 		// Create needed tables in plugin activation.
 		$this->table_object = $table_object;
@@ -84,6 +99,23 @@ class Activator {
 		//TODO: Show customized messages when plugin is activated
 
 
+	}
+
+	/**
+	 * Method to register all of needed custom post types and flush rewrite rules
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function register_plugin_custom_post_type() {
+		if ( ! is_null( $this->custom_post_types ) ) {
+			foreach ( $this->custom_post_types as $custom_post_type ) {
+				$custom_post_type->add_custom_post_type();
+			}
+			// ATTENTION: This is *only* done during plugin activation hook in this example!
+			// You should *NEVER EVER* do this on every page load!!
+			flush_rewrite_rules();
+		}
 	}
 
 	/**
