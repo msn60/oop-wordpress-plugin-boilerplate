@@ -56,3 +56,15 @@ WP_Post_Type
 Log message of : Activator Last Log [on 2020-03-06  18:49:51]
 Sample to test logger class when plugin is activated
 
+Log message of : Activator Last Log [on 2020-03-06  23:05:33]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-06  23:09:37]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-06  23:10:12]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator Last Log [on 2020-03-06  23:17:11]
+Sample to test logger class when plugin is activated
+

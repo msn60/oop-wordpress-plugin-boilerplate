@@ -31,6 +31,9 @@ class Uninstall {
 	 */
 	public static function uninstall() {
 
+		// TODO: delete_option for option values that need them again
+		// TODO: delete_option for post types ('has_rewrite_for_plugin_name_new_post_types')
+
 	}
 }
 

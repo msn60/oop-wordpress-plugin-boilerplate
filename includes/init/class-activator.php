@@ -115,6 +115,13 @@ class Activator {
 			// ATTENTION: This is *only* done during plugin activation hook in this example!
 			// You should *NEVER EVER* do this on every page load!!
 			flush_rewrite_rules();
+			if ( ! get_option( 'has_rewrite_for_plugin_name_new_post_types' ) ) {
+				flush_rewrite_rules();
+				update_option(
+					'has_rewrite_for_plugin_name_new_post_types',
+					true
+				);
+			}
 		}
 	}
 

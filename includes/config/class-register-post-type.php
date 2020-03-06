@@ -87,7 +87,7 @@ class Register_Post_Type {
 	public function register_post_types() {
 		$this->initial_value();
 		register_post_type( $this->post_type_name, $this->args );
-		if ( ! get_option( 'has_rewrite_for_msn_new_post_type' ) ) {
+		if ( ! get_option( 'has_rewrite_for_msn_new_post_type_1' ) ) {
 			$this->rewrite_rules();
 			update_option(
 				'has_rewrite_for_msn_new_post_type',

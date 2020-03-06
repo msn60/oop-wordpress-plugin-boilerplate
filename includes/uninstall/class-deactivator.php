@@ -45,6 +45,14 @@ class Deactivator {
 		if ( get_option( 'plugin_name_prefix_plugin_setting_option3' ) ) {
 			delete_option( 'plugin_name_prefix_plugin_setting_option3' );
 		}
+
+
+		if (  get_option( 'has_rewrite_for_plugin_name_new_post_types' ) ) {
+			update_option(
+				'has_rewrite_for_plugin_name_new_post_types',
+				false
+			);
+		}
 	}
 
 }
