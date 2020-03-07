@@ -297,4 +297,88 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	/**
+	 * Initial values for Custom_Taxonomy1 class
+	 *
+	 * Sample of args:
+	 * $args = array(
+	 *    'labels' => array(),
+	 *    'description' => '',
+	 *    'public' => null,
+	 *    'publicly_queryable' => null,
+	 *    'hierarchical' => false,
+	 *    'show_ui' => true,
+	 *    'show_in_menu' => true,
+	 *    'show_in_nav_menus' => true,
+	 *    'show_in_rest' => null,
+	 *    'rest_base' => is $taxonomy,
+	 *    'rest_controller_class' => 'WP_REST_Terms_Controller',
+	 *    'show_tagcloud' => true,
+	 *    'show_in_quick_edit' => true,
+	 *    'show_admin_column' => false,
+	 *    'capabilities' => array(
+	 *        'manage_terms' => 'manage_categories',
+	 *        'edit_terms' => 'manage_categories',
+	 *        'delete_terms' => 'manage_categories',
+	 *        'assign_terms' => 'edit_posts'
+	 *    ),
+	 *    'rewrite' => array(
+	 *        'slug' => '$taxonomy key',
+	 *        'with_front' => true,
+	 *        'hierarchical' => false,
+	 *        'ep_mask' => 'EP_NONE'
+	 *    ),
+	 *    'meta_box_cb' => null
+	 * );
+	 *
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that Custom_Taxonomy1 class needs.
+	 *
+	 * @see    http://hookr.io/functions/register_taxonomy/
+	 * @see    https://developer.wordpress.org/reference/functions/register_taxonomy/
+	 */
+	public function sample_custom_taxonomy1() {
+		// Add new taxonomy, with hierarchical structure (like Category)
+		$labels = array(
+			'name'                       => _x( 'Taxonomies 1', 'taxonomy general name', PLUGIN_NAME_TEXTDOMAIN ),
+			'singular_name'              => _x( 'Taxonomy 1', 'taxonomy singular name', PLUGIN_NAME_TEXTDOMAIN ),
+			'search_items'               => __( 'Search Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'popular_items'              => __( 'Popular Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'all_items'                  => __( 'Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'parent_item'                => __( 'Parent Taxonomy 1', PLUGIN_NAME_TEXTDOMAIN ), //if not hierarchical it will be null
+			'parent_item_colon'          => __( 'Parent Taxonomy 1:', PLUGIN_NAME_TEXTDOMAIN ), //if not hierarchical it will be null
+			'edit_item'                  => __( 'Edit Taxonomy 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'update_item'                => __( 'Update Taxonomy 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_new_item'               => __( 'Add New Taxonomy 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'new_item_name'              => __( 'New  Taxonomy 1 Name', PLUGIN_NAME_TEXTDOMAIN ),
+			'separate_items_with_commas' => __( 'Separate Taxonomy 1 with commas', PLUGIN_NAME_TEXTDOMAIN ),
+			'add_or_remove_items'        => __( 'Add or remove  Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'choose_from_most_used'      => __( 'Choose from the most used Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+			'not_found'                  => __( 'No Taxonomies 1 found.', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_name'                  => __( 'Taxonomies 1', PLUGIN_NAME_TEXTDOMAIN ),
+		);
+
+		$args = array(
+			'hierarchical'      => true,
+			'labels'            => $labels,
+			'show_ui'           => true,
+			'show_admin_column' => true,
+			//'update_count_callback' => '_update_post_term_count',
+			//The statement: If you want to ensure that your custom taxonomy behaves like a tag, you must add the option
+			'query_var'         => true,
+			'rewrite'           => array( 'slug' => 'taxonomy1' ),
+		);
+
+		$initial_value = [
+			'taxonomy'  => 'msn-taxonomy1',
+			'post_type' => 'msn-name1',
+			'post',
+			'msn-events',
+			'args'      => $args,
+		];
+
+		return $initial_value;
+	}
 }
