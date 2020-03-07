@@ -90,6 +90,7 @@ abstract class Custom_Post_Type implements Action_Hook_Interface {
 	 */
 	public function register_add_action() {
 		add_action( 'init', array( $this, 'add_custom_post_type' ) );
+		//add_filter( 'manage_edit-'.$this->post_type.'_columns',        array($this, 'set_columns'), 10, 1) ;
 	}
 
 	/**
@@ -99,7 +100,7 @@ abstract class Custom_Post_Type implements Action_Hook_Interface {
 	 *
 	 * @return int| \WP_Error
 	 */
-	function insert_custom_post( $wp_error = false ) {
+	public function insert_custom_post( $wp_error = false ) {
 		$post_id = wp_insert_post( $this->get_post_data(), $wp_error );
 
 		if ( 0 === $post_id || $post_id instanceof \WP_Error ) {

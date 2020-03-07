@@ -27,6 +27,7 @@ use Plugin_Name_Name_Space\Includes\Init\{
 	Admin_Hook, Core, Constant, Activator, I18n, Public_Hook, Router
 };
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
+use Plugin_Name_Name_Space\Includes\Parts\Other\Remove_Post_Column;
 use Plugin_Name_Name_Space\Includes\Uninstall\{
 	Deactivator, Uninstall
 };
@@ -243,5 +244,6 @@ final class Plugin_Name_Plugin {
 
 $plugin_name_plugin_object = Plugin_Name_Plugin::instance();
 $plugin_name_plugin_object->run_plugin_name_plugin();
+
 
 
