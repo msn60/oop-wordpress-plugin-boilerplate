@@ -160,6 +160,9 @@ final class Plugin_Name_Plugin {
 			[
 				new Custom_Post1( $this->initial_values->sample_custom_post1() )
 			],
+			[
+				new Custom_Taxonomy1( $this->initial_values->sample_custom_taxonomy1() )
+			],
 			new Table( $wpdb, PLUGIN_NAME_DB_VERSION, get_option( 'has_table_name' ) )
 		);
 	}

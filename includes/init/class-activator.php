@@ -20,7 +20,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Plugin_Name_Name_Space\Includes\Abstracts\Custom_Post_Type;
+use Plugin_Name_Name_Space\Includes\Abstracts\{
+	Custom_Post_Type, Custom_Taxonomy
+};
 use Plugin_Name_Name_Space\Includes\Database\Table;
 use Plugin_Name_Name_Space\Includes\Config\Info;
 use Plugin_Name_Name_Space\Includes\Functions\{
@@ -52,6 +54,11 @@ class Activator {
 	private $custom_post_types;
 
 	/**
+	 * @var Custom_Taxonomy[] $custom_taxonomies
+	 */
+	private $custom_taxonomies;
+
+	/**
 	 * @var Table $table_object Table object to create or modify tables
 	 */
 	private $table_object;
@@ -74,12 +81,22 @@ class Activator {
 	public function activate(
 		$is_need_table_modification = false,
 		array $custom_post_types = null,
+		array $custom_taxonomies = null,
 		Table $table_object = null
 	) {
 
 		if ( ! is_null( $custom_post_types ) ) {
 			$this->custom_post_types = $this->check_array_by_parent_type( $custom_post_types, Custom_Post_Type::class )['valid'];
-			$this->register_plugin_custom_post_type();
+			if ( ! is_null($this->custom_taxonomies)) {
+				$this->register_plugin_custom_post_type();
+			}
+		}
+
+		if ( ! is_null( $custom_taxonomies ) ) {
+			$this->custom_taxonomies = $this->check_array_by_parent_type( $custom_taxonomies, Custom_Taxonomy::class )['valid'];
+			if (! is_null($this->custom_taxonomies)) {
+				$this->register_plugin_custom_taxonomy();
+			}
 		}
 
 		// Create needed tables in plugin activation.
@@ -140,6 +157,30 @@ class Activator {
 			'last_your_plugin_name_dbs_version',
 			$this->table_object->db_version
 		);
+	}
+
+	/**
+	 * Method to register all of needed custom taxonomies and flush rewrite rules
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function register_plugin_custom_taxonomy() {
+		if ( ! is_null( $this->custom_taxonomies) ) {
+			foreach ( $this->custom_taxonomies as $custom_taxonomy ) {
+				$custom_taxonomy->add_custom_taxonomy();
+			}
+			// ATTENTION: This is *only* done during plugin activation hook in this example!
+			// You should *NEVER EVER* do this on every page load!!
+			flush_rewrite_rules();
+			if ( ! get_option( 'has_rewrite_for_plugin_name_new_taxonomies' ) ) {
+				flush_rewrite_rules();
+				update_option(
+					'has_rewrite_for_plugin_name_new_taxonomies',
+					true
+				);
+			}
+		}
 	}
 }
 
