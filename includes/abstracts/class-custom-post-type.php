@@ -14,7 +14,6 @@
 
 namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
-use Plugin_Name_Name_Space\Includes\Functions\Logger;
 use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -36,7 +35,6 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see        https://www.hostinger.com/tutorials/wordpress-custom-post-types
  */
 abstract class Custom_Post_Type implements Action_Hook_Interface {
-	use Logger;
 
 	/**
 	 * Post type key.
@@ -73,8 +71,7 @@ abstract class Custom_Post_Type implements Action_Hook_Interface {
 	/**
 	 * Method to register custom post type
 	 *
-	 * Inside this method, we call add_menu_page function to create admin menu
-	 * page in WordPress Admin Panel.
+	 * Inside this method, we call register_post_type to create custom post type
 	 *
 	 * @access  public
 	 * @see     https://developer.wordpress.org/reference/functions/register_post_type/
@@ -84,7 +81,7 @@ abstract class Custom_Post_Type implements Action_Hook_Interface {
 	}
 
 	/**
-	 * call 'init' add_action to create Admin menu page
+	 * call 'init' add_action to create custom post type
 	 *
 	 * @access public
 	 */

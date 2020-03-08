@@ -23,8 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Class Custom_Post1.
- * This file contains contract for Custom_Post1 class. If you want create a
- * custom post type in WordPress, you must to use this contract.
+ * This file contains contract for Custom_Post1 class.
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
@@ -40,24 +39,25 @@ class Custom_Post1 extends Custom_Post_Type {
 	/**
 	 * The name of the product.
 	 *
-	 * @var string
+	 * @var string $name
 	 */
 	private $name;
 
 	/**
 	 * The price of the product.
 	 *
-	 * @var float
+	 * @var float $price
 	 */
 	private $price;
 
 	/**
 	 * Custom_Post1 constructor.
 	 *
+	 * @param array  $initial_values
 	 * @param string $name
 	 * @param float  $price
 	 */
-	public function __construct( array $initial_values, $name = null , $price = null ) {
+	public function __construct( array $initial_values, $name = null, $price = null ) {
 		parent::__construct( $initial_values );
 		$this->name  = $name;
 		$this->price = $price;
@@ -73,7 +73,7 @@ class Custom_Post1 extends Custom_Post_Type {
 	public function get_post_data() {
 		return array(
 			'post_content' => $this->args['description'],
-			'post_title'   => $this->args['label']['name'],
+			'post_title'   => $this->args['labels']['name'],
 			'post_status'  => 'publish',
 			'post_type'    => $this->post_type
 		);

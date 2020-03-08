@@ -365,6 +365,8 @@ class Initial_Value {
 			'labels'            => $labels,
 			'show_ui'           => true,
 			'show_admin_column' => true,
+			'show_in_menu'      => true,
+			'show_in_rest'      => true,
 			//'update_count_callback' => '_update_post_term_count',
 			//The statement: If you want to ensure that your custom taxonomy behaves like a tag, you must add the option
 			'query_var'         => true,
@@ -372,11 +374,13 @@ class Initial_Value {
 		);
 
 		$initial_value = [
-			'taxonomy'  => 'msn-taxonomy1',
-			'post_type' => 'msn-name1',
-			'post',
-			'msn-events',
-			'args'      => $args,
+			'taxonomy'    => 'msn-taxonomy1',
+			'object_type' => [
+				'msn-name1',
+				'post',
+				'msn-events',
+			],
+			'args'        => $args,
 		];
 
 		return $initial_value;

@@ -41,6 +41,7 @@ use Plugin_Name_Name_Space\Includes\Parts\Shortcodes\{
 	Shortcode1, Content_For_Login_User_Shortcode, Complete_Shortcode
 };
 use Plugin_Name_Name_Space\Includes\Parts\Custom_Posts\Custom_Post1;
+use Plugin_Name_Name_Space\Includes\Parts\Custom_Taxonomies\Custom_Taxonomy1;
 
 /**
  * If this file is called directly, then abort execution.
@@ -223,6 +224,9 @@ final class Plugin_Name_Plugin {
 			],
 			[
 				new Custom_Post1( $this->initial_values->sample_custom_post1() )
+			],
+			[
+				new Custom_Taxonomy1( $this->initial_values->sample_custom_taxonomy1() )
 			]
 		);
 		$plugin->init_core();

@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Plugin_Name_Name_Space\Includes\Abstracts\{
-	Admin_Menu, Admin_Sub_Menu, Ajax, Meta_box, Shortcode, Custom_Post_Type
+	Admin_Menu, Admin_Sub_Menu, Ajax, Custom_Taxonomy, Meta_box, Shortcode, Custom_Post_Type
 };
 
 use Plugin_Name_Name_Space\Includes\Interfaces\{
@@ -115,6 +115,11 @@ class Core implements Action_Hook_Interface {
 	protected $custom_posts;
 
 	/**
+	 * @var Custom_Taxonomy[] $custom_taxonomies
+	 */
+	protected $custom_taxonomies;
+
+	/**
 	 * @var Init_Functions $init_functions Object  to keep all initial function in plugin
 	 */
 	protected $init_functions;
@@ -149,6 +154,7 @@ class Core implements Action_Hook_Interface {
 		array $meta_boxes = null,
 		array $shortcodes = null,
 		array $custom_posts = null,
+		array $custom_taxonomies = null,
 		array $ajax_calls = null
 
 	) {
@@ -208,6 +214,9 @@ class Core implements Action_Hook_Interface {
 		if ( ! is_null( $custom_posts ) ) {
 			$this->custom_posts = $this->check_array_by_parent_type( $custom_posts, Custom_Post_Type::class )['valid'];;
 		}
+		if ( ! is_null( $custom_taxonomies ) ) {
+			$this->custom_taxonomies = $this->check_array_by_parent_type( $custom_taxonomies, Custom_Taxonomy::class )['valid'];;
+		}
 
 	}
 
@@ -224,6 +233,7 @@ class Core implements Action_Hook_Interface {
 		$this->register_add_action();
 		$this->set_shortcodes();
 		$this->set_custom_posts();
+		$this->set_custom_taxonomies();
 	}
 
 	/**
@@ -316,8 +326,22 @@ class Core implements Action_Hook_Interface {
 	 */
 	private function set_custom_posts() {
 		if ( ! is_null( $this->custom_posts ) ) {
-			foreach ( $this->custom_posts as $custom_post) {
+			foreach ( $this->custom_posts as $custom_post ) {
 				$custom_post->register_add_action();
+			}
+		}
+	}
+
+	/**
+	 * Method to set all of needed custom taxonomies for your plugin
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function set_custom_taxonomies() {
+		if ( ! is_null( $this->custom_taxonomies ) ) {
+			foreach ( $this->custom_taxonomies as $custom_taxonomy ) {
+				$custom_taxonomy->register_add_action();
 			}
 		}
 	}
@@ -332,10 +356,6 @@ class Core implements Action_Hook_Interface {
 	public function get_plugin_name() {
 		return $this->plugin_name;
 	}
-
-	/*
-	 * Method to set actions for meta boxes in theme
-	 * */
 
 	/**
 	 * Retrieve the version number of the plugin.
