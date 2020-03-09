@@ -19,7 +19,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Plugin_Name_Name_Space\Includes\PageHandlers\Contracts\Page_Handler;
-use Plugin_Name_Name_Space\Includes\Functions\Utility;
+use Plugin_Name_Name_Space\Includes\Functions\{
+	Utility, Template_Builder
+};
 
 /**
  * Class First_Page_Handler.
@@ -31,6 +33,7 @@ use Plugin_Name_Name_Space\Includes\Functions\Utility;
  * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\Contracts\Page_Handler
  */
 class First_Page_Handler implements Page_Handler {
+	use Template_Builder;
 
 	/**
 	 * Method render in First_Page_Handler Class
@@ -41,10 +44,10 @@ class First_Page_Handler implements Page_Handler {
 	 */
 	public function render() {
 		if ( is_user_logged_in() ) {
-			Utility::load_template( 'first-page-sample', array(), 'front' );
+			$this->load_template( 'first-page-sample', [], 'front' );
 			exit;
 		} else {
-			Utility::load_template( 'login-error', array(), 'front' );
+			$this->load_template( 'login-error', [], 'front' );
 			exit();
 		}
 	}

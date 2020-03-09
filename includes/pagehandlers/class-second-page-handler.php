@@ -18,6 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use Plugin_Name_Name_Space\Includes\Functions\Template_Builder;
 use Plugin_Name_Name_Space\Includes\PageHandlers\Contracts\Page_Handler;
 use Plugin_Name_Name_Space\Includes\Functions\Utility;
 
@@ -31,6 +32,7 @@ use Plugin_Name_Name_Space\Includes\Functions\Utility;
  * @see        \Plugin_Name_Name_Space\Includes\PageHandlers\Contracts\Page_Handler
  */
 class Second_Page_Handler implements Page_Handler {
+	use Template_Builder;
 
 	/**
 	 * Method render in First_Page_Handler Class
@@ -42,7 +44,7 @@ class Second_Page_Handler implements Page_Handler {
 	public function render() {
 
 		$sample_variable = 'Mehdi Soltani';
-		Utility::load_template( 'second-page-sample', compact( 'sample_variable' ), 'front' );
+		$this->load_template( 'second-page-sample', compact( 'sample_variable' ), 'front' );
 		exit;
 	}
 }

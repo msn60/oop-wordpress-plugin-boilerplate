@@ -15,6 +15,7 @@
 namespace Plugin_Name_Name_Space\Includes\Admin;
 
 use Plugin_Name_Name_Space\Includes\Abstracts\Admin_Sub_Menu;
+use Plugin_Name_Name_Space\Includes\Functions\Template_Builder;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -31,6 +32,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see        https://developer.wordpress.org/reference/functions/add_submenu_page/
  */
 class Admin_Sub_Menu1 extends Admin_Sub_Menu {
+	use Template_Builder;
 
 	/**
 	 * Admin_Sub_Menu constructor.
@@ -54,6 +56,6 @@ class Admin_Sub_Menu1 extends Admin_Sub_Menu {
 	 * @access  public
 	 */
 	public function sub_menu_panel_handler() {
-		echo 'This  is  admin Sub menu 1 for plugin';
+		$this->load_template('first-page.primary-section',[]);
 	}
 }
