@@ -54,8 +54,10 @@ class Admin_Sub_Menu1 extends Admin_Sub_Menu {
 	 * handle this menu page. For each menu page, you must have its own function.
 	 *
 	 * @access  public
+	 * @see     https://codex.wordpress.org/index.php?title=Creating_Options_Pages&oldid=97268
+	 * @see     https://wisdmlabs.com/blog/create-settings-options-page-for-wordpress-plugin/
 	 */
 	public function sub_menu_panel_handler() {
-		$this->load_template('first-page.primary-section',[]);
+		$this->load_template( 'first-page.primary-section', [] );
 	}
 }

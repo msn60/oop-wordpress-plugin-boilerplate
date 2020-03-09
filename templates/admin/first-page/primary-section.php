@@ -1,8 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mehdi
- * Date: 03/09/2020
- * Time: 09:22
- */
-echo 'This  is  admin Sub menu 1 gholam for plugin';
+use Plugin_Name_Name_Space\Includes\Functions\Utility;
+?>
+<div class="wrap">
+	<?php
+		Utility::load_template('first-page.welcome-panel',[]);
+		Utility::load_template('first-page.dashboard-widgets',[]);
+	?>
+</div>
