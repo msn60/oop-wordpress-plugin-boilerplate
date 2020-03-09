@@ -30,6 +30,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_submenu_page/
+ * @see        https://codex.wordpress.org/Creating_Options_Pages
+ * @see        https://codex.wordpress.org/Settings_API
+ * @see        https://wisdmlabs.com/blog/create-settings-options-page-for-wordpress-plugin/
+ * @see        https://www.smashingmagazine.com/2016/04/three-approaches-to-adding-configurable-fields-to-your-plugin/
  */
 class Admin_Sub_Menu1 extends Admin_Sub_Menu {
 	use Template_Builder;
