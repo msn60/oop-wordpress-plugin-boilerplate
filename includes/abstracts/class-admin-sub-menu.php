@@ -122,7 +122,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 			$this->menu_title,
 			$this->capability,
 			$this->menu_slug,
-			array( $this, 'sub_menu_panel_handler' )
+			array( $this, 'render_sub_menu_panel' )
 		);
 
 	}
@@ -139,13 +139,13 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 
 
 	/**
-	 * Method sub_menu_panel_handler in Admin_Sub_Menu Class
+	 * Method render_sub_menu_panel in Admin_Sub_Menu Class
 	 *
 	 * For each admin submenu page, we must have callable function that render and
 	 * handle this menu page. For each menu page, you must implement this method.
 	 *
 	 * @access  public
 	 */
-	abstract public function sub_menu_panel_handler();
+	abstract public function render_sub_menu_panel();
 
 }

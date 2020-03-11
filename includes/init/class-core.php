@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use Plugin_Name_Name_Space\Includes\Abstracts\{
-	Admin_Menu, Admin_Sub_Menu, Ajax, Custom_Taxonomy, Meta_box, Shortcode, Custom_Post_Type
+	Admin_Menu, Admin_Notice, Admin_Sub_Menu, Ajax, Custom_Taxonomy, Meta_box, Shortcode, Custom_Post_Type
 };
 
 use Plugin_Name_Name_Space\Includes\Interfaces\{
@@ -120,6 +120,11 @@ class Core implements Action_Hook_Interface {
 	protected $custom_taxonomies;
 
 	/**
+	 * @var Admin_Notice[] $admin_notices
+	 */
+	protected $admin_notices;
+
+	/**
 	 * @var Init_Functions $init_functions Object  to keep all initial function in plugin
 	 */
 	protected $init_functions;
@@ -155,6 +160,7 @@ class Core implements Action_Hook_Interface {
 		array $shortcodes = null,
 		array $custom_posts = null,
 		array $custom_taxonomies = null,
+		array $admin_notices = null,
 		array $ajax_calls = null
 
 	) {
@@ -217,6 +223,9 @@ class Core implements Action_Hook_Interface {
 		if ( ! is_null( $custom_taxonomies ) ) {
 			$this->custom_taxonomies = $this->check_array_by_parent_type( $custom_taxonomies, Custom_Taxonomy::class )['valid'];;
 		}
+		if ( ! is_null( $admin_notices ) ) {
+			$this->admin_notices = $this->check_array_by_parent_type( $admin_notices, Admin_Notice::class )['valid'];;
+		}
 
 	}
 
@@ -234,6 +243,7 @@ class Core implements Action_Hook_Interface {
 		$this->set_shortcodes();
 		$this->set_custom_posts();
 		$this->set_custom_taxonomies();
+		$this->show_admin_notice();
 	}
 
 	/**
@@ -345,6 +355,21 @@ class Core implements Action_Hook_Interface {
 			}
 		}
 	}
+
+	/**
+	 * Method to show all of needed admin notice in admin panel
+	 *
+	 * @access private
+	 * @since  1.0.2
+	 */
+	private function show_admin_notice() {
+		if ( ! is_null( $this->admin_notices ) ) {
+			foreach ( $this->admin_notices as $admin_notice ) {
+				$admin_notice->register_add_action();
+			}
+		}
+	}
+
 
 	/**
 	 * The name of the plugin used to uniquely identify it within the context of

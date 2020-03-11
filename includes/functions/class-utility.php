@@ -253,4 +253,19 @@ trait Utility {
 		return $remote_address;
 	}
 
+	/**
+	 * Method get_current_url in Utility Class
+	 *
+	 * This method return actual url that in your page
+	 *
+	 * @access  public
+	 * @return string Actual url that user requests it.
+	 */
+	public function get_current_url() {
+		$actual_link = ( 'on' === isset( $_SERVER['HTTPS'] ) && $_SERVER['HTTPS'] ? 'https' : 'http' )
+		               . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+
+		return $actual_link;
+	}
+
 }

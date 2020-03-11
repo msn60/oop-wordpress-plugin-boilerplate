@@ -32,7 +32,8 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 	Deactivator, Uninstall
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
-	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4,
+	Notices\Admin_Notice1
 };
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
@@ -230,6 +231,9 @@ final class Plugin_Name_Plugin {
 			],
 			[
 				new Custom_Taxonomy1( $this->initial_values->sample_custom_taxonomy1() )
+			],
+			[
+				new Admin_Notice1()
 			]
 		);
 		$plugin->init_core();
@@ -251,5 +255,6 @@ final class Plugin_Name_Plugin {
 
 $plugin_name_plugin_object = Plugin_Name_Plugin::instance();
 $plugin_name_plugin_object->run_plugin_name_plugin();
+
 
 

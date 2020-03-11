@@ -53,7 +53,7 @@ class Admin_Sub_Menu2 extends Admin_Sub_Menu{
 	 *
 	 * @access  public
 	 */
-	public function sub_menu_panel_handler() {
+	public function render_sub_menu_panel() {
 		echo 'This  is  for admin Sub menu 2 for plugin';
 	}
 
