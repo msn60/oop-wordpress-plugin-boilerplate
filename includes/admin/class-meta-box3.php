@@ -63,7 +63,7 @@ class Meta_Box3 extends Meta_box {
 		// Display the form, using the current value.
 		?>
         <label for="meta_box3_first_input">
-			<?php _e( 'Description for Metabox 3', MSN_TEXT_DOMAIN_NAME ); ?>
+			<?php _e( 'Description for Metabox 3', PLUGIN_NAME_TEXTDOMAIN ); ?>
         </label>
         <input type="text" id="meta_box3_first_input" name="meta_box3_first_input"
                value="<?php echo esc_attr( isset( $value ) && ! empty( $value ) ? $value : '' ); ?>" size="25"/>

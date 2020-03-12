@@ -66,7 +66,7 @@ class Meta_Box4 extends Meta_box {
 		?>
         <div>
             <label for="meta_box4_first_input">
-				<?php _e( 'first input', MSN_TEXT_DOMAIN_NAME ); ?>
+				<?php _e( 'first input', PLUGIN_NAME_TEXTDOMAIN ); ?>
             </label>
             <input type="text" id="meta_box4_first_input" name="meta_box4_first_input"
                    value="<?php echo esc_attr( isset($values['first_input']) && ! empty($values['first_input']) ? $values['first_input'] : '' ); ?>"
@@ -75,7 +75,7 @@ class Meta_Box4 extends Meta_box {
         <br>
         <div>
             <label for="meta_box4_second_input">
-				<?php _e( 'second input', MSN_TEXT_DOMAIN_NAME ); ?>
+				<?php _e( 'second input', PLUGIN_NAME_TEXTDOMAIN ); ?>
             </label>
             <input type="text" id="meta_box4_second_input" name="meta_box4_second_input"
                    value="<?php echo esc_attr( isset($values['second_input']) && ! empty($values['second_input']) ? $values['second_input'] : '' ); ?>"
