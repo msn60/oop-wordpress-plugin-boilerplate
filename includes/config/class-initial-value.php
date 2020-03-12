@@ -385,4 +385,25 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	/**
+	 * Return custom values to have custom cron schedule for wp_schedule_event
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/wp_get_schedules/
+	 * @return array
+	 */
+	public function sample_custom_cron_schedule() {
+		$initial_value = [
+			'weekly'      => [
+				'interval' => 604800,
+				'display'  => __( 'Once Weekly' )
+			],
+			'twiceweekly' => [
+				'interval' => 1209600,
+				'display'  => __( 'Twice Weekly' )
+			]
+		];
+
+		return $initial_value;
+	}
 }

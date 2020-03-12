@@ -10,7 +10,7 @@
  *
  * @wordpress-plugin
  * Plugin Name:       OOP WordPress Plugin Boilerplate
- * Plugin URI:        https://github.com/msn60/oop-wordpress-pluging-boilerplate-light-version
+ * Plugin URI:        https://github.com/msn60/oop-wordpress-plugin-boilerplate
  * Description:       Description for OOP Plugin
  * Version:           1.0.2
  * Author:            Mehdi Soltani <soltani.n.mehdi@gmail.com>
@@ -43,6 +43,7 @@ use Plugin_Name_Name_Space\Includes\Parts\Shortcodes\{
 };
 use Plugin_Name_Name_Space\Includes\Parts\Custom_Posts\Custom_Post1;
 use Plugin_Name_Name_Space\Includes\Parts\Custom_Taxonomies\Custom_Taxonomy1;
+use Plugin_Name_Name_Space\Includes\Hooks\Filters\Custom_Cron_Schedule;
 
 /**
  * If this file is called directly, then abort execution.
@@ -234,7 +235,8 @@ final class Plugin_Name_Plugin {
 			],
 			[
 				new Admin_Notice1()
-			]
+			],
+			new Custom_Cron_Schedule($this->initial_values->sample_custom_cron_schedule())
 		);
 		$plugin->init_core();
 	}
@@ -255,6 +257,5 @@ final class Plugin_Name_Plugin {
 
 $plugin_name_plugin_object = Plugin_Name_Plugin::instance();
 $plugin_name_plugin_object->run_plugin_name_plugin();
-
 
 

@@ -22,6 +22,7 @@ use Plugin_Name_Name_Space\Includes\Abstracts\{
 	Admin_Menu, Admin_Notice, Admin_Sub_Menu, Ajax, Custom_Taxonomy, Meta_box, Shortcode, Custom_Post_Type
 };
 
+use Plugin_Name_Name_Space\Includes\Hooks\Filters\Custom_Cron_Schedule;
 use Plugin_Name_Name_Space\Includes\Interfaces\{
 	Action_Hook_Interface, Filter_Hook_Interface
 };
@@ -48,7 +49,7 @@ use Plugin_Name_Name_Space\Includes\Functions\{
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
-class Core implements Action_Hook_Interface {
+class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	use Utility;
 	use Check_Type;
 	/**
@@ -125,6 +126,11 @@ class Core implements Action_Hook_Interface {
 	protected $admin_notices;
 
 	/**
+	 * @var Custom_Cron_Schedule $custom_cron_schedule
+	 */
+	protected $custom_cron_schedule;
+
+	/**
 	 * @var Init_Functions $init_functions Object  to keep all initial function in plugin
 	 */
 	protected $init_functions;
@@ -161,6 +167,7 @@ class Core implements Action_Hook_Interface {
 		array $custom_posts = null,
 		array $custom_taxonomies = null,
 		array $admin_notices = null,
+		Custom_Cron_Schedule $custom_cron_schedule = null,
 		array $ajax_calls = null
 
 	) {
@@ -195,6 +202,10 @@ class Core implements Action_Hook_Interface {
 
 		if ( ! is_null( $router ) ) {
 			$this->router = $router;
+		}
+
+		if ( ! is_null( $custom_cron_schedule ) ) {
+			$this->custom_cron_schedule = $custom_cron_schedule;
 		}
 		/*
 		 * Checking for valid types
@@ -240,6 +251,7 @@ class Core implements Action_Hook_Interface {
 	 */
 	public function init_core() {
 		$this->register_add_action();
+		$this->register_add_filter();
 		$this->set_shortcodes();
 		$this->set_custom_posts();
 		$this->set_custom_taxonomies();
@@ -315,6 +327,14 @@ class Core implements Action_Hook_Interface {
 	}
 
 	/**
+	 * Register filters that the object needs to be subscribed to.
+	 *
+	 */
+	public function register_add_filter() {
+		$this->custom_cron_schedule->register_add_filter();
+	}
+
+	/**
 	 * Method to set all of needed shortcodes for your plugin
 	 *
 	 * @access private
@@ -370,7 +390,6 @@ class Core implements Action_Hook_Interface {
 		}
 	}
 
-
 	/**
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
@@ -391,6 +410,5 @@ class Core implements Action_Hook_Interface {
 	public function get_version() {
 		return $this->plugin_version;
 	}
-
 }
 
