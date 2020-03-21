@@ -116,7 +116,7 @@ final class Plugin_Name_Plugin {
 			__FILE__,
 			function () {
 				$this->activate(
-					new Activator( intval( get_option( 'last_your_plugin_name_dbs_version' ) ) )
+					new Activator( intval( get_option( 'last_plugin_name_dbs_version' ) ) )
 				);
 			}
 		);

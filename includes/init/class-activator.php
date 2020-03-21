@@ -154,7 +154,7 @@ class Activator {
 		}
 
 		update_option(
-			'last_your_plugin_name_dbs_version',
+			'last_plugin_name_dbs_version',
 			$this->table_object->db_version
 		);
 	}
