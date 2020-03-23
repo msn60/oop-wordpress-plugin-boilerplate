@@ -98,6 +98,7 @@ abstract class Ajax implements Action_Hook_Interface {
 		 * localize script to handle ajax call
 		 * */
 		wp_localize_script( MSN_THEME_NAME . '-script', 'data', $this->sending_ajax_data() );
+		// TODO: customize it for ajax in plugin not theme
 	}
 
 

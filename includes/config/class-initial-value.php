@@ -370,11 +370,11 @@ class Initial_Value {
 			//'update_count_callback' => '_update_post_term_count',
 			//The statement: If you want to ensure that your custom taxonomy behaves like a tag, you must add the option
 			'query_var'         => true,
-			'rewrite'           => array( 'slug' => 'taxonomy1' ),
+			'rewrite'           => array( 'slug' => 'sample-taxonomy1' ),
 		);
 
 		$initial_value = [
-			'taxonomy'    => 'msn-taxonomy1',
+			'taxonomy'    => 'msn-sample-taxonomy1',
 			'object_type' => [
 				'msn-name1',
 				'post',
