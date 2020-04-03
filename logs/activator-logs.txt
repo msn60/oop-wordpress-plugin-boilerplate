@@ -80,3 +80,6 @@ Sample to test logger class when plugin is activated
 Log message of : Activator Last Log [on 2020-03-23  22:41:56]
 Sample to test logger class when plugin is activated
 
+Log message of : Activator Last Log [on 2020-04-03  10:03:56]
+Sample to test logger class when plugin is activated
+

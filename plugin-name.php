@@ -204,7 +204,7 @@ final class Plugin_Name_Plugin {
 	 */
 	public function run_plugin_name_plugin() {
 		$this->initial_values = new Initial_Value();
-		$plugin               = new Core(
+		$this->core_object    = new Core(
 			$this->initial_values,
 			new Init_Functions(),
 			new I18n(),
@@ -236,9 +236,9 @@ final class Plugin_Name_Plugin {
 			[
 				new Admin_Notice1()
 			],
-			new Custom_Cron_Schedule($this->initial_values->sample_custom_cron_schedule())
+			new Custom_Cron_Schedule( $this->initial_values->sample_custom_cron_schedule() )
 		);
-		$plugin->init_core();
+		$this->core_object->init_core();
 	}
 
 	/**
