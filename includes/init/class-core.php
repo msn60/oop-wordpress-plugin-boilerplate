@@ -309,7 +309,6 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 				$admin_sub_menu->register_add_action();
 			}
 		}
-
 	}
 
 	/**

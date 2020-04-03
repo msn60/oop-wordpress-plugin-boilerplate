@@ -26,7 +26,7 @@ use Plugin_Name_Name_Space\Includes\Abstracts\{
 use Plugin_Name_Name_Space\Includes\Database\Table;
 use Plugin_Name_Name_Space\Includes\Config\Info;
 use Plugin_Name_Name_Space\Includes\Functions\{
-	Check_Type, Logger
+	Check_Type, Current_User, Logger
 };
 
 /**
@@ -43,6 +43,7 @@ use Plugin_Name_Name_Space\Includes\Functions\{
 class Activator {
 	use Logger;
 	use Check_Type;
+	use Current_User;
 	/**
 	 * @var int $last_db_version The last version of your plugin database
 	 */
@@ -85,16 +86,17 @@ class Activator {
 		Table $table_object = null
 	) {
 
+		$this->register_activator_user();
 		if ( ! is_null( $custom_post_types ) ) {
 			$this->custom_post_types = $this->check_array_by_parent_type( $custom_post_types, Custom_Post_Type::class )['valid'];
-			if ( ! is_null($this->custom_taxonomies)) {
+			if ( ! is_null( $this->custom_taxonomies ) ) {
 				$this->register_plugin_custom_post_type();
 			}
 		}
 
 		if ( ! is_null( $custom_taxonomies ) ) {
 			$this->custom_taxonomies = $this->check_array_by_parent_type( $custom_taxonomies, Custom_Taxonomy::class )['valid'];
-			if (! is_null($this->custom_taxonomies)) {
+			if ( ! is_null( $this->custom_taxonomies ) ) {
 				$this->register_plugin_custom_taxonomy();
 			}
 		}
@@ -115,6 +117,20 @@ class Activator {
 
 		//TODO: Show customized messages when plugin is activated
 
+
+	}
+
+	/**
+	 * Register user who activate the plugin
+	 */
+	public function register_activator_user() {
+
+		$current_user = $this->get_this_login_user();
+		$this->append_log_in_text_file(
+			'The user with login of: "' . $current_user->user_login . '" and display name of: "' . $current_user->display_name
+			. '" activated this plugin',
+			PLUGIN_NAME_LOGS . 'activator-logs.txt',
+			'Activator User' );
 
 	}
 
@@ -143,30 +159,13 @@ class Activator {
 	}
 
 	/**
-	 * Create needed tables when plugin is activated
-	 *
-	 * Check is your table exist in database or not you can use from it
-	 * for all of your table in first time that your plugin is created.
-	 */
-	private function create_needed_tables() {
-		if ( true !== $this->table_object->has_table_name ) {
-			$this->table_object->create_your_table_name();
-		}
-
-		update_option(
-			'last_plugin_name_dbs_version',
-			$this->table_object->db_version
-		);
-	}
-
-	/**
 	 * Method to register all of needed custom taxonomies and flush rewrite rules
 	 *
 	 * @access private
 	 * @since  1.0.2
 	 */
 	private function register_plugin_custom_taxonomy() {
-		if ( ! is_null( $this->custom_taxonomies) ) {
+		if ( ! is_null( $this->custom_taxonomies ) ) {
 			foreach ( $this->custom_taxonomies as $custom_taxonomy ) {
 				$custom_taxonomy->add_custom_taxonomy();
 			}
@@ -181,6 +180,23 @@ class Activator {
 				);
 			}
 		}
+	}
+
+	/**
+	 * Create needed tables when plugin is activated
+	 *
+	 * Check is your table exist in database or not you can use from it
+	 * for all of your table in first time that your plugin is created.
+	 */
+	private function create_needed_tables() {
+		if ( true !== $this->table_object->has_table_name ) {
+			$this->table_object->create_your_table_name();
+		}
+
+		update_option(
+			'last_plugin_name_dbs_version',
+			$this->table_object->db_version
+		);
 	}
 }
 

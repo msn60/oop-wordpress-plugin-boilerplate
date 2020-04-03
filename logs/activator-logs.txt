@@ -1,85 +1,14 @@
 
-Log message of : Activator Last Log [on 2020-03-01  12:09:58]
+
+Log message of : Activator User [on 2020-04-03  12:24:17]
+The user with login of: "mehdi" and display name of: "Mehdi Soltani" activated this plugin
+
+Log message of : Activator Last Log [on 2020-04-03  12:24:17]
 Sample to test logger class when plugin is activated
 
-Log message of : Activator Last Log [on 2020-03-01  16:04:22]
-Sample to test logger class when plugin is activated
+Log message of : Activator User [on 2020-04-03  12:25:36]
+The user with login of: "mehdi" and display name of: "Mehdi Soltani" activated this plugin
 
-Log message of : Activator Last Log [on 2020-03-01  16:05:28]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-01  16:10:35]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-01  16:15:59]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:16:15]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:20:22]
-Sample to test logger class when plugin is activated
-
-Log message of : custom post type [on 2020-03-06  18:23:22]
-Array
-
-Log message of : Activator Last Log [on 2020-03-06  18:26:19]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:27:29]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:28:25]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:29:21]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:30:14]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:31:34]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:46:29]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:48:12]
-WP_Post_Type
-
-Log message of : Activator Last Log [on 2020-03-06  18:48:12]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  18:49:51]
-WP_Post_Type
-
-Log message of : Activator Last Log [on 2020-03-06  18:49:51]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  23:05:33]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  23:09:37]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  23:10:12]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  23:17:11]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-06  23:39:56]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-07  01:33:32]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-08  10:20:33]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-03-23  22:41:56]
-Sample to test logger class when plugin is activated
-
-Log message of : Activator Last Log [on 2020-04-03  10:03:56]
+Log message of : Activator Last Log [on 2020-04-03  12:25:36]
 Sample to test logger class when plugin is activated
 
