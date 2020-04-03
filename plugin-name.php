@@ -257,5 +257,3 @@ final class Plugin_Name_Plugin {
 
 $plugin_name_plugin_object = Plugin_Name_Plugin::instance();
 $plugin_name_plugin_object->run_plugin_name_plugin();
-
-

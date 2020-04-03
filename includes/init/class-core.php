@@ -29,9 +29,7 @@ use Plugin_Name_Name_Space\Includes\Interfaces\{
 use Plugin_Name_Name_Space\Includes\Admin\{
 	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2
 };
-use Plugin_Name_Name_Space\Includes\Config\{
-	Register_Post_Type, Sample_Post_Type, Initial_Value
-};
+use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
 	Init_Functions, Utility, Check_Type
 };
