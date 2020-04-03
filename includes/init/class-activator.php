@@ -11,7 +11,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Init;
@@ -87,6 +87,7 @@ class Activator {
 	) {
 
 		$this->register_activator_user();
+
 		if ( ! is_null( $custom_post_types ) ) {
 			$this->custom_post_types = $this->check_array_by_parent_type( $custom_post_types, Custom_Post_Type::class )['valid'];
 			if ( ! is_null( $this->custom_taxonomies ) ) {

@@ -130,7 +130,11 @@ final class Plugin_Name_Plugin {
 		 */
 		register_deactivation_hook(
 			__FILE__,
-			array( $this, 'deactivate' )
+			function () {
+				$this->deactivate(
+					new Deactivator()
+				);
+			}
 		);
 		/**
 		 * Register uninstall hook.
@@ -167,6 +171,18 @@ final class Plugin_Name_Plugin {
 			],
 			new Table( $wpdb, PLUGIN_NAME_DB_VERSION, get_option( 'has_table_name' ) )
 		);
+	}
+
+	/**
+	 * Call deactivate method.
+	 * This function calls deactivate method from Dectivator class.
+	 * You can use from this method to run every thing you need when plugin is deactivated.
+	 *
+	 * @access public
+	 * @since  1.0.0
+	 */
+	public function deactivate( Deactivator $deaactivator_object ) {
+		$deaactivator_object->deactivate();
 	}
 
 	/**
@@ -239,18 +255,6 @@ final class Plugin_Name_Plugin {
 			new Custom_Cron_Schedule( $this->initial_values->sample_custom_cron_schedule() )
 		);
 		$this->core_object->init_core();
-	}
-
-	/**
-	 * Call deactivate method.
-	 * This function calls deactivate method from Dectivator class.
-	 * You can use from this method to run every thing you need when plugin is deactivated.
-	 *
-	 * @access public
-	 * @since  1.0.0
-	 */
-	public function deactivate() {
-		Deactivator::deactivate();
 	}
 }
 

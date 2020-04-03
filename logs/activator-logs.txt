@@ -12,3 +12,15 @@ The user with login of: "mehdi" and display name of: "Mehdi Soltani" activated t
 Log message of : Activator Last Log [on 2020-04-03  12:25:36]
 Sample to test logger class when plugin is activated
 
+Log message of : Activator User [on 2020-04-03  16:27:57]
+The user with login of: "mehdi" and display name of: "Mehdi Soltani" activated this plugin
+
+Log message of : Activator Last Log [on 2020-04-03  16:27:57]
+Sample to test logger class when plugin is activated
+
+Log message of : Activator User [on 2020-04-03  16:29:04]
+The user with login of: "mehdi" and display name of: "Mehdi Soltani" activated this plugin
+
+Log message of : Activator Last Log [on 2020-04-03  16:29:04]
+Sample to test logger class when plugin is activated
+
