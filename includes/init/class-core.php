@@ -31,7 +31,7 @@ use Plugin_Name_Name_Space\Includes\Admin\{
 };
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
-	Init_Functions, Utility, Check_Type
+	Init_Functions, Utility, Check_Type, Log_In_Footer
 };
 
 /**
@@ -143,6 +143,16 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	protected $router;
 
 	/**
+	 * @var Log_In_Footer $log_in_footer Object  to write log message
+	 */
+	protected $log_in_footer;
+
+	/**
+	 * @var bool $is_need_run_init_test To check if need to run test in init method
+	 */
+	protected $is_need_run_init_test = false;
+
+	/**
 	 * Define the core functionality of the plugin.
 	 *
 	 * Set the plugin name and the plugin version that can be used throughout the plugin.
@@ -248,25 +258,47 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 * @access   private
 	 */
 	public function init_core() {
+		/*
+				 * You can use something like in the following if you need to check enabling
+				 * Woocommerce in your plugin:
+				 *
+				 if ( $this->is_woocommerce_active() ) {
+				 			$this->register_add_action();
+				 			$this->register_add_filter();
+				 			$this->set_shortcodes();
+				 			$this->for_testing();
+				 		} else {
+				 			$this->admin_notices['woocommerce_deactivate_notice']->register_add_action();
+				    }
+				 * */
 		$this->register_add_action();
 		$this->register_add_filter();
 		$this->set_shortcodes();
 		$this->set_custom_posts();
 		$this->set_custom_taxonomies();
 		$this->show_admin_notice();
-		/*
-		 * You can use something like in the following if you need to check enabling
-		 * Woocommerce in your plugin:
-		 *
-		 if ( $this->is_woocommerce_active() ) {
-		 			$this->register_add_action();
-		 			$this->register_add_filter();
-		 			$this->set_shortcodes();
-		 			$this->for_testing();
-		 		} else {
-		 			$this->admin_notices['woocommerce_deactivate_notice']->register_add_action();
-		    }
-		 * */
+
+		if ( $this->is_need_run_init_test ) {
+			/**
+			 * if you need to log something during execution, you can use from this method
+			 */
+			$this->log_in_footer = new Log_In_Footer();
+			$this->write_log_during_execution(
+				$this->log_in_footer,
+				'Sample to test log class during plugin execution',
+				PLUGIN_NAME_LOGS . 'execution-log.txt',
+				'Test sample 1 '
+			);
+
+			$this->write_log_during_execution(
+				$this->log_in_footer,
+				'Sample to test log class during plugin execution',
+				PLUGIN_NAME_LOGS . 'execution-log.txt',
+				'Test sample 2 '
+			);
+		}
+
+
 	}
 
 	/**
@@ -394,16 +426,34 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 */
 	private function show_admin_notice() {
 		if ( ! is_null( $this->admin_notices ) ) {
-			foreach ( $this->admin_notices as $key => $value) {
+			foreach ( $this->admin_notices as $key => $value ) {
 				/*
 				 * You do not need to this condition if you are using Woocommerce
 				 * and have several admin notice to run.
 				 * This condition is disable due to not having Woocommerce in default case of plugin boilerplate
 				 * */
-				if ($key !== 'woocommerce_deactivate_notice' )
-				$this->admin_notices[$key]->register_add_action();
+				if ( $key !== 'woocommerce_deactivate_notice' ) {
+					$this->admin_notices[ $key ]->register_add_action();
+				}
 			}
 		}
+	}
+
+	/**
+	 * Method to log during plugin execution
+	 *
+	 * @param Log_In_Footer $log_in_footer_object Object of Log_In_Footer class
+	 * @param string        $log_message          Log message that you need to write in log file
+	 * @param string        $file_name            The path of log file that you need to write on
+	 * @param string        $type                 Type of log file which is use in Logger trait method
+	 */
+	public function write_log_during_execution( Log_In_Footer $log_in_footer_object, string $log_message, string $file_name, string $type ) {
+		$args                = [];
+		$args['log_message'] = $log_message;
+		$args['file_name']   = $file_name;
+		$args['type']        = $type;
+		$log_in_footer_object->register_add_action_with_arguments( $args );
+
 	}
 
 	/**

@@ -1,0 +1,6 @@
+Log message of : Test sample 1  [on 2020-04-09  18:46:16]
+Sample to test log class during plugin execution
+
+Log message of : Test sample 2  [on 2020-04-09  18:46:16]
+Sample to test log class during plugin execution
+
