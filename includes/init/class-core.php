@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Init;
@@ -43,7 +43,7 @@ use Plugin_Name_Name_Space\Includes\Functions\{
  * Also maintains the unique identifier of this plugin as well as the current
  * version of the plugin.
  *
- * @since      1.0.1
+ * @since      1.0.2
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  */
@@ -53,7 +53,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	/**
 	 * The unique identifier of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   protected
 	 * @var      string $plugin_name The string used to uniquely identify this plugin.
 	 */
@@ -62,7 +62,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	/**
 	 * The current version of the plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   protected
 	 * @var      string $version The current version of the plugin.
 	 */
@@ -149,7 +149,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 * Load the dependencies, define the locale, and set the hooks for the admin area and
 	 * the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 */
 	public function __construct(
 		Initial_Value $initial_values,
@@ -172,7 +172,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		if ( defined( 'PLUGIN_NAME_VERSION' ) ) {
 			$this->plugin_version = PLUGIN_NAME_VERSION;
 		} else {
-			$this->plugin_version = '1.0.0';
+			$this->plugin_version = '1.0.2';
 		}
 		if ( defined( 'PLUGIN_NAME_MAIN_NAME' ) ) {
 			$this->plugin_name = PLUGIN_NAME_MAIN_NAME;
@@ -233,7 +233,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 			$this->custom_taxonomies = $this->check_array_by_parent_type( $custom_taxonomies, Custom_Taxonomy::class )['valid'];;
 		}
 		if ( ! is_null( $admin_notices ) ) {
-			$this->admin_notices = $this->check_array_by_parent_type( $admin_notices, Admin_Notice::class )['valid'];;
+			$this->admin_notices = $this->check_array_by_parent_type_assoc( $admin_notices, Admin_Notice::class )['valid'];;
 		}
 
 	}
@@ -244,7 +244,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 *
 	 * In run method, you can run every methods that you need to run every time that your plugin is loaded.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   private
 	 */
 	public function init_core() {
@@ -254,12 +254,25 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		$this->set_custom_posts();
 		$this->set_custom_taxonomies();
 		$this->show_admin_notice();
+		/*
+		 * You can use something like in the following if you need to check enabling
+		 * Woocommerce in your plugin:
+		 *
+		 if ( $this->is_woocommerce_active() ) {
+		 			$this->register_add_action();
+		 			$this->register_add_filter();
+		 			$this->set_shortcodes();
+		 			$this->for_testing();
+		 		} else {
+		 			$this->admin_notices['woocommerce_deactivate_notice']->register_add_action();
+		    }
+		 * */
 	}
 
 	/**
 	 * Register all needed add_actions for this plugin
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   private
 	 *
 	 */
@@ -295,7 +308,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 * Method to set all of needed admin menus and sub menus
 	 *
 	 * @access private
-	 * @since  1.0.1
+	 * @since  1.0.2
 	 */
 	private function set_admin_menus() {
 		if ( ! is_null( $this->admin_menus ) ) {
@@ -381,8 +394,14 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 */
 	private function show_admin_notice() {
 		if ( ! is_null( $this->admin_notices ) ) {
-			foreach ( $this->admin_notices as $admin_notice ) {
-				$admin_notice->register_add_action();
+			foreach ( $this->admin_notices as $key => $value) {
+				/*
+				 * You do not need to this condition if you are using Woocommerce
+				 * and have several admin notice to run.
+				 * This condition is disable due to not having Woocommerce in default case of plugin boilerplate
+				 * */
+				if ($key !== 'woocommerce_deactivate_notice' )
+				$this->admin_notices[$key]->register_add_action();
 			}
 		}
 	}
@@ -391,7 +410,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 * The name of the plugin used to uniquely identify it within the context of
 	 * WordPress and to define internationalization functionality.
 	 *
-	 * @since     1.0.0
+	 * @since     1.0.2
 	 * @return    string    The name of the plugin.
 	 */
 	public function get_plugin_name() {
@@ -401,7 +420,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	/**
 	 * Retrieve the version number of the plugin.
 	 *
-	 * @since     1.0.0
+	 * @since     1.0.2
 	 * @return    string    The version number of the plugin.
 	 */
 	public function get_version() {

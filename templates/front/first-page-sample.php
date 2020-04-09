@@ -8,7 +8,7 @@
  * @author     Your_Name <youremail@nomail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://yoursite.com
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 use Plugin_Name_Name_Space\Includes\Functions\Utility;

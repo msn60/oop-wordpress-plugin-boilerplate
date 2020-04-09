@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Init;
@@ -39,7 +39,7 @@ class Router implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var array $routes you can save all of routes in your project in this array.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	private $routes;
 
@@ -76,7 +76,7 @@ class Router implements Action_Hook_Interface {
 	 * routes, it creates an instance from its handler class and then invoke render method to create
 	 * desire page for user.
 	 *
-	 * @since   1.0.0
+	 * @since   1.0.2
 	 * @access  public
 	 *
 	 * @global object $wpdb     It contains a set of functions used to interact with a database.
@@ -119,7 +119,7 @@ class Router implements Action_Hook_Interface {
 	 *
 	 * This method returns an array of defined routes.
 	 *
-	 * @since   1.0.0
+	 * @since   1.0.2
 	 * @access  private
 	 *
 	 * @return array Return routes as an array from key values of $routes property.
@@ -133,7 +133,7 @@ class Router implements Action_Hook_Interface {
 	 *
 	 * This method gets the name of class handler that is related to its route value.
 	 *
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 * @access private
 	 *
 	 * @param  string $route Name of route that you need related class handler for it.

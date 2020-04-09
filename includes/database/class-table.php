@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Database;
@@ -34,7 +34,7 @@ class Table {
 	 *
 	 * @access     public
 	 * @var string $charset_collate Define charset collection for database.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $charset_collate;
 	/**
@@ -42,7 +42,7 @@ class Table {
 	 *
 	 * @access     public
 	 * @var int $db_version Set database version for creating table.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $db_version;
 	/**
@@ -50,7 +50,7 @@ class Table {
 	 *
 	 * @access     public
 	 * @var int $has_table_name To check that "Is a table exist with this name or not?".
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $has_table_name;
 	/**
@@ -58,7 +58,7 @@ class Table {
 	 *
 	 * @access     private
 	 * @var object $wpdb It keeps global $wpdb object inside a Table instance.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	private $wpdb;
 
@@ -92,7 +92,7 @@ class Table {
 	 * need to create more than one table, you must user from several methods
 	 * like this (separated form each other).
 	 *
-	 * @since   1.0.0
+	 * @since   1.0.2
 	 * @access  public
 	 */
 	public function create_your_table_name() {

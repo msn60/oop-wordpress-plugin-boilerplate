@@ -38,7 +38,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var string $parent_slug The slug name for the parent menu.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $parent_slug;
 	/**
@@ -47,7 +47,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var string $page_title The text to be displayed in the title tags of the page when the menu is selected.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $page_title;
 	/**
@@ -56,7 +56,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var string $menu_title The text to be used for the menu.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $menu_title;
 	/**
@@ -65,7 +65,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var string $capability he capability required for this menu to be displayed to the user.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $capability;
 	/**
@@ -74,7 +74,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var string $menu_slug The slug name to refer to this menu by.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $menu_slug;
 	/**
@@ -83,7 +83,7 @@ abstract class Admin_Sub_Menu implements Action_Hook_Interface{
 	 *
 	 * @access     protected
 	 * @var callable $callable_function The function to be called to output the content for this page.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	protected $callable_function;
 

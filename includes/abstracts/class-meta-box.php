@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.1
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Abstracts;
@@ -39,7 +39,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $id The Meta box ID.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $id;
 	/**
@@ -47,7 +47,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $title Title of the meta box.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $title;
 	/**
@@ -55,7 +55,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var callable $callback Function that fills the box with the desired content.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $callback;
 	/**
@@ -67,8 +67,8 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 * otherwise the 'screen' menu may not correctly render on your page.Default value: null
 	 *
 	 * @access     private
-	 * @var string|array|WP_Screen $screen The screen or screens on which to show the box.
-	 * @since      1.0.1
+	 * @var string | array | \WP_Screen $screen The screen or screens on which to show the box.
+	 * @since      1.0.2
 	 */
 	protected $screens;
 	/**
@@ -80,7 +80,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $context The context within the screen where the boxes should display.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $context;
 	/**
@@ -90,7 +90,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $priority The priority within the context where the boxes should show .
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $priority;
 	/**
@@ -101,7 +101,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var array $callback_args Data that should be set as the $args property of the box array.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $callback_args;
 	/**
@@ -109,7 +109,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $meta_key Name of post meta key.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $meta_key;
 	/**
@@ -117,7 +117,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var bool $single If true, returns only the first value for the specified meta key.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $single;
 	/**
@@ -125,7 +125,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $action Name of your action to set nonce.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $action;
 	/**
@@ -133,7 +133,7 @@ abstract class Meta_box implements Action_Hook_Interface {
 	 *
 	 * @access     private
 	 * @var string $nonce_name Name of your nonce.
-	 * @since      1.0.1
+	 * @since      1.0.2
 	 */
 	protected $nonce_name;
 

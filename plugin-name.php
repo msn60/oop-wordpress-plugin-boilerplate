@@ -5,7 +5,7 @@
  * Description for OOP Plugin
  *
  * @link              https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since             1.0.0
+ * @since             1.0.2
  * @package           Plugin_Name_Name_Space
  *
  * @wordpress-plugin
@@ -33,7 +33,7 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
 	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4,
-	Notices\Admin_Notice1
+	Notices\Admin_Notice1, Notices\Woocommerce_Deactive_Notice
 };
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
@@ -156,7 +156,7 @@ final class Plugin_Name_Plugin {
 	 * You can use from this method to run every thing you need when plugin is activated.
 	 *
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 * @see    Plugin_Name_Name_Space\Includes\Init\Activator Class
 	 */
 	public function activate( Activator $activator_object ) {
@@ -179,7 +179,7 @@ final class Plugin_Name_Plugin {
 	 * You can use from this method to run every thing you need when plugin is deactivated.
 	 *
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 */
 	public function deactivate( Deactivator $deaactivator_object ) {
 		$deaactivator_object->deactivate();
@@ -189,7 +189,7 @@ final class Plugin_Name_Plugin {
 	 * Create an instance from Plugin_Name_Plugin class.
 	 *
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 * @return Plugin_Name_Plugin
 	 */
 	public static function instance() {
@@ -206,7 +206,7 @@ final class Plugin_Name_Plugin {
 	 * You can use from this method to run every thing you need when plugin is uninstalled.
 	 *
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 */
 	public static function uninstall() {
 		Uninstall::uninstall();
@@ -216,7 +216,7 @@ final class Plugin_Name_Plugin {
 	 * Load Core plugin class.
 	 *
 	 * @access public
-	 * @since  1.0.0
+	 * @since  1.0.2
 	 */
 	public function run_plugin_name_plugin() {
 		$this->initial_values = new Initial_Value();
@@ -250,7 +250,8 @@ final class Plugin_Name_Plugin {
 				new Custom_Taxonomy1( $this->initial_values->sample_custom_taxonomy1() )
 			],
 			[
-				new Admin_Notice1()
+				'admin_notice1' => new Admin_Notice1(),
+				'woocommerce_deactivate_notice' => new Woocommerce_Deactive_Notice(),
 			],
 			new Custom_Cron_Schedule( $this->initial_values->sample_custom_cron_schedule() )
 		);

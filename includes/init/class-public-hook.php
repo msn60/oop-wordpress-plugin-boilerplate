@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Init;
@@ -34,7 +34,7 @@ class Public_Hook implements Action_Hook_Interface {
 	/**
 	 * The ID of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   private
 	 * @var      string $plugin_name The ID of this plugin.
 	 */
@@ -43,7 +43,7 @@ class Public_Hook implements Action_Hook_Interface {
 	/**
 	 * The version of this plugin.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   private
 	 * @var      string $version The current version of this plugin.
 	 */
@@ -52,7 +52,7 @@ class Public_Hook implements Action_Hook_Interface {
 	/**
 	 * Initialize the class and set its properties.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   public
 	 *
 	 * @param      string $plugin_name    The name of the plugin.
@@ -68,7 +68,7 @@ class Public_Hook implements Action_Hook_Interface {
 	/**
 	 * Register the stylesheets for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   public
 	 */
 	public function enqueue_styles() {
@@ -97,7 +97,7 @@ class Public_Hook implements Action_Hook_Interface {
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 *
-	 * @since    1.0.0
+	 * @since    1.0.2
 	 * @access   public
 	 */
 	public function enqueue_scripts() {

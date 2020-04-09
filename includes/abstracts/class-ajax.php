@@ -30,7 +30,7 @@ abstract class Ajax implements Action_Hook_Interface {
 	/**
 	 * Data that need for wp_ajax_sample_ajax_call_1
 	 *
-	 * @since    1.0.1
+	 * @since    1.0.2
 	 * @access   protected
 	 * @var      array $ajax_data1 array of ata that need for wp_ajax_sample_ajax_call.
 	 */
@@ -52,7 +52,7 @@ abstract class Ajax implements Action_Hook_Interface {
 	 * This is constructor of Ajax abstract class
 	 *
 	 * @access public
-	 * @since  1.0.1
+	 * @since  1.0.2
 	 *
 	 * @param string $action Action name for ajax call
 	 */
@@ -67,7 +67,7 @@ abstract class Ajax implements Action_Hook_Interface {
 	 * Method to define add_action for using in theme or plugin
 	 *
 	 * @access public
-	 * @since  1.0.1
+	 * @since  1.0.2
 	 *
 	 */
 	public function register_add_action() {
@@ -82,7 +82,7 @@ abstract class Ajax implements Action_Hook_Interface {
 	 * Method to register script and localize it
 	 *
 	 * @access public
-	 * @since  1.0.1
+	 * @since  1.0.2
 	 *
 	 */
 	public function register_script() {
@@ -108,7 +108,7 @@ abstract class Ajax implements Action_Hook_Interface {
 	 * This method prepares data for wp_localize_script
 	 *
 	 * @access public
-	 * @since  1.0.1
+	 * @since  1.0.2
 	 *
 	 */
 	public function sending_ajax_data() {

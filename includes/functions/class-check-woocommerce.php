@@ -8,7 +8,7 @@
  * @author     Mehdi Soltani Neshan <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://wpwebmaster.ir
- * @since      1.0.1
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Functions;

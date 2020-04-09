@@ -9,7 +9,7 @@
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
  * @license    https://www.gnu.org/licenses/gpl-3.0.txt GNU/GPLv3
  * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
- * @since      1.0.0
+ * @since      1.0.2
  */
 
 namespace Plugin_Name_Name_Space\Includes\Config;
@@ -33,7 +33,7 @@ class Info {
 	 *
 	 * @access     public
 	 * @var string $plugin_setting_option1 Define plugin setting option1 for your plugin.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $plugin_setting_option1;
 	/**
@@ -41,7 +41,7 @@ class Info {
 	 *
 	 * @access     public
 	 * @var string $plugin_setting_option2 Define plugin setting option2 for your plugin.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $plugin_setting_option2;
 	/**
@@ -49,7 +49,7 @@ class Info {
 	 *
 	 * @access     public
 	 * @var string $plugin_setting_option3 Define plugin setting option1 for your plugin.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $plugin_setting_option3;
 	/**
@@ -57,7 +57,7 @@ class Info {
 	 *
 	 * @access     public
 	 * @var string $plugin_setting_option4 Define plugin setting option1 for your plugin.
-	 * @since      1.0.0
+	 * @since      1.0.2
 	 */
 	public $plugin_setting_option4;
 
