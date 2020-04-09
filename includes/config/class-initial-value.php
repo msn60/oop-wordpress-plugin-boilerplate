@@ -153,7 +153,7 @@ class Initial_Value {
 
 			'id'            => 'meta_box_3_id',
 			'title'         => esc_html__( 'Meta box3 Headline', PLUGIN_NAME_TEXTDOMAIN ),
-			'callback'      => 'render_content',
+			'callback'      => 'render_content', //It always has this name for all of meta boxes
 			'screens'       => array( 'post', 'page' ),//null - optional
 			'context'       => 'advanced', //optional
 			'priority'      => 'high', //optional

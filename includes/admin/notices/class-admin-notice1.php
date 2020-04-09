@@ -1,6 +1,6 @@
 <?php
 /**
- * Admin_Notice1 abstract Class File
+ * Admin_Notice1 Class File
  *
  * This file contains sample admin notices in admin panel based on logic conditions
  *
@@ -21,7 +21,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Admin_Notice1 abstract Class File
+ * Admin_Notice1  Class File
  *
  * This file contains contract for Admin_Notice1 class.
  * If you want to create a Admin_Notice1, you must use from this contract.
