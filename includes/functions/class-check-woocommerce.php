@@ -39,7 +39,7 @@ trait Check_Woocommerce {
 	 * @return bool
 	 */
 	public function is_woocommerce_active( ) {
-		if ( in_array('woocommerce/woocommerce.php', apply_filters('siawood_active_plugins',get_option('active_plugins')))) {
+		if ( in_array('woocommerce/woocommerce.php', apply_filters('plugin_name_active_plugins',get_option('active_plugins')))) {
 			return true;
 		} else {
 			return false;
