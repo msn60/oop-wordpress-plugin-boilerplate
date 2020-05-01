@@ -31,7 +31,7 @@ use Plugin_Name_Name_Space\Includes\Admin\{
 };
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
-	Init_Functions, Utility, Check_Type, Log_In_Footer
+	Init_Functions, Utility, Check_Type, Log_In_Footer, Activation_Issue
 };
 
 /**
@@ -50,6 +50,7 @@ use Plugin_Name_Name_Space\Includes\Functions\{
 class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	use Utility;
 	use Check_Type;
+	use Activation_Issue;
 	/**
 	 * The unique identifier of this plugin.
 	 *
@@ -277,7 +278,12 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		$this->set_custom_posts();
 		$this->set_custom_taxonomies();
 		$this->show_admin_notice();
+		/**
+		 * To show log of errors during plugin activation
+		 */
+		//$this->show_plugin_activation_error();
 
+		//TODO: remove this section due to having header already send in plugin activation
 		if ( $this->is_need_run_init_test ) {
 			/**
 			 * if you need to log something during execution, you can use from this method
@@ -298,7 +304,6 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 			);
 		}
 
-
 	}
 
 	/**
@@ -309,6 +314,10 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 *
 	 */
 	public function register_add_action() {
+		/**
+		 * If you need to log activation errors, you must use it
+		 */
+		//$this->register_error_activation_add_action();
 		if ( ! is_null( $this->init_functions ) ) {
 			$this->init_functions->register_add_action();
 		}
