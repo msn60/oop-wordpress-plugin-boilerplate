@@ -19,10 +19,9 @@
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
-/*
+/**
  * Define your namespaces here by use keyword
- * */
-
+ */
 use Plugin_Name_Name_Space\Includes\Init\{
 	Admin_Hook, Core, Constant, Activator, I18n, Public_Hook, Router
 };
