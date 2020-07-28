@@ -18,16 +18,22 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Plugin_Name_Name_Space\Includes\Abstracts\{
-	Admin_Menu, Admin_Notice, Admin_Sub_Menu, Ajax, Custom_Taxonomy, Meta_box, Shortcode, Custom_Post_Type
-};
+use Plugin_Name_Name_Space\Includes\Abstracts\{Admin_Menu,
+	Admin_Notice,
+	Admin_Sub_Menu,
+	Ajax,
+	Custom_Taxonomy,
+	Meta_box,
+	Option_Menu,
+	Shortcode,
+	Custom_Post_Type};
 
 use Plugin_Name_Name_Space\Includes\Hooks\Filters\Custom_Cron_Schedule;
 use Plugin_Name_Name_Space\Includes\Interfaces\{
 	Action_Hook_Interface, Filter_Hook_Interface
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
-	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Option_Menu1
 };
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
@@ -89,6 +95,10 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 */
 	protected $admin_sub_menus;
 
+	/**
+	 * @var Option_Menu[] $admin_option_menus
+	 */
+	protected $admin_option_menus;
 	/**
 	 * @var Ajax[] $ajax_calls
 	 */
@@ -176,6 +186,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		array $custom_posts = null,
 		array $custom_taxonomies = null,
 		array $admin_notices = null,
+		array $admin_option_menus = null,
 		Custom_Cron_Schedule $custom_cron_schedule = null,
 		array $ajax_calls = null
 
@@ -225,6 +236,10 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 
 		if ( ! is_null( $admin_sub_menus ) ) {
 			$this->admin_sub_menus = $this->check_array_by_parent_type( $admin_sub_menus, Admin_Sub_Menu::class )['valid'];
+		}
+
+		if ( ! is_null( $admin_option_menus ) ) {
+			$this->admin_option_menus = $this->check_array_by_parent_type( $admin_option_menus, Option_Menu::class )['valid'];
 		}
 
 		if ( ! is_null( $meta_boxes ) ) {
@@ -361,6 +376,12 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		if ( ! is_null( $this->admin_sub_menus ) ) {
 			foreach ( $this->admin_sub_menus as $admin_sub_menu ) {
 				$admin_sub_menu->register_add_action();
+			}
+		}
+
+		if ( ! is_null( $this->admin_option_menus ) ) {
+			foreach ( $this->admin_option_menus as $admin_option_menu ) {
+				$admin_option_menu->register_add_action();
 			}
 		}
 	}

@@ -32,7 +32,7 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
 	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4,
-	Notices\Admin_Notice1, Notices\Woocommerce_Deactive_Notice
+	Option_Menu1, Notices\Admin_Notice1, Notices\Woocommerce_Deactive_Notice
 };
 
 use Plugin_Name_Name_Space\Includes\Functions\Init_Functions;
@@ -251,6 +251,9 @@ final class Plugin_Name_Plugin {
 			[
 				'admin_notice1' => new Admin_Notice1(),
 				'woocommerce_deactivate_notice' => new Woocommerce_Deactive_Notice(),
+			],
+			[
+				new Option_Menu1($this->initial_values->sample_option_page())
 			],
 			new Custom_Cron_Schedule( $this->initial_values->sample_custom_cron_schedule() )
 		);

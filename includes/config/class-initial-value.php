@@ -141,6 +141,26 @@ class Initial_Value {
 	}
 
 	/**
+	 * Initial values to create option page.
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that add_menu_page function needs.
+	 * @see    Includes/Abstract/Option_Menu
+	 */
+	public function sample_option_page() {
+		$initial_value = [
+			'page_title'        => esc_html__( 'Msn Options', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_title'        => esc_html__( 'Msn Options', PLUGIN_NAME_TEXTDOMAIN ),
+			'capability'        => 'manage_options',
+			'menu_slug'         => 'plugin-name-menu-page-option-url',
+			'callable_function' => 'management_panel_handler',//it can be null
+			'position'          => 8,
+		];
+
+		return $initial_value;
+	}
+
+	/**
 	 * Initial values to create meta box 1.
 	 *
 	 * @access public
