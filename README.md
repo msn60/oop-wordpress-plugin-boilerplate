@@ -9,7 +9,7 @@ So if you feel better with writing code in OOP way, it's perfect choice to use i
 Everything in this boilerplate is being created by OOP concepts and then combined with WordPress concepts.
  
 
-## Explanation about plugin structure
+## 🚦 Explanation about plugin structure
 
 ### Plugin directories and files:
 

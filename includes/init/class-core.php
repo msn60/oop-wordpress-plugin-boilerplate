@@ -387,7 +387,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	}
 
 	/**
-	 * Method to set all of needed meta_boxex
+	 * Method to set all of needed meta_boxes
 	 *
 	 * @access public
 	 * @since  1.0.2
