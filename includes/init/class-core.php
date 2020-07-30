@@ -25,6 +25,7 @@ use Plugin_Name_Name_Space\Includes\Abstracts\{Admin_Menu,
 	Custom_Taxonomy,
 	Meta_box,
 	Option_Menu,
+	Setting_Page,
 	Shortcode,
 	Custom_Post_Type};
 
@@ -97,6 +98,11 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	 * @var Option_Menu[] $admin_option_menus
 	 */
 	protected $admin_option_menus;
+
+	/**
+	 * @var Setting_Page[] $admin_settings_pages
+	 */
+	protected $admin_settings_pages;
 	/**
 	 * @var Ajax[] $ajax_calls
 	 */
@@ -185,6 +191,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		array $custom_taxonomies = null,
 		array $admin_notices = null,
 		array $admin_option_menus = null,
+		array $admin_settings_pages = null,
 		Custom_Cron_Schedule $custom_cron_schedule = null,
 		array $ajax_calls = null
 
@@ -238,6 +245,10 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 
 		if ( ! is_null( $admin_option_menus ) ) {
 			$this->admin_option_menus = $this->check_array_by_parent_type( $admin_option_menus, Option_Menu::class )['valid'];
+		}
+
+		if ( ! is_null( $admin_settings_pages ) ) {
+			$this->admin_settings_pages = $this->check_array_by_parent_type( $admin_settings_pages, Setting_Page::class )['valid'];
 		}
 
 		if ( ! is_null( $meta_boxes ) ) {
@@ -383,11 +394,11 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 			}
 		}
 
-		$test_initial_values = new Initial_Value();
-		$test_settings_page = new Setting_Page1(
-			$test_initial_values->sample_setting_page1()
-		);
-		$test_settings_page->register_add_action();
+		if ( ! is_null( $this->admin_settings_pages ) ) {
+			foreach ( $this->admin_settings_pages as $admin_settings_page ) {
+				$admin_settings_page->register_add_action();
+			}
+		}
 	}
 
 	/**

@@ -31,7 +31,7 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 	Deactivator, Uninstall
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
-	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4,
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4, Setting_Page1,
 	Option_Menu1, Notices\Admin_Notice1, Notices\Woocommerce_Deactive_Notice
 };
 
@@ -254,6 +254,9 @@ final class Plugin_Name_Plugin {
 			],
 			[
 				new Option_Menu1($this->initial_values->sample_option_page())
+			],
+			[
+				new Setting_Page1( $this->initial_values->sample_setting_page1())
 			],
 			new Custom_Cron_Schedule( $this->initial_values->sample_custom_cron_schedule() )
 		);
