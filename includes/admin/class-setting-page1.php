@@ -47,7 +47,7 @@ class Setting_Page1 extends Setting_Page{
 		parent::__construct($initial_values);
 	}
 
-	
+
 	public function sanitize_setting_fields( $input ) {
 		$valid         = array();
 		$valid['text_field_1_1'] = preg_replace(
