@@ -61,4 +61,6 @@ class Option_Menu1 extends Option_Menu{
 	public function handle_option_panel() {
 		$this->load_template( 'options-page.sample-option-page', [] );
 	}
+
+
 }

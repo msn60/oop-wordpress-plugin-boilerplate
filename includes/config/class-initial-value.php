@@ -426,4 +426,56 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	public function sample_setting_page1() {
+		$register_setting_args = array(
+			'type'              => 'string',
+			'description'       => 'A description of setting page 1',
+			'sanitize_callback' => 'sanitize_setting_fields', //It must always this name due to its contract in Setting_Page class
+			'default'           => null,
+			'show_in_rest'      => false,
+		);
+
+		$settings_sections = array(
+			array(
+				'id'                => 'plugin-name-section1',
+				'title'             => __( 'Setting section 1', PLUGIN_NAME_TEXTDOMAIN ),
+				'callback_function' => 'section1',
+				'page'              => 'plugin-name-menu-page-option-url',
+			),
+			array(
+				'id'                => 'plugin-name-section2',
+				'title'             => __( 'Setting section 2', PLUGIN_NAME_TEXTDOMAIN ),
+				'callback_function' => 'section2',
+				'page'              => 'plugin-name-menu-page-option-url',
+			),
+		);
+
+		$settings_fields = array(
+			array(
+				'id'                => 'plugin-name-field-1-1',
+				'title'             => __('Field One', PLUGIN_NAME_TEXTDOMAIN),
+				'callback_function' => 'field_1_1',
+				'page'              => 'plugin-name-menu-page-option-url',
+				'section'           => 'plugin-name-section1',
+			),
+			array(
+				'id'                => 'plugin-name-field-1-2',
+				'title'             => __('Field Two', PLUGIN_NAME_TEXTDOMAIN),
+				'callback_function' => 'field_1_2',
+				'page'              => 'plugin-name-menu-page-option-url',
+				'section'           => 'plugin-name-section1',
+			),
+		);
+
+		$initial_value = array(
+			'option_group'          => 'plugin_name_option_group1',
+			'option_name'           => 'plugin_name_option_name1',
+			'register_setting_args' => $register_setting_args,
+			'settings_sections'     => $settings_sections,
+			'settings_fields'       => $settings_fields
+		);
+
+		return $initial_value;
+	}
 }

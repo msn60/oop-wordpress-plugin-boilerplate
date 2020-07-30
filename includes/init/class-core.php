@@ -32,9 +32,7 @@ use Plugin_Name_Name_Space\Includes\Hooks\Filters\Custom_Cron_Schedule;
 use Plugin_Name_Name_Space\Includes\Interfaces\{
 	Action_Hook_Interface, Filter_Hook_Interface
 };
-use Plugin_Name_Name_Space\Includes\Admin\{
-	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Option_Menu1
-};
+use Plugin_Name_Name_Space\Includes\Admin\{Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Option_Menu1, Setting_Page1};
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
 	Init_Functions, Utility, Check_Type, Log_In_Footer, Activation_Issue
@@ -384,6 +382,12 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 				$admin_option_menu->register_add_action();
 			}
 		}
+
+		$test_initial_values = new Initial_Value();
+		$test_settings_page = new Setting_Page1(
+			$test_initial_values->sample_setting_page1()
+		);
+		$test_settings_page->register_add_action();
 	}
 
 	/**

@@ -87,7 +87,14 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	public function __construct( array $initial_values ) {
 		$this->option_group          = $initial_values['option_group'];
 		$this->option_name           = $initial_values['option_name'];
-		$this->register_setting_args = $initial_values['register_setting_args'];
+		$this->register_setting_args = array(
+			'type'              => $initial_values['register_setting_args']['type'],
+			'description'       => $initial_values['register_setting_args']['description'],
+			'sanitize_callback' => array( $this, 'sanitize_setting_fields' ),
+			'show_in_rest'      => $initial_values['register_setting_args']['show_in_rest'],
+			'default'           => $initial_values['register_setting_args']['default'],
+
+		);
 		$this->settings_sections     = $initial_values['settings_sections'];
 		$this->settings_fields       = $initial_values['settings_fields'];
 	}
@@ -111,6 +118,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @access  public
 	 */
 	public function add_settings_page() {
+
 		$this->init_register_setting();
 		$this->add_all_settings_sections();
 		$this->add_all_settings_fields();
@@ -120,8 +128,8 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	/**
 	 * A method to register settings
 	 */
-	public function init_register_setting(  ) {
-		register_setting($this->option_group, $this->option_name,$this->register_setting_args);
+	public function init_register_setting() {
+		register_setting($this->option_group, $this->option_name, $this->register_setting_args);
 	}
 
 	/**
@@ -131,11 +139,11 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 */
 	public function add_all_settings_sections() {
 		if ( ! is_null($this->settings_sections)) {
-			foreach ( $this->settings_sections as $settings_section ){
+			foreach ( $this->settings_sections as $settings_section ) {
 				add_settings_section(
 					$settings_section['id'],
 					$settings_section['title'],
-					$settings_section['callback_function'],
+					array( $this, 'create_'.$settings_section['callback_function'] ),
 					$settings_section['page']
 				);
 			}
@@ -149,15 +157,14 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @see https://developer.wordpress.org/reference/functions/add_settings_field/
 	 */
 	public function add_all_settings_fields() {
-		if ( ! is_null($this->settings_fields)) {
-			foreach ($this->settings_fields as $settings_field ) {
+		if ( ! is_null( $this->settings_fields ) ) {
+			foreach ( $this->settings_fields as $settings_field ) {
 				add_settings_field(
 					$settings_field['id'],
 					$settings_field['title'],
-					$settings_field['callback_function'],
+					array( $this, 'create_'.$settings_field['callback_function'] ),
 					$settings_field['page'],
-					$settings_field['section'] = 'default',
-					$args = array()
+					$settings_field['section']
 				);
 			}
 		}
@@ -170,6 +177,6 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @access public
 	 *
 	 */
-	abstract public function sanitize_setting_fields();
+	abstract public function sanitize_setting_fields( $input);
 
 }
