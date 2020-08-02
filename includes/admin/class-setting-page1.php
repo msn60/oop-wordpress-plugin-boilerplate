@@ -56,6 +56,11 @@ class Setting_Page1 extends Setting_Page{
 			$input['text_field_1_1'] );
 
 		$valid['text_field_1_2'] = sanitize_text_field($input['text_field_1_2']);
+
+		//generate error
+		if ( $valid['text_field_1_1'] !== $input['text_field_1_1'] ) {
+			$this->create_settings_error('error1');
+		}
 		return $valid;
 	}
 

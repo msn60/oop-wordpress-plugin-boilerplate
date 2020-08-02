@@ -73,6 +73,14 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @see https://developer.wordpress.org/reference/functions/add_settings_field/
 	 */
 	protected $settings_fields;
+	/**
+	 * Array of settings errors arguments.
+	 * It's an array of argument that 'add_setting_error' method needs.
+	 *
+	 * @var array $settings_errors Array of settings errors arguments.
+	 * @see https://developer.wordpress.org/reference/functions/add_settings_error/
+	 */
+	protected $settings_errors;
 
 
 	/**
@@ -97,6 +105,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		);
 		$this->settings_sections     = $initial_values['settings_sections'];
 		$this->settings_fields       = $initial_values['settings_fields'];
+		$this->settings_errors       = $initial_values['settings_errors'];
 	}
 
 	/**
@@ -168,6 +177,16 @@ abstract class Setting_Page implements Action_Hook_Interface {
 				);
 			}
 		}
+	}
+
+	public function create_settings_error( $name ) {
+		add_settings_error(
+			$this->settings_errors[$name]['setting'],
+			$this->settings_errors[$name]['code'],
+			$this->settings_errors[$name]['message'],
+			$this->settings_errors[$name]['type'],
+		);
+
 	}
 
 	/**

@@ -436,12 +436,23 @@ class Initial_Value {
 			'show_in_rest'      => false,
 		);
 
+		/**
+		 * An array of settings sections which can be used in add_settings_section method
+		 * Initial values for adding  new section in a settings page.
+		 *
+		 * @var array $settings_sections Array of settings sections for add_settings_section method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_section/
+		 */
 		$settings_sections = array(
 			array(
 				'id'                => 'plugin-name-section1',
+				//Slug-name to identify the section. Used in the 'id' attribute of tags.
 				'title'             => __( 'Setting section 1', PLUGIN_NAME_TEXTDOMAIN ),
+				// Formatted title of the section. Shown as the heading for the section.
 				'callback_function' => 'section1',
+				//Function that echos out any content at the top of the section (between heading and fields).
 				'page'              => 'plugin-name-menu-page-option-url',
+				//The slug-name of the settings page on which to show the section.
 			),
 			array(
 				'id'                => 'plugin-name-section2',
@@ -451,20 +462,48 @@ class Initial_Value {
 			),
 		);
 
+		/**
+		 * An array of settings fields which can be used in add_settings_field method
+		 * Initial values for adding  new fields to a section of a settings page.
+		 *
+		 * @var array $settings_fields Array of settings fields for add_settings_fields method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_field/
+		 */
 		$settings_fields = array(
 			array(
 				'id'                => 'plugin-name-field-1-1',
-				'title'             => __('Field One', PLUGIN_NAME_TEXTDOMAIN),
+				//Slug-name to identify the field
+				'title'             => __( 'Field One', PLUGIN_NAME_TEXTDOMAIN ),
+				//Formatted title of the field. Shown as the label for the field during output
 				'callback_function' => 'field_1_1',
+				//Function that fills the field with the desired form inputs. The function should echo its output.
 				'page'              => 'plugin-name-menu-page-option-url',
+				//The slug-name of the settings page on which to show the section
 				'section'           => 'plugin-name-section1',
+				//The slug-name of the section of the settings page in which to show the box.
 			),
 			array(
 				'id'                => 'plugin-name-field-1-2',
-				'title'             => __('Field Two', PLUGIN_NAME_TEXTDOMAIN),
+				'title'             => __( 'Field Two', PLUGIN_NAME_TEXTDOMAIN ),
 				'callback_function' => 'field_1_2',
 				'page'              => 'plugin-name-menu-page-option-url',
 				'section'           => 'plugin-name-section1',
+			),
+		);
+
+		/**
+		 * An array of errors which can be used in add_settings_error method
+		 * Initial values for adding errors to a settings page when it's submitted
+		 *
+		 * @var array $settings_errors Array of settings errors for add_settings_error method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_error/
+		 */
+		$settings_errors = array(
+			'error1' => array(
+				'setting' => 'plugin-name-field-1-1-error', //Slug title of the setting to which this error applies.
+				'code'    => 'plugin-name-field-1-1-error', //Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
+				'message' => 'Incorrect value entered! Please only input letters and spaces.', //The formatted message text to display to the user
+				'type'    => 'error' //Possible values include 'error', 'success', 'warning', 'info'
 			),
 		);
 
@@ -473,7 +512,8 @@ class Initial_Value {
 			'option_name'           => 'plugin_name_option_name1',
 			'register_setting_args' => $register_setting_args,
 			'settings_sections'     => $settings_sections,
-			'settings_fields'       => $settings_fields
+			'settings_fields'       => $settings_fields,
+			'settings_errors'       => $settings_errors
 		);
 
 		return $initial_value;
