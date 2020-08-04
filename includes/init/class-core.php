@@ -18,22 +18,29 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Plugin_Name_Name_Space\Includes\Abstracts\{Admin_Menu,
+use Plugin_Name_Name_Space\Includes\Abstracts\{
+	Admin_Menu,
 	Admin_Notice,
 	Admin_Sub_Menu,
 	Ajax,
 	Custom_Taxonomy,
 	Meta_box,
 	Option_Menu,
+	Simple_Setting_Page,
 	Setting_Page,
 	Shortcode,
-	Custom_Post_Type};
+	Custom_Post_Type,
+	Setting_Page2
+};
 
 use Plugin_Name_Name_Space\Includes\Hooks\Filters\Custom_Cron_Schedule;
 use Plugin_Name_Name_Space\Includes\Interfaces\{
 	Action_Hook_Interface, Filter_Hook_Interface
 };
-use Plugin_Name_Name_Space\Includes\Admin\{Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Option_Menu1, Setting_Page1};
+use Plugin_Name_Name_Space\Includes\Admin\{
+	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Option_Menu1,
+	Setting_Page1
+};
 use Plugin_Name_Name_Space\Includes\Config\Initial_Value;
 use Plugin_Name_Name_Space\Includes\Functions\{
 	Init_Functions, Utility, Check_Type, Log_In_Footer, Activation_Issue
@@ -100,9 +107,14 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 	protected $admin_option_menus;
 
 	/**
-	 * @var Setting_Page[] $admin_settings_pages
+	 * @var Simple_Setting_Page[] $simple_settings_pages
 	 */
-	protected $admin_settings_pages;
+	protected $simple_settings_pages;
+
+	/**
+	 * @var Setting_Page[] $simple_settings_pages
+	 */
+	protected $settings_pages;
 	/**
 	 * @var Ajax[] $ajax_calls
 	 */
@@ -191,7 +203,8 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 		array $custom_taxonomies = null,
 		array $admin_notices = null,
 		array $admin_option_menus = null,
-		array $admin_settings_pages = null,
+		array $simple_settings_pages = null,
+		array $settings_pages = null,
 		Custom_Cron_Schedule $custom_cron_schedule = null,
 		array $ajax_calls = null
 
@@ -247,8 +260,12 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 			$this->admin_option_menus = $this->check_array_by_parent_type( $admin_option_menus, Option_Menu::class )['valid'];
 		}
 
-		if ( ! is_null( $admin_settings_pages ) ) {
-			$this->admin_settings_pages = $this->check_array_by_parent_type( $admin_settings_pages, Setting_Page::class )['valid'];
+		if ( ! is_null( $simple_settings_pages ) ) {
+			$this->simple_settings_pages = $this->check_array_by_parent_type( $simple_settings_pages, Simple_Setting_Page::class )['valid'];
+		}
+
+		if ( ! is_null( $settings_pages ) ) {
+			$this->settings_pages = $this->check_array_by_parent_type( $settings_pages, Setting_Page::class )['valid'];
 		}
 
 		if ( ! is_null( $meta_boxes ) ) {
@@ -394,11 +411,18 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 			}
 		}
 
-		if ( ! is_null( $this->admin_settings_pages ) ) {
-			foreach ( $this->admin_settings_pages as $admin_settings_page ) {
+		if ( ! is_null( $this->simple_settings_pages ) ) {
+			foreach ( $this->simple_settings_pages as $admin_settings_page ) {
 				$admin_settings_page->register_add_action();
 			}
 		}
+
+		if ( ! is_null( $this->settings_pages ) ) {
+			foreach ( $this->settings_pages as $settings_page ) {
+				$settings_page->register_add_action();
+			}
+		}
+
 	}
 
 	/**

@@ -1,8 +1,9 @@
 <?php
 /**
- * Setting_Page1 Class File
+ * Setting_Page2  Class File
  *
- * This file contains contract for Setting_Page class.
+ * This file contains Setting_Page2 class. If you want create a completed settings page
+ * inside admin panel of WordPress, you can use this class.
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
@@ -14,8 +15,6 @@
 namespace Plugin_Name_Name_Space\Includes\Admin;
 
 use Plugin_Name_Name_Space\Includes\Abstracts\Setting_Page;
-use Plugin_Name_Name_Space\Includes\Functions\Template_Builder;
-
 
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -23,73 +22,53 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * Class Setting_Page1.
- * If you want create an admin page inside admin panel of WordPress,
- * you can use from this class.
+ * Class Setting_Page2.
+ * This file contains contract for Setting_Page2 class. If you want create an settings page
+ * inside admin panel of WordPress, you must to use this contract.
  *
  * @package    Plugin_Name_Name_Space
  * @author     Mehdi Soltani <soltani.n.mehdi@gmail.com>
+ * @link       https://github.com/msn60/oop-wordpress-plugin-boilerplate
  *
- * @see        wp-admin/includes/plugin.php
- * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
  */
 class Setting_Page1 extends Setting_Page{
-	use Template_Builder;
+
 
 	/**
-	 * Setting_Page1 constructor.
+	 * Setting_Page constructor.
+	 * This constructor gets initial values to create a full settings page in admin panel
 	 *
 	 * @access public
 	 *
-	 * @param array $initial_value Initial value to pass to add_option_page function.
+	 * @param array $initial_value Initial value to pass to add_menu_page function.
 	 */
-	public function __construct( array $initial_values ) {
-		parent::__construct($initial_values);
+	public function __construct( array $initial_values, $admin_menu) {
+		parent::__construct($initial_values, $admin_menu);
 	}
 
 
-	public function sanitize_setting_fields( $input ) {
-		$valid         = array();
-		$valid['text_field_1_1'] = preg_replace(
+	/**
+	 * Sample method to sanitize text fields
+	 * @param string $field_value A field value which is needed to sanitize
+	 *
+	 * @return string
+	 */
+	public function sample_sanitize_text_field( $field_value ) {
+		$result        = array();
+		$result = preg_replace(
 			'/[^a-zA-Z\s]/',
 			'',
-			$input['text_field_1_1'] );
+			$field_value );
 
-		$valid['text_field_1_2'] = sanitize_text_field($input['text_field_1_2']);
-
-		//generate error
-		if ( $valid['text_field_1_1'] !== $input['text_field_1_1'] ) {
-			$this->create_settings_error('error1');
-		}
-		return $valid;
+		return $result;
 	}
 
-	public function create_section1() {
-		//echo '<p>Enter your settings here.</p>';
-		_e( 'Some help text regarding Section One goes here.', PLUGIN_NAME_TEXTDOMAIN );
+	/**
+	 * Method to create admin menu to show sections and related fields in setting page
+	 */
+	public function add_admin_menu() {
+		$this->admin_menu->register_add_action_with_arguments( $this->settings_sections);
 	}
 
-	public function create_section2() {
-		//echo '<p>Enter your settings here.</p>';
-		_e( 'Some help text regarding Section Two goes here.', PLUGIN_NAME_TEXTDOMAIN );
-	}
-
-	public function create_field_1_1() {
-		$settings = (array) get_option( $this->option_name );
-		//TODO: It can be put in initial values
-		$field = "text_field_1_1";
-		$value = esc_attr( $settings[$field] );
-
-		echo "<input id='{$field}' type='text' name='{$this->option_name}[{$field}]' value='$value' />";
-	}
-
-	public function create_field_1_2() {
-		$settings = (array) get_option( $this->option_name );
-		//TODO: It can be put in initial values
-		$field = "text_field_1_2";
-		$value = esc_attr( $settings[$field] );
-
-		echo "<input id='{$field}' type='text' name='{$this->option_name}[{$field}]' value='$value' />";
-	}
 
 }

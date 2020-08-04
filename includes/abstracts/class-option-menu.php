@@ -14,7 +14,9 @@
 
 namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
+use Plugin_Name_Name_Space\Includes\Functions\Template_Builder;
 use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
+use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_With_Args_Interface;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -32,8 +34,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
  */
-abstract class Option_Menu implements Action_Hook_Interface {
-
+abstract class Option_Menu implements Action_Hook_With_Args_Interface {
+	use Template_Builder;
 	/**
 	 * Define page_title property in Option_Menu class.
 	 * This property use to pass to add_options_page as an argument.
@@ -115,24 +117,38 @@ abstract class Option_Menu implements Action_Hook_Interface {
 	 *
 	 * @access  public
 	 */
-	public function add_option_menu_page() {
+	public function add_option_menu_page( $extra_args = null ) {
 		add_options_page(
 			$this->page_title,
 			$this->menu_title,
 			$this->capability,
 			$this->menu_slug,
-			array( $this, 'handle_option_panel' ),
+			//array( $this, 'handle_option_panel' ),
+			function () use ( $extra_args ) {
+				$this->handle_option_panel( $extra_args );
+			},
 			$this->position
 		);
 	}
 
 	/**
-	 * call 'Option_Menu' add_action to create Admin menu page
+	 * call 'admin_menu' add_action to create Admin menu page
 	 *
 	 * @access public
 	 */
 	public function register_add_action() {
 		add_action( 'admin_menu', array( $this, 'add_option_menu_page' ) );
+	}
+
+	/**
+	 * call 'admin_menu' add_action to create Admin menu page with extra arguments
+	 *
+	 * @access public
+	 */
+	public function register_add_action_with_arguments( $extra_args = null ) {
+		add_action( 'admin_menu', function () use ( $extra_args ) {
+			$this->add_option_menu_page( $extra_args );
+		} );
 	}
 
 
@@ -144,6 +160,6 @@ abstract class Option_Menu implements Action_Hook_Interface {
 	 *
 	 * @access  public
 	 */
-	abstract public function handle_option_panel();
+	abstract public function handle_option_panel( $extra_args = null );
 
 }

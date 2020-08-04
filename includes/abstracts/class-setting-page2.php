@@ -1,8 +1,8 @@
 <?php
 /**
- * Setting_Page abstract Class File
+ * Setting_Page2 abstract Class File
  *
- * This file contains contract for Setting_Page class. If you want create an settings page
+ * This file contains contract for Setting_Page2 class. If you want create an settings page
  * inside admin panel of WordPress, you must to use this contract.
  *
  * @package    Plugin_Name_Name_Space
@@ -16,15 +16,14 @@ namespace Plugin_Name_Name_Space\Includes\Abstracts;
 
 use Plugin_Name_Name_Space\Includes\Functions\Template_Builder;
 use Plugin_Name_Name_Space\Includes\Interfaces\Action_Hook_Interface;
-use Plugin_Name_Name_Space\Includes\Abstracts\Option_Menu;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Abstract Class Setting_Page.
- * This file contains contract for Setting_Page class. If you want create an settings page
+ * Class Setting_Page2.
+ * This file contains contract for Setting_Page2 class. If you want create an settings page
  * inside admin panel of WordPress, you must to use this contract.
  *
  * @package    Plugin_Name_Name_Space
@@ -33,16 +32,33 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
- * @see        https://github.com/ahmadawais/WP-OOP-Settings-API
- * @see        https://github.com/harishdasari/WP-Settings-API-Wrapper-Class
- * @see        https://github.com/jamesckemp/WordPress-Settings-Framework
- * @see        https://github.com/pinoceniccola/WordPress-Plugin-Settings-API-Template
- * @see        https://github.com/tareq1988/wordpress-settings-api-class
- *
  */
-abstract class Setting_Page implements Action_Hook_Interface {
+class Setting_Page2 implements Action_Hook_Interface {
 	use Template_Builder;
 
+	/**
+	 *  A settings group name.
+	 * Should correspond to a whitelisted option key name.
+	 *
+	 * @var string $option_group A settings group name
+	 * @since      1.0.2
+	 */
+	protected $option_groups;
+	/**
+	 * The name of an option to sanitize and save.
+	 *
+	 * @var string $option_name The name of an option to sanitize and save
+	 * @since      1.0.2
+	 */
+	protected $option_name;
+	/**
+	 * Data used to describe the setting when registered.
+	 *
+	 * @var string $type The type of data associated with this setting.
+	 * @since      1.0.2
+	 * @see        https://developer.wordpress.org/reference/functions/register_setting/
+	 */
+	protected $register_setting_args;
 	/**
 	 * Array of settings sections arguments.
 	 * It's an array of arguments that 'add_setting_section' method needs.
@@ -67,44 +83,46 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @see https://developer.wordpress.org/reference/functions/add_settings_error/
 	 */
 	protected $settings_errors;
-	/**
-	 * An admin menu which is passed to set settings page inside it
-	 *
-	 * @var Option_Menu | Admin_Menu | Admin_Sub_Menu $admin_menu An admin menu which is passed to set settings page inside it
-	 */
-	protected $admin_menu;
+
+	protected $setting_groups;
+	protected $value;
+
 
 	/**
-	 * Setting_Page constructor.
+	 * Setting_Page2 constructor.
+	 * This constructor gets initial values to send to add_menu_page function to
+	 * create admin menu.
 	 *
 	 * @access public
 	 *
-	 * @param array $initial_value Initial value to create settings page and its admin menu which needs to show.
+	 * @param array $initial_value Initial value to pass to add_menu_page function.
 	 */
-	public function __construct( array $initial_values, $admin_menu ) {
-		$this->settings_sections = $initial_values['settings_sections'];
-		$this->settings_fields   = $initial_values['settings_fields'];
-		$this->settings_errors   = $initial_values['settings_errors'];
-		$this->admin_menu        = $admin_menu;
+	public function __construct( array $initial_values ) {
+
+
+		/*$msn_setting_page2 = new Setting_Page2($this->initial_values->sample_setting_page2());
+		$msn_setting_page2->register_add_action();*/
+
+		$this->option_group          = $initial_values['option_group'];
+
+
+		$this->settings_sections     = $initial_values['settings_sections'];
+		$this->settings_fields       = $initial_values['settings_fields'];
+		$this->settings_errors       = $initial_values['settings_errors'];
+		$this->value = 0;
 	}
 
 	/**
-	 * call all needed add_actions to create settings page
+	 * call 'admin_init' add_action to create settings page
 	 *
 	 * @access public
 	 */
 	public function register_add_action() {
 		add_action( 'admin_enqueue_scripts', array( $this, 'set_admin_scripts' ) );
 		add_action( 'admin_init', array( $this, 'add_settings_page' ) );
-		// You can also add option page inside this class but due to my structure in plugin, I avoided this solution.
-		//add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
-		$this->add_admin_menu();
+		add_action( 'admin_menu', array( $this, 'add_admin_menu' ) );
 	}
 
-	/**
-	 * Enqueue admin scripts that this class needs them
-	 *
-	 */
 	public function set_admin_scripts() {
 		// jQuery is needed.
 		wp_enqueue_script( 'jquery' );
@@ -121,7 +139,10 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	}
 
 	/**
-	 * All of methods which is needed to create sections and fields and option page
+	 * Method add_admin_menu_page in Setting_Page2 Class
+	 *
+	 * Inside this method, we call add_menu_page function to create admin menu
+	 * page in WordPress Admin Panel.
 	 *
 	 * @access  public
 	 */
@@ -152,12 +173,6 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		}
 	}
 
-
-	/**
-	 * Method to create section description
-	 *
-	 * @param array $section Method to create section description
-	 */
 	public function create_section( $section ) {
 		echo '<div class="msn-inside-section">' . $section['description'] . '</div>';
 	}
@@ -177,6 +192,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 			);*/
 			register_setting($settings_section['id'], $settings_section['id'], array( $this , 'sanitize_setting_fields'));
 		}
+
 	}
 
 
@@ -309,19 +325,12 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$this->create_text( $args );
 	}
 
-	/**
-	 * Get the value of a settings field
-	 *
-	 * @param string $option  settings field name.
-	 * @param string $section the section name this field belongs to.
-	 * @param string $default default text if it's not found.
-	 * @return string
-	 */
 	public function get_option( $option, $section, $default = '' ) {
 		$options = (array) get_option( $section );
 		if ( isset( $options[ $option ] ) ) {
 			return $options[ $option ];
 		}
+
 		return $default;
 	}
 
@@ -371,12 +380,16 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		return $fields;
 	}
 
-	/**
-	 * General method to sanitize text fields
-	 * @param string $field_value A field value which is needed to sanitize
-	 *
-	 * @return string
-	 */
+	public function sample_sanitize_text_field( $field_value ) {
+		$result        = array();
+		$result = preg_replace(
+			'/[^a-zA-Z\s]/',
+			'',
+			$field_value );
+
+		return $result;
+	}
+
 	public function sanitize_general_text_field( $field_value ) {
 		return sanitize_text_field($field_value);
 	}
@@ -405,12 +418,19 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		return false;
 	}
 
-	/**
-	 * Method to create admin menu to show sections and related fields in setting page
-	 *
-	 * @access public
-	 */
-	abstract public function add_admin_menu();
+	public function add_admin_menu(  ) {
+		add_options_page(
+			'WP OOP Settings API',
+			'WP OOP Settings API',
+			'manage_options',
+			'wp_osa_settings',
+			array( $this, 'set_plugin_page' ),
+			10
+		);
+	}
 
+	public function set_plugin_page(  ) {
+		$this->load_template( 'options-page.sample-option-page3', $this->settings_sections);
+	}
 
 }

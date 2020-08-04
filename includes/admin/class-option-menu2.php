@@ -33,7 +33,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @see        wp-admin/includes/plugin.php
  * @see        https://developer.wordpress.org/reference/functions/add_menu_page/
  */
-class Option_Menu1 extends Option_Menu {
+class Option_Menu2 extends Option_Menu {
 
 	/**
 	 * Option_Menu1 constructor.
@@ -56,8 +56,8 @@ class Option_Menu1 extends Option_Menu {
 	 *
 	 * @access  public
 	 */
-	public function handle_option_panel( $arg = null ) {
-		$this->load_template( 'options-page.simple-option-page1', [] );
+	public function handle_option_panel( $extra_args = null ) {
+		$this->load_template( 'options-page.option-page1', $extra_args );
 	}
 
 

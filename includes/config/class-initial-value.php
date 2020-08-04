@@ -427,6 +427,11 @@ class Initial_Value {
 		return $initial_value;
 	}
 
+	/**
+	 * Initial values to create a simple settings page in option page
+	 *
+	 * @return array It returns array of initial values to create a settings page.
+	 */
 	public function sample_setting_page1() {
 		$register_setting_args = array(
 			'type'              => 'string',
@@ -518,4 +523,307 @@ class Initial_Value {
 
 		return $initial_value;
 	}
+
+	public function sample_setting_page2() {
+
+
+		/**
+		 * An array of settings sections which can be used in add_settings_section method
+		 * Initial values for adding  new section in a settings page.
+		 *
+		 * @var array $settings_sections Array of settings sections for add_settings_section method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_section/
+		 */
+		$settings_sections = array(
+			array(
+				'id'                => 'plugin_name_section1',
+				//Slug-name to identify the section. Used in the 'id' attribute of tags.
+				'title'             => __( 'Setting section 1', PLUGIN_NAME_TEXTDOMAIN ),
+				// Formatted title of the section. Shown as the heading for the section.
+				//'callback_function' => 'section1',
+				//Function that echos out any content at the top of the section (between heading and fields).
+				'header_title'              => 'Title 1',
+				//The slug-name of the settings page on which to show the section.
+				'description' =>'this is first description'
+			),
+			array(
+				'id'                => 'plugin_name_section2',
+				'title'             => __( 'Setting section 2', PLUGIN_NAME_TEXTDOMAIN ),
+				//'callback_function' => 'section2',
+				'header_title'              => 'Title 2',
+				'description' =>'this is second description'
+			),
+		);
+
+		/**
+		 * An array of settings fields which can be used in add_settings_field method
+		 * Initial values for adding  new fields to a section of a settings page.
+		 *
+		 * @var array $settings_fields Array of settings fields for add_settings_fields method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_field/
+		 */
+		$settings_fields = array(
+
+			'plugin_name_section1' =>
+				array(
+					array(
+						'id'                => 'text',
+						'type'              => 'text',
+						'name'              => __( 'Text Input 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Text input description 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 'Default Text',
+						'sanitize_callback' => 'sample_sanitize_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name2'
+					),
+					array(
+						'id'                => 'text_no',
+						'type'              => 'number',
+						'name'              => __( 'Number Input 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Number 1 field with validation callback `intval`', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 1,
+						'sanitize_callback' => 'sanitize_general_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name2'
+					)
+				),
+			'plugin_name_section2' =>
+				array(
+					array(
+						'id'                => 'text',
+						'type'              => 'text',
+						'name'              => __( 'Text Input2', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Text input description2', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 'Default Text',
+						'sanitize_callback' => 'sample_sanitize_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name3'
+					),
+					array(
+						'id'                => 'text_no',
+						'type'              => 'number',
+						'name'              => __( 'Number Input2', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Number2 field with validation callback `intval`', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 1,
+						'sanitize_callback' => 'sanitize_general_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name3'
+					)
+				)
+		);
+
+		/**
+		 * An array of errors which can be used in add_settings_error method
+		 * Initial values for adding errors to a settings page when it's submitted
+		 *
+		 * @var array $settings_errors Array of settings errors for add_settings_error method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_error/
+		 */
+		$settings_errors = array(
+			'error1' => array(
+				'setting' => 'plugin-name-field-1-1-error', //Slug title of the setting to which this error applies.
+				'code'    => 'plugin-name-field-1-1-error', //Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
+				'message' => 'Incorrect value entered! Please only input letters and spaces.', //The formatted message text to display to the user
+				'type'    => 'error' //Possible values include 'error', 'success', 'warning', 'info'
+			),
+		);
+
+
+		$register_setting_args2 = array(
+			'type'              => 'string',
+			'description'       => 'A description of setting page 1',
+			'sanitize_callback' => 'sanitize_setting_fields', //It must always this name due to its contract in Setting_Page class
+			'default'           => null,
+			'show_in_rest'      => false,
+		);
+
+		$register_setting_args3 = array(
+			'type'              => 'string',
+			'description'       => 'A description of setting page 2',
+			'sanitize_callback' => 'sanitize_setting_fields', //It must always this name due to its contract in Setting_Page class
+			'default'           => null,
+			'show_in_rest'      => false,
+		);
+
+		$setting_groups = array(
+			array(
+				'option_group'          => 'plugin_name_option_group2',
+				'option_name'           => 'plugin_name_option_name2',
+				'register_setting_args' => $register_setting_args2,
+				'id'                    => 'plugin-name-option-group2-id',
+				'title'                 => 'Section 2',
+			),
+			array(
+				'option_group'          => 'plugin_name_option_group3',
+				'option_name'           => 'plugin_name_option_name3',
+				'register_setting_args' => $register_setting_args3,
+				'id'                    => 'plugin-name-option-group3-id',
+				'title'                 => 'Section 3',
+			),
+		);
+
+		$initial_value = array(
+			'setting_groups'    => $setting_groups,
+			'settings_sections' => $settings_sections,
+			'settings_fields'   => $settings_fields,
+			'settings_errors'   => $settings_errors,
+		);
+
+		return $initial_value;
+	}
+
+	/**
+	 * Initial values to create a settings page in option menu
+	 *
+	 * @return array[] It returns array of initial values to create a settings page
+	 */
+	public function get_complete_setting_page_arguments() {
+		/**
+		 * An array of settings sections which can be used in add_settings_section method
+		 * Initial values for adding  new section in a settings page.
+		 *
+		 * @var array $settings_sections Array of settings sections for add_settings_section method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_section/
+		 */
+		$settings_sections = array(
+			array(
+				'id'                => 'plugin_name_section1',
+				//Slug-name to identify the section. Used in the 'id' attribute of tags.
+				'title'             => __( 'Setting section 1', PLUGIN_NAME_TEXTDOMAIN ),
+				// Formatted title of the section. Shown as the heading for the section.
+				//'callback_function' => 'section1',
+				//Function that echos out any content at the top of the section (between heading and fields).
+				'header_title'              => 'Title 1',
+				//The slug-name of the settings page on which to show the section.
+				'description' =>'this is first description'
+			),
+			array(
+				'id'                => 'plugin_name_section2',
+				'title'             => __( 'Setting section 2', PLUGIN_NAME_TEXTDOMAIN ),
+				//'callback_function' => 'section2',
+				'header_title'              => 'Title 2',
+				'description' =>'this is second description'
+			),
+		);
+
+		/**
+		 * An array of settings fields which can be used in add_settings_field method
+		 * Initial values for adding  new fields to a section of a settings page.
+		 *
+		 * @var array $settings_fields Array of settings fields for add_settings_fields method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_field/
+		 */
+		$settings_fields = array(
+
+			'plugin_name_section1' =>
+				array(
+					array(
+						'id'                => 'text',
+						'type'              => 'text',
+						'name'              => __( 'Text Input 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Text input description 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 'Default Text',
+						'sanitize_callback' => 'sample_sanitize_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name2'
+					),
+					array(
+						'id'                => 'text_no',
+						'type'              => 'number',
+						'name'              => __( 'Number Input 1', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Number 1 field with validation callback `intval`', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 1,
+						'sanitize_callback' => 'sanitize_general_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name2'
+					)
+				),
+			'plugin_name_section2' =>
+				array(
+					array(
+						'id'                => 'text',
+						'type'              => 'text',
+						'name'              => __( 'Text Input2', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Text input description2', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 'Default Text',
+						'sanitize_callback' => 'sample_sanitize_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name3'
+					),
+					array(
+						'id'                => 'text_no',
+						'type'              => 'number',
+						'name'              => __( 'Number Input2', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'              => __( 'Number2 field with validation callback `intval`', PLUGIN_NAME_TEXTDOMAIN ),
+						'default'           => 1,
+						'sanitize_callback' => 'sanitize_general_text_field',
+						'page'              => 'plugin-name-option-page-2',
+						'option_name'       => 'plugin_name_option_name3'
+					)
+				)
+		);
+
+		/**
+		 * An array of errors which can be used in add_settings_error method
+		 * Initial values for adding errors to a settings page when it's submitted
+		 *
+		 * @var array $settings_errors Array of settings errors for add_settings_error method
+		 * @see https://developer.wordpress.org/reference/functions/add_settings_error/
+		 */
+		$settings_errors = array(
+			'error1' => array(
+				'setting' => 'plugin-name-field-1-1-error', //Slug title of the setting to which this error applies.
+				'code'    => 'plugin-name-field-1-1-error', //Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
+				'message' => 'Incorrect value entered! Please only input letters and spaces.', //The formatted message text to display to the user
+				'type'    => 'error' //Possible values include 'error', 'success', 'warning', 'info'
+			),
+		);
+
+
+		$register_setting_args2 = array(
+			'type'              => 'string',
+			'description'       => 'A description of setting page 1',
+			'sanitize_callback' => 'sanitize_setting_fields', //It must always this name due to its contract in Setting_Page class
+			'default'           => null,
+			'show_in_rest'      => false,
+		);
+
+		$register_setting_args3 = array(
+			'type'              => 'string',
+			'description'       => 'A description of setting page 2',
+			'sanitize_callback' => 'sanitize_setting_fields', //It must always this name due to its contract in Setting_Page class
+			'default'           => null,
+			'show_in_rest'      => false,
+		);
+
+
+		$initial_value = array(
+			'settings_sections' => $settings_sections,
+			'settings_fields'   => $settings_fields,
+			'settings_errors'   => $settings_errors,
+			//'admin_menu_args'   => $admin_menu_args,
+		);
+
+		return $initial_value;
+	}
+
+	/**
+	 * Initial values to create option page.
+	 *
+	 * @access public
+	 * @return array It returns all of arguments that add_options_page function needs.
+	 */
+	public function get_option_menu2(  ) {
+		$admin_menu_args = array(
+			'page_title'        => esc_html__( 'Complete Settings Page', PLUGIN_NAME_TEXTDOMAIN ),
+			'menu_title'        => esc_html__( 'Complete Settings Page', PLUGIN_NAME_TEXTDOMAIN ),
+			'capability'        => 'manage_options',
+			'menu_slug'         => 'plugin-name-complete-setting-page',
+			'callable_function' => 'set_plugin_setting_page',//it can be null
+			'position'          => 11,
+		);
+
+		return $admin_menu_args;
+	}
+
 }
