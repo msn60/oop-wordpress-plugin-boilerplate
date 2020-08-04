@@ -108,7 +108,7 @@
         max-width: 70px;
     }
 
-    .wpsa-settings-separator {
+    .msn-settings-separator {
         background: #ccc;
         border: 0;
         color: #ccc;

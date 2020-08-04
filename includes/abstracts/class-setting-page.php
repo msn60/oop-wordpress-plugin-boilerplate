@@ -198,7 +198,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 					$type = isset( $field['type'] ) ? $field['type'] : 'text';
 
 					// Name.
-					$name = isset( $field['name'] ) ? $field['name'] : 'No Name Added';
+					$name = isset( $field['name'] ) ? $field['name'] : '';
 
 					// Label for.
 					$label_for = "{$section}[{$field['id']}]";
@@ -270,7 +270,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 *
 	 * @param array $args settings field args
 	 */
-	function callback_title( $args ) {
+	function create_title( $args ) {
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		if ( '' !== $args['name'] ) {
 			$name = $args['name'];
@@ -308,6 +308,73 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	function create_number( $args ) {
 		$this->create_text( $args );
 	}
+
+	/**
+	 * Displays a password field for a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_password( $args ) {
+
+		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+
+		$html  = sprintf( '<input type="password" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
+		$html .= $this->get_field_description( $args );
+
+		echo $html;
+	}
+
+	/**
+	 * Displays a textarea for a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_textarea( $args ) {
+
+		$value = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+
+		$html  = sprintf( '<textarea rows="5" cols="55" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]">%4$s</textarea>', $size, $args['section'], $args['id'], $value );
+		$html .= $this->get_field_description( $args );
+
+		echo $html;
+	}
+
+	/**
+	 * Displays a separator field for a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_separator( $args ) {
+		$type = isset( $args['type'] ) ? $args['type'] : 'separator';
+
+		$html  = '';
+		$html .= '<div class="msn-settings-separator"></div>';
+		echo $html;
+	}
+
+	/**
+	 * Displays a checkbox for a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_checkbox( $args ) {
+
+		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+
+		//TODO: change prefix for id and for in input and label tag (now it is wposa, it must be the same with name)
+		$html  = '<fieldset>';
+		$html .= sprintf( '<label for="wposa-%1$s[%2$s]">', $args['section'], $args['id'] );
+		$html .= sprintf( '<input type="hidden" name="%1$s[%2$s]" value="off" />', $args['section'], $args['id'] );
+		$html .= sprintf( '<input type="checkbox" class="checkbox" id="wposa-%1$s[%2$s]" name="%1$s[%2$s]" value="on" %3$s />', $args['section'], $args['id'], checked( $value, 'on', false ) );
+		$html .= sprintf( '%1$s</label>', $args['desc'] );
+		$html .= '</fieldset>';
+
+		echo $html;
+	}
+
+
 
 	/**
 	 * Get the value of a settings field
@@ -373,12 +440,22 @@ abstract class Setting_Page implements Action_Hook_Interface {
 
 	/**
 	 * General method to sanitize text fields
-	 * @param string $field_value A field value which is needed to sanitize
+	 * @param string $field_value A field value which needs to sanitize
 	 *
 	 * @return string
 	 */
 	public function sanitize_general_text_field( $field_value ) {
 		return sanitize_text_field($field_value);
+	}
+
+	/**
+	 * General method to sanitize textarea fields
+	 * @param string $field_value  A field value  which needs to sanitize
+	 *
+	 * @return string
+	 */
+	public function sanitize_general_textarea_field( $field_value ) {
+		return sanitize_textarea_field( $field_value );
 	}
 
 	/**
