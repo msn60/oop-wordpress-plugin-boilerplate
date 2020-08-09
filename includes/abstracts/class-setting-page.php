@@ -291,10 +291,16 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	function create_text( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
-		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
-		$type  = isset( $args['type'] ) ? $args['type'] : 'text';
+		$size = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+		$type = isset( $args['type'] ) ? $args['type'] : 'text';
+		$html = <<< MSNTEXT
+				<input type="{$type}" class="{$size}-text" 
+				id="{$args['section']}[{$args['id']}]"  
+				name="{$args['section']}[{$args['id']}]" value="{$value}" 
+				placeholder="{$args['placeholder']}" />
+		MSNTEXT;
 
-		$html  = sprintf( '<input type="%1$s" class="%2$s-text" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s"placeholder="%6$s"/>', $type, $size, $args['section'], $args['id'], $value, $args['placeholder'] );
+		//$html  = sprintf( '<input type="%1$s" class="%2$s-text" id="%3$s[%4$s]" name="%3$s[%4$s]" value="%5$s" placeholder="%6$s"/>', $type, $size, $args['section'], $args['id'], $value, $args['placeholder'] );
 		$html .= $this->get_field_description( $args );
 
 		echo $html;
@@ -319,7 +325,12 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 
-		$html  = sprintf( '<input type="password" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
+		$html = <<< MSNPASS
+					<input type="password" class="{$size}-text" 
+					id="{$args['section']}[{$args['id']}]" 
+					name="{$args['section']}[{$args['id']}]" value="{$value}"/>
+		MSNPASS;
+		//$html  = sprintf( '<input type="password" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
 		$html .= $this->get_field_description( $args );
 
 		echo $html;
@@ -335,7 +346,14 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$value = esc_textarea( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 
-		$html  = sprintf( '<textarea rows="5" cols="55" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]">%4$s</textarea>', $size, $args['section'], $args['id'], $value );
+		$html = <<< MSNTEXTAREA
+					<textarea rows="5" cols="55" class="{$size}-text" 
+					id="{$args['section']}[{$args['id']}]" 
+					name="{$args['section']}[{$args['id']}]">
+					$value
+					</textarea>		
+		MSNTEXTAREA;
+		//$html  = sprintf( '<textarea rows="5" cols="55" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]">%4$s</textarea>', $size, $args['section'], $args['id'], $value );
 		$html .= $this->get_field_description( $args );
 
 		echo $html;
@@ -364,13 +382,22 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
 
 		//TODO: change prefix for id and for in input and label tag (now it is wposa, it must be the same with name)
-		$html  = '<fieldset>';
+		/*$html  = '<fieldset>';
 		$html .= sprintf( '<label for="wposa-%1$s[%2$s]">', $args['section'], $args['id'] );
 		$html .= sprintf( '<input type="hidden" name="%1$s[%2$s]" value="off" />', $args['section'], $args['id'] );
 		$html .= sprintf( '<input type="checkbox" class="checkbox" id="wposa-%1$s[%2$s]" name="%1$s[%2$s]" value="on" %3$s />', $args['section'], $args['id'], checked( $value, 'on', false ) );
 		$html .= sprintf( '%1$s</label>', $args['desc'] );
-		$html .= '</fieldset>';
-
+		$html .= '</fieldset>';*/
+		$checked_variable = checked( $value, 'on', false );
+		$html = <<< MSNCHECKBOX
+				<fieldset>
+					<label for="wposa-{$args['section']}[{$args['id']}]">
+						<input type="hidden" name="{$args['section']}[{$args['id']}]" value="off" />
+						<input type="checkbox" class="checkbox" id="wposa-{{$args['section']}}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="on" {$checked_variable} />
+						{$args['desc']}
+					</label>
+				</fieldset>
+		MSNCHECKBOX;
 		echo $html;
 	}
 
@@ -400,7 +427,10 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 */
 	public function get_field_description( $args ) {
 		if ( ! empty( $args['desc'] ) ) {
-			$desc = sprintf( '<p class="description">%s</p>', $args['desc'] );
+			$desc = <<< MSNDESC
+					<p class="description">{$args['desc']}</p>
+			MSNDESC;
+			//$desc = sprintf( '<p class="description">%s</p>', $args['desc'] );
 		} else {
 			$desc = '';
 		}
