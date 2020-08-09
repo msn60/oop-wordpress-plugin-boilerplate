@@ -347,11 +347,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
 
 		$html = <<< MSNTEXTAREA
-					<textarea rows="5" cols="55" class="{$size}-text" 
-					id="{$args['section']}[{$args['id']}]" 
-					name="{$args['section']}[{$args['id']}]">
-					$value
-					</textarea>		
+					<textarea rows="5" cols="55" class="{$size}-text" id="{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]">$value</textarea>		
 		MSNTEXTAREA;
 		//$html  = sprintf( '<textarea rows="5" cols="55" class="%1$s-text" id="%2$s[%3$s]" name="%2$s[%3$s]">%4$s</textarea>', $size, $args['section'], $args['id'], $value );
 		$html .= $this->get_field_description( $args );
@@ -380,9 +376,8 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	function create_checkbox( $args ) {
 
 		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
-
 		//TODO: change prefix for id and for in input and label tag (now it is wposa, it must be the same with name)
-		/*$html  = '<fieldset>';
+/*		$html  = '<fieldset>';
 		$html .= sprintf( '<label for="wposa-%1$s[%2$s]">', $args['section'], $args['id'] );
 		$html .= sprintf( '<input type="hidden" name="%1$s[%2$s]" value="off" />', $args['section'], $args['id'] );
 		$html .= sprintf( '<input type="checkbox" class="checkbox" id="wposa-%1$s[%2$s]" name="%1$s[%2$s]" value="on" %3$s />', $args['section'], $args['id'], checked( $value, 'on', false ) );
@@ -393,7 +388,7 @@ abstract class Setting_Page implements Action_Hook_Interface {
 				<fieldset>
 					<label for="wposa-{$args['section']}[{$args['id']}]">
 						<input type="hidden" name="{$args['section']}[{$args['id']}]" value="off" />
-						<input type="checkbox" class="checkbox" id="wposa-{{$args['section']}}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="on" {$checked_variable} />
+						<input type="checkbox" class="checkbox" id="wposa-{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="on" {$checked_variable} />
 						{$args['desc']}
 					</label>
 				</fieldset>
@@ -438,16 +433,6 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		return $desc;
 	}
 
-	public function create_settings_error( $name ) {
-		add_settings_error(
-			$this->settings_errors[$name]['setting'],
-			$this->settings_errors[$name]['code'],
-			$this->settings_errors[$name]['message'],
-			$this->settings_errors[$name]['type'],
-		);
-
-	}
-
 	/**
 	 * sanitize_setting_fields method.
 	 * A callback function that sanitizes the option's value.
@@ -456,16 +441,46 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 *
 	 */
 	public function sanitize_setting_fields( $fields ) {
+		$results = [];
 		foreach ( $fields as $field_slug => $field_value ) {
-			$sanitize_callback = $this->get_sanitize_callback( $field_slug );
+			$sanitize_callback_and_errors = $this->get_sanitize_callback( $field_slug );
 			// If callback is set, call it.
-			if ( $sanitize_callback ) {
-				$fields[ $field_slug ] = call_user_func( array($this , $sanitize_callback), $field_value );
+			if ( $sanitize_callback_and_errors['sanitize_callback'] ) {
+				$results[ $field_slug ] = call_user_func( array( $this, $sanitize_callback_and_errors['sanitize_callback'] ), $field_value );
+
+				if ( $results[ $field_slug ] != $field_value ) {
+					$temp_setting_error_args =[];
+					if ( $sanitize_callback_and_errors['has_unique_error'] ) {
+						$temp_setting_error_args = $sanitize_callback_and_errors['error_args'];
+					} else {
+						$temp_setting_error_args['settings'] = 'plugin_name_prefix_'.$field_slug.'_error';
+						$temp_setting_error_args['code'] = 'plugin_name_prefix_'.$field_slug.'_error_id';
+						$temp_setting_error_args['message'] = __( 'Some values that you entered, were not valid. So they were sanitized and then save into database', PLUGIN_NAME_TEXTDOMAIN );
+						$temp_setting_error_args['type'] = 'warning';
+					}
+					add_settings_error(
+						$temp_setting_error_args['settings'],
+						$temp_setting_error_args['code'],
+						$temp_setting_error_args['message'],
+						$temp_setting_error_args['type']
+					);
+				}
 				continue;
+			} else {
+				$results[ $field_slug ] = $field_value;
 			}
 		}
 
-		return $fields;
+		return $results;
+	}
+
+	public function show_general_error( $args ) {
+		add_settings_error(
+			$args['settings'],
+			$args['code'],
+			$args['message'],
+			$args['type'],
+		);
 	}
 
 	/**
@@ -475,7 +490,9 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @return string
 	 */
 	public function sanitize_general_text_field( $field_value ) {
-		return sanitize_text_field($field_value);
+		$result = sanitize_text_field($field_value);
+
+		return $result;
 	}
 
 	/**
@@ -485,7 +502,8 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @return string
 	 */
 	public function sanitize_general_textarea_field( $field_value ) {
-		return sanitize_textarea_field( $field_value );
+		$result =  sanitize_textarea_field( $field_value );
+		return $result;
 	}
 
 	/**
@@ -496,21 +514,44 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	 * @since  1.0.0
 	 */
 	function get_sanitize_callback( $slug = '' ) {
+		$result = [];
 		if ( empty( $slug ) ) {
 			return false;
 		}
-
 		// Iterate over registered fields and see if we can find proper callback.
 		foreach ( $this->settings_fields as $section => $field_array ) {
 			foreach ( $field_array as $field ) {
 				if ( $field['id'] == $slug ) {
-					return $field['sanitize_callback'];
+					$result['sanitize_callback'] = $field['sanitize_callback'];
+					$result['has_unique_error'] = $field['has_unique_error'];
+					$result['error_args'] = $field['error_args'];
+					return $result;
 				}
 			}
 		}
 
 		return false;
 	}
+
+	function get_error_callback( $slug = '' ) {
+		$result = [];
+		if ( empty( $slug ) ) {
+			return false;
+		}
+		// Iterate over registered fields and see if we can find proper callback.
+		foreach ( $this->settings_fields as $section => $field_array ) {
+			foreach ( $field_array as $field ) {
+				if ( $field['id'] == $slug ) {
+					$result['error_callback'] = $field['error_callback'];
+					$result['error_args'] = $field['error_args'];
+					return $result;
+				}
+			}
+		}
+		return false;
+	}
+
+
 
 	/**
 	 * Method to create admin menu to show sections and related fields in setting page
