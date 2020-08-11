@@ -32,7 +32,7 @@ use Plugin_Name_Name_Space\Includes\Uninstall\{
 };
 use Plugin_Name_Name_Space\Includes\Admin\{
 	Admin_Menu1, Admin_Sub_Menu1, Admin_Sub_Menu2, Meta_Box3, Meta_Box4, Simple_Setting_Page1,
-	Option_Menu1, Option_Menu2, Setting_Page1,
+	Simple_Setting_In_Reading_Page1, Option_Menu1, Option_Menu2, Setting_Page1,
 	Notices\Admin_Notice1, Notices\Woocommerce_Deactive_Notice
 };
 
@@ -257,7 +257,8 @@ final class Plugin_Name_Plugin {
 				new Option_Menu1($this->initial_values->sample_option_page()),
 			],
 			[
-				new Simple_Setting_Page1( $this->initial_values->sample_setting_page1())
+				new Simple_Setting_Page1( $this->initial_values->sample_setting_page1()),
+				new Simple_Setting_In_Reading_Page1( $this->initial_values->sample_setting_in_reading_page1()),
 			],
 			[
 				new Setting_Page1(
