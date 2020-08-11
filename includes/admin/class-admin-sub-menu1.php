@@ -62,6 +62,6 @@ class Admin_Sub_Menu1 extends Admin_Sub_Menu {
 	 * @see     https://wisdmlabs.com/blog/create-settings-options-page-for-wordpress-plugin/
 	 */
 	public function render_sub_menu_panel() {
-		$this->load_template( 'first-page.primary-section', [] );
+		$this->load_template( 'plugin-page.primary-section', [] );
 	}
 }

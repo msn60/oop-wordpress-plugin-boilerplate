@@ -1,7 +1,7 @@
 
 
 <div class="wrap">
-    <h1>Complete Settings Page By MSN</h1>
+    <h1><span class="dashicons dashicons-universal-access"></span>Complete Settings Page By MSN</h1>
     <div class="wrap">
 		<?php
 		$html = '<h2 class="nav-tab-wrapper">';

@@ -50,10 +50,10 @@ class Admin_Notice1 extends Admin_Notice {
 
 		if ( preg_match( '/plugin-name-option-page-url-2/', $actual_link ) ) {
 			?>
-            <div class="notice notice-success"><p>Sample of Admin success notice</p></div>
-            <div class="notice notice-warning"><p>Sample of Admin warning notice</p></div>
-            <div class="notice notice-info"><p>Sample of Admin info notice</p></div>
-            <div class="notice notice-error"><p>Sample of Admin error notice</p></div>
+            <div class="notice notice-success  is-dismissible"><p>Sample of Admin success notice</p></div>
+            <div class="notice notice-warning  is-dismissible"><p>Sample of Admin warning notice</p></div>
+            <div class="notice notice-info  is-dismissible"><p>Sample of Admin info notice</p></div>
+            <div class="notice notice-error is-dismissible"><p>Sample of Admin error notice</p></div>
 
 			<?php
 		}
