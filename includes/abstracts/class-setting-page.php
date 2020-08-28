@@ -386,13 +386,33 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$checked_variable = checked( $value, 'on', false );
 		$html = <<< MSNCHECKBOX
 				<fieldset>
-					<label for="wposa-{$args['section']}[{$args['id']}]">
+					<label for="msnsmp-{$args['section']}[{$args['id']}]">
 						<input type="hidden" name="{$args['section']}[{$args['id']}]" value="off" />
-						<input type="checkbox" class="checkbox" id="wposa-{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="on" {$checked_variable} />
+						<input type="checkbox" class="checkbox" id="msnsmp-{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="on" {$checked_variable} />
 						{$args['desc']}
 					</label>
 				</fieldset>
 		MSNCHECKBOX;
+		echo $html;
+	}
+
+	/**
+	 * Displays a radion button for a settings field
+	 * @param $args
+	 */
+	function create_radio( $args ) {
+
+		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+
+		$html = '<fieldset>';
+		foreach ( $args['options'] as $key => $label ) {
+			$html .= sprintf( '<label for="msnsmp-%1$s[%2$s][%3$s]">', $args['section'], $args['id'], $key );
+			$html .= sprintf( '<input type="radio" class="radio" id="msnsmp-%1$s[%2$s][%3$s]" name="%1$s[%2$s]" value="%3$s" %4$s />', $args['section'], $args['id'], $key, checked( $value, $key, false ) );
+			$html .= sprintf( '%1$s</label><br>', $label );
+		}
+		$html .= $this->get_field_description( $args );
+		$html .= '</fieldset>';
+
 		echo $html;
 	}
 

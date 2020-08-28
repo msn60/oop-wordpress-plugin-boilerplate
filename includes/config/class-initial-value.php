@@ -589,10 +589,14 @@ class Initial_Value {
 		 */
 		$settings_errors = array(
 			'error1' => array(
-				'setting' => 'plugin-name-field-1-1-in-reading-page-error', //Slug title of the setting to which this error applies.
-				'code'    => 'plugin-name-field-1-1-in-reading-page-error', //Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
-				'message' => __( 'Incorrect value entered! Please only input letters and spaces.', PLUGIN_NAME_TEXTDOMAIN ), //The formatted message text to display to the user
-				'type'    => 'error' //Possible values include 'error', 'success', 'warning', 'info'
+				'setting' => 'plugin-name-field-1-1-in-reading-page-error',
+				//Slug title of the setting to which this error applies.
+				'code'    => 'plugin-name-field-1-1-in-reading-page-error',
+				//Slug-name to identify the error. Used as part of 'id' attribute in HTML output.
+				'message' => __( 'Incorrect value entered! Please only input letters and spaces.', PLUGIN_NAME_TEXTDOMAIN ),
+				//The formatted message text to display to the user
+				'type'    => 'error'
+				//Possible values include 'error', 'success', 'warning', 'info'
 			),
 		);
 
@@ -852,6 +856,17 @@ class Initial_Value {
 						'type' => 'checkbox',
 						'name' => __( 'Checkbox', PLUGIN_NAME_TEXTDOMAIN ),
 						'desc' => __( 'Checkbox Label', PLUGIN_NAME_TEXTDOMAIN ),
+					),
+					array(
+						'id'      => 'radio',
+						'type'    => 'radio',
+						'name'    => __( 'Radio', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'    => __( 'Simple Radio Button', PLUGIN_NAME_TEXTDOMAIN ),
+						'options' => array(
+							'yes'          => __( 'Yes', PLUGIN_NAME_TEXTDOMAIN ),
+							'no'           => __( 'No', PLUGIN_NAME_TEXTDOMAIN ),
+							'other-option' => __( 'Other options', PLUGIN_NAME_TEXTDOMAIN ),
+						),
 					),
 				),
 			'plugin_name_section2' =>
