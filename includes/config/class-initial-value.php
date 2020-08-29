@@ -892,15 +892,27 @@ class Initial_Value {
 						),
 					),
 					array(
-						'id'                => 'text_no',
-						'type'              => 'number',
-						'name'              => __( 'Number Input2', PLUGIN_NAME_TEXTDOMAIN ),
-						'desc'              => __( 'Number2 field with validation callback `intval`', PLUGIN_NAME_TEXTDOMAIN ),
-						'default'           => 1,
-						'sanitize_callback' => 'sanitize_general_text_field',
-						'page'              => 'plugin-name-option-page-2',
-						'option_name'       => 'plugin_name_option_name3'
-					)
+						'id'      => 'file',
+						'type'    => 'file',
+						'name'    => __( 'File', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'    => __( 'File description', PLUGIN_NAME_TEXTDOMAIN ),
+						'options' => array(
+							'button_label' => __( 'Choose file', PLUGIN_NAME_TEXTDOMAIN ),
+						),
+					),
+					array(
+						'id'          => 'color',
+						'type'        => 'color',
+						'name'        => __( 'Color', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'        => __( 'Color description', PLUGIN_NAME_TEXTDOMAIN ),
+						'placeholder' => __( '#5F4B8B', PLUGIN_NAME_TEXTDOMAIN ),
+					),
+					array(
+						'id'   => 'wysiwyg',
+						'type' => 'wysiwyg',
+						'name' => __( 'WP_Editor', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc' => __( 'WP_Editor description', PLUGIN_NAME_TEXTDOMAIN ),
+					),
 				)
 		);
 

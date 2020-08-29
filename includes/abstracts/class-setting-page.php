@@ -453,15 +453,86 @@ abstract class Setting_Page implements Action_Hook_Interface {
 		$label = isset( $args['options']['button_label'] ) ?
 			$args['options']['button_label'] :
 			__( 'Choose Image' );
-
-		$html  = sprintf( '<input type="text" class="%1$s-text msnsmp-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
-		$html .= '<input type="button" class="button msnsmp-browse" value="' . $label . '" />';
-		$html .= $this->get_field_description( $args );
-		$html .= '<p class="msnsmp-image-preview"><img src=""/></p>';
+		$field_description = $this->get_field_description( $args );
+		$html = <<< MSNIMAGE
+				<input type="text" class="{$size}-text msnsmp-url" id="{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="{$value}"/>
+				<input type="button" class="button msnsmp-browse" value="{$label}" />
+				{$field_description}
+				<p class="msnsmp-image-preview"><img src=""/></p>
+		MSNIMAGE;
 
 		echo $html;
 	}
 
+	/**
+	 * Displays a file upload field for a settings field
+	 *
+	 * @param array $args settings field args.
+	 */
+	function create_file( $args ) {
+
+		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+		$id    = $args['section'] . '[' . $args['id'] . ']';
+		$label = isset( $args['options']['button_label'] ) ?
+			$args['options']['button_label'] :
+			__( 'Choose File' );
+		$field_description = $this->get_field_description( $args );
+		$html = <<< MSNFILE
+				<input type="text" class="{$size}-text msnsmp-url" id="{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="{$value}"/>
+				<input type="button" class="button msnsmp-browse" value="{$label}" />	
+				{$field_description}
+		MSNFILE;
+
+		echo $html;
+	}
+
+	/**
+	 * Displays a color picker field for a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_color( $args ) {
+
+		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+		$field_description = $this->get_field_description( $args );
+
+		$html = <<< MSNCOLOR
+				<input type="text" class="{$size}-text color-picker" id="{$args['section']}[{$args['id']}]" name="{$args['section']}[{$args['id']}]" value="{$value}" data-default-color="{$args['std']}" placeholder="{$args['placeholder']}" />
+				{$field_description}
+		MSNCOLOR;
+
+		echo $html;
+	}
+
+	/**
+	 * Displays a rich text textarea for a settings field
+	 *
+	 * @param array $args settings field args.
+	 */
+	function create_wysiwyg( $args ) {
+
+		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : '500px';
+
+		echo '<div style="max-width: ' . $size . ';">';
+
+		$editor_settings = array(
+			'teeny'         => true,
+			'textarea_name' => $args['section'] . '[' . $args['id'] . ']',
+			'textarea_rows' => 10,
+		);
+		if ( isset( $args['options'] ) && is_array( $args['options'] ) ) {
+			$editor_settings = array_merge( $editor_settings, $args['options'] );
+		}
+
+		wp_editor( $value, $args['section'] . '-' . $args['id'], $editor_settings );
+
+		echo '</div>';
+
+		echo $this->get_field_description( $args );
+	}
 
 
 
