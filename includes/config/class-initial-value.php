@@ -868,18 +868,28 @@ class Initial_Value {
 							'other-option' => __( 'Other options', PLUGIN_NAME_TEXTDOMAIN ),
 						),
 					),
+					array(
+						'id'      => 'multicheck',
+						'type'    => 'multicheck',
+						'name'    => __( 'Multile checkbox', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'    => __( 'Multile checkbox description', PLUGIN_NAME_TEXTDOMAIN ),
+						'options' => array(
+							'yes'          => __( 'Yes', PLUGIN_NAME_TEXTDOMAIN ),
+							'no'           => __( 'No', PLUGIN_NAME_TEXTDOMAIN ),
+							'other-option' => __( 'Other options', PLUGIN_NAME_TEXTDOMAIN ),
+						),
+					),
 				),
 			'plugin_name_section2' =>
 				array(
 					array(
-						'id'                => 'text',
-						'type'              => 'text',
-						'name'              => __( 'Text Input2', PLUGIN_NAME_TEXTDOMAIN ),
-						'desc'              => __( 'Text input description2', PLUGIN_NAME_TEXTDOMAIN ),
-						'default'           => 'Default Text',
-						'sanitize_callback' => 'sample_sanitize_text_field',
-						'page'              => 'plugin-name-option-page-2',
-						'option_name'       => 'plugin_name_option_name3'
+						'id'      => 'image',
+						'type'    => 'image',
+						'name'    => __( 'Image', PLUGIN_NAME_TEXTDOMAIN ),
+						'desc'    => __( 'Image description', PLUGIN_NAME_TEXTDOMAIN ),
+						'options' => array(
+							'button_label' => __( 'Choose Image', PLUGIN_NAME_TEXTDOMAIN ),
+						),
 					),
 					array(
 						'id'                => 'text_no',

@@ -397,7 +397,8 @@ abstract class Setting_Page implements Action_Hook_Interface {
 	}
 
 	/**
-	 * Displays a radion button for a settings field
+	 * Displays a radio button for a settings field
+	 *
 	 * @param $args
 	 */
 	function create_radio( $args ) {
@@ -415,6 +416,52 @@ abstract class Setting_Page implements Action_Hook_Interface {
 
 		echo $html;
 	}
+
+	/**
+	 * Displays a multicheckbox a settings field
+	 *
+	 * @param array $args settings field args
+	 */
+	function create_multicheck( $args ) {
+
+		$value = $this->get_option( $args['id'], $args['section'], $args['std'] );
+
+		$html = '<fieldset>';
+		foreach ( $args['options'] as $key => $label ) {
+			$checked = isset( $value[ $key ] ) ? $value[ $key ] : '0';
+			$html    .= sprintf( '<label for="msnsmp-%1$s[%2$s][%3$s]">', $args['section'], $args['id'], $key );
+			$html    .= sprintf( '<input type="checkbox" class="checkbox" id="msnsmp-%1$s[%2$s][%3$s]" name="%1$s[%2$s][%3$s]" value="%3$s" %4$s />',
+				$args['section'], $args['id'], $key, checked( $checked, $key, false ) );
+			$html    .= sprintf( '%1$s</label><br>', $label );
+		}
+		$html .= $this->get_field_description( $args );
+		$html .= '</fieldset>';
+
+		echo $html;
+	}
+
+	/**
+	 * Displays an image upload field with a preview
+	 *
+	 * @param array $args settings field args.
+	 */
+	function create_image( $args ) {
+
+		$value = esc_attr( $this->get_option( $args['id'], $args['section'], $args['std'] ) );
+		$size  = isset( $args['size'] ) && ! is_null( $args['size'] ) ? $args['size'] : 'regular';
+		$id    = $args['section'] . '[' . $args['id'] . ']';
+		$label = isset( $args['options']['button_label'] ) ?
+			$args['options']['button_label'] :
+			__( 'Choose Image' );
+
+		$html  = sprintf( '<input type="text" class="%1$s-text msnsmp-url" id="%2$s[%3$s]" name="%2$s[%3$s]" value="%4$s"/>', $size, $args['section'], $args['id'], $value );
+		$html .= '<input type="button" class="button msnsmp-browse" value="' . $label . '" />';
+		$html .= $this->get_field_description( $args );
+		$html .= '<p class="msnsmp-image-preview"><img src=""/></p>';
+
+		echo $html;
+	}
+
 
 
 

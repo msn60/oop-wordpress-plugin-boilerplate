@@ -384,6 +384,7 @@ class Core implements Action_Hook_Interface, Filter_Hook_Interface {
 						}*/
 			$this->router->register_add_action();
 		}
+		//var_dump(get_option('plugin_name_section2'));
 		
 	}
 
